@@ -10,13 +10,23 @@ public class Order {
 	private int order_id;
 	private int noOfItems;
 	private double orderTotalCost;
+	private String vendorName;
 	
-	public Order(int order_id, int noOfItems, double orderTotalCost) {
+	public Order(int order_id, int noOfItems, double orderTotalCost, String vendorName) {
 		this.order_id = order_id;
 		this.noOfItems = noOfItems;
 		this.orderTotalCost = orderTotalCost;
+		this.vendorName = vendorName;
 	}
 	
+	public String getVendorName() {
+		return vendorName;
+	}
+
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
+	}
+
 	public String toString() {
 		
 		return String.format("%-10d %-10d %.2f", getOrder_id(), getNoOfItems(), getOrderTotalCost() );
