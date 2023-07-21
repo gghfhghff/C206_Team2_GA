@@ -71,7 +71,7 @@ public class main {
 				int adminOption = 0;
 				
 				while (adminOption != 7) {
-					adminOption = Helper.readInt("Enter option> ");
+					adminOption = Helper.readInt("Enter option > ");
 					if (adminOption == 1) {
 						//add school
 					}else if (adminOption == 2) {
@@ -83,7 +83,7 @@ public class main {
 						int userOption = 0;
 						viewAllMenu();
 						while (userOption != 4) {
-							userOption = Helper.readInt("Enter option >");
+							userOption = Helper.readInt("Enter option > ");
 							if (userOption == 1) {
 								//parent
 							}else if (userOption == 2) {
@@ -103,7 +103,7 @@ public class main {
 						int deleteOption = 0;
 						deleteMenu();
 						while (deleteOption != 4) {
-							deleteOption = Helper.readInt("Enter option >");
+							deleteOption = Helper.readInt("Enter option > ");
 							if (deleteOption == 1) {
 								//parent
 							}else if (deleteOption == 2) {
@@ -127,7 +127,7 @@ public class main {
 	}
 
 	private static void startMenu() {
-		main.setHeader("Choose your user");
+		main.setHeader("User Selection");
 		System.out.println("1. Parent/Guardian");
 		System.out.println("2. Vendor");
 		System.out.println("3. Administrator");
@@ -135,7 +135,7 @@ public class main {
 	}
 	
 	private static void parentMenu() {
-		main.setHeader("Parent/guardian menu");
+		main.setHeader("Parent/Guardian Menu");
 		System.out.println("1. Create new account");
 		System.out.println("2. View menu");
 		System.out.println("3. View status of orders ");
@@ -145,14 +145,14 @@ public class main {
 	}
 	
 	private static void vendorMenu() {
-		main.setHeader("Vendor menu");
+		main.setHeader("Vendor Menu");
 		System.out.println("1. Add menu");
 		System.out.println("2. Edit menu");
 		System.out.println("3. Manage Details");
 		System.out.println("4. Quit");
 	}
 	private static void adminMenu() {
-		main.setHeader("Admin menu");
+		main.setHeader("Admin Menu");
 		System.out.println("1. Add school");
 		System.out.println("2. Edit school");
 		System.out.println("3. View order status");
@@ -162,14 +162,14 @@ public class main {
 		System.out.println("7. Quit");
 	}
 	private static void viewAllMenu() {
-		main.setHeader("Choose which user you want to view");
+		main.setHeader("View User Selection");
 		System.out.println("1. Parent/Guardian");
 		System.out.println("2. School");
 		System.out.println("3. Vendor");
 		System.out.println("4. Quit");
 	}
 	private static void deleteMenu() {
-		main.setHeader("Choose which user you want to delete");
+		main.setHeader("Delete User Selection");
 		System.out.println("1. Parent/Guardian");
 		System.out.println("2. School");
 		System.out.println("3. Vendor");
