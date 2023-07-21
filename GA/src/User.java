@@ -1,10 +1,10 @@
 
 public class User {
 
-	private String id;
+	private int id;
 	private String Role;
 	
-	public User(String id, String role) {
+	public User(int id, String role) {
 		
 		this.id = id;
 		Role = role;
@@ -14,11 +14,11 @@ public class User {
 		
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
