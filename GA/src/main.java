@@ -28,6 +28,19 @@ public class main {
 				while (parentOption != 6 ) {
 					if (parentOption == 1) {
 						
+					}else if (parentOption == 2) {
+						//view
+					}
+					else if (parentOption == 3) {
+						//view status of order
+					}else if (parentOption == 4) {
+						//add payment
+					}else if (parentOption == 5) {
+						//edit payment
+					}else if (parentOption == 6) {
+						System.out.println("Goodbye!");
+					}else {
+						System.out.println("Invalid option!");
 					}
 				}
 				
@@ -38,7 +51,15 @@ public class main {
 				
 				while (vendorOption != 4) {
 					if (vendorOption == 1) {
-						
+						//Add menu
+					}else if (vendorOption == 2) {
+						//edit menu
+					}else if (vendorOption == 3) {
+						//manage details
+					}else if (vendorOption == 4) {
+						System.out.println("Goodbye!");
+					}else {
+						System.out.println("Invalid option!");
 					}
 				}
 						
@@ -49,8 +70,30 @@ public class main {
 				int adminOption = 0;
 				
 				while (adminOption != 7) {
+					adminOption = Helper.readInt("Enter option> ");
 					if (adminOption == 1) {
-						
+						//add school
+					}else if (adminOption == 2) {
+						//edit school
+					}else if (adminOption == 3) {
+						//view order status
+					}else if (adminOption == 4) {
+						//view all users
+						int userOption = 0;
+						viewAllMenu();
+						while (userOption != 4) {
+							if (userOption == 1) {
+								//parent
+							}else if (userOption == 2) {
+								//school
+							}else if (userOption == 3) {
+								//vendor
+							}else if (userOption == 4) {
+								System.out.println("Goodbye");
+							}else {
+								System.out.println("Invalid Option");
+							}
+						}
 					}
 				}
 			}else if (option == 4) {
@@ -95,6 +138,13 @@ public class main {
 		System.out.println("5. Generate montly reports");
 		System.out.println("6. Delete user accounts");
 		System.out.println("7. Quit");
+	}
+	private static void viewAllMenu() {
+		main.setHeader("Choose which user you want to view");
+		System.out.println("1. Parent/Guardian");
+		System.out.println("2. School");
+		System.out.println("3. Vendor");
+		System.out.println("4. Quit");
 	}
 	
 	 private static void setHeader(String string) { 
