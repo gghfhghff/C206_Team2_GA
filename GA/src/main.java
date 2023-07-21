@@ -96,6 +96,26 @@ public class main {
 								System.out.println("Invalid Option");
 							}
 						}
+					}else if (adminOption == 5) {
+						//generate monthly reports
+					}else if (adminOption == 6) {
+						//delete user accounts
+						int deleteOption = 0;
+						deleteMenu();
+						while (deleteOption != 4) {
+							deleteOption = Helper.readInt("Enter option >");
+							if (deleteOption == 1) {
+								//parent
+							}else if (deleteOption == 2) {
+								//school
+							}else if (deleteOption == 3) {
+								//vendor
+							}else if (deleteOption == 4) {
+								System.out.println("Goodbye");
+							}else {
+								System.out.println("Invalid Option");
+							}
+						}
 					}
 				}
 			}else if (option == 4) {
@@ -143,6 +163,13 @@ public class main {
 	}
 	private static void viewAllMenu() {
 		main.setHeader("Choose which user you want to view");
+		System.out.println("1. Parent/Guardian");
+		System.out.println("2. School");
+		System.out.println("3. Vendor");
+		System.out.println("4. Quit");
+	}
+	private static void deleteMenu() {
+		main.setHeader("Choose which user you want to delete");
 		System.out.println("1. Parent/Guardian");
 		System.out.println("2. School");
 		System.out.println("3. Vendor");
