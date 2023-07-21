@@ -82,6 +82,7 @@ public class main {
 						int userOption = 0;
 						viewAllMenu();
 						while (userOption != 4) {
+							userOption = Helper.readInt("Enter option >");
 							if (userOption == 1) {
 								//parent
 							}else if (userOption == 2) {
