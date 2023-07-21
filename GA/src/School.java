@@ -22,7 +22,6 @@ public class School {
 
 	}
 
-
 	public int getSchool_id() {
 		return school_id;
 	}
