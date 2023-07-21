@@ -8,14 +8,21 @@ public class School {
 	
 	
 	public School(int school_id, String name, String address, int noOfOrders) {
+		
 		this.school_id = school_id;
 		this.name = name;
 		this.address = address;
 		this.noOfOrders = noOfOrders;
+		
 	}
 	
 	
-	
+	public String toString() {
+		return "School [school_id=" + school_id + ", name=" + name + ", address=" + address + ", noOfOrders="
+				+ noOfOrders + "]";
+	}
+
+
 	public int getSchool_id() {
 		return school_id;
 	}
