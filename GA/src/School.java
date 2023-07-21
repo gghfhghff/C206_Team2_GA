@@ -16,10 +16,10 @@ public class School {
 		
 	}
 	
-	
 	public String toString() {
-		return "School [school_id=" + school_id + ", name=" + name + ", address=" + address + ", noOfOrders="
-				+ noOfOrders + "]";
+		
+		return String.format("%-10d %-10s %-10s %-10d ", getSchool_id(), getName(), getAddress(), getNoOfOrders());
+
 	}
 
 
