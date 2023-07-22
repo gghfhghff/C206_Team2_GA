@@ -12,9 +12,8 @@ public class main {
 		ArrayList<Vendor> vendorList = new ArrayList<Vendor>();
 		
 		
-		
-
-		
+		OrderStatus o1 = new OrderStatus(1,"Pending");
+		orderStatusList.add(o1);
 		
 		int option = 0;
 		
@@ -42,10 +41,12 @@ public class main {
 					}
 					else if (parentOption == 3) {
 						//view status of order
+						
+						System.out.println(String.format("%-10s %-30s", "Order ID", "Order Status"));
 						for (OrderStatus o : orderStatusList) {
 							main.setHeader("View Order status");
 							
-							System.out.println(o);
+							System.out.println(o.toString());
 							
 						}
 					
