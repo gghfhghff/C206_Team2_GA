@@ -10,10 +10,13 @@ public class main {
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		ArrayList<OrderStatus> orderStatusList = new ArrayList<OrderStatus>();
 		ArrayList<Vendor> vendorList = new ArrayList<Vendor>();
+		ArrayList<Payment> paymentList = new ArrayList<Payment>();
+		ArrayList<Item> itemList = new ArrayList<Item>();
 		
 		
-		OrderStatus o1 = new OrderStatus(1,"Pending");
-		orderStatusList.add(o1);
+		
+			OrderStatus o1 = new OrderStatus(1,"Pending");
+			orderStatusList.add(o1);
 		
 		int option = 0;
 		
@@ -27,8 +30,21 @@ public class main {
 				
 				int parentOption = 0;
 				while (parentOption != 6 ) {
-					parentOption = Helper.readInt("Enter Option> ");
+
+					parentOption = Helper.readInt("Enter Option > ");
 					if (parentOption == 1) {
+						
+						Helper.line(50, "-");
+						System.out.println("Account Creation");
+						Helper.line(50, "-");
+						
+						String name = Helper.readString("Enter Your Name > ");
+						int id = userList.size() + 1;
+						String contactNum = Helper.readString("Enter Your Contact Number > ");
+						String role = Helper.readString("Are You A Parent / Guardian ? > ");
+						
+						userList.add(new User(name, id, contactNum, role));
+						
 						
 					}else if (parentOption == 2) {
 						//view
@@ -53,6 +69,19 @@ public class main {
 						
 					}else if (parentOption == 4) {
 						//add payment
+						
+						Helper.line(50, "-");
+						System.out.println("Add a new payment method");
+						Helper.line(50, "-");
+						
+						String name = Helper.readString("Enter Name Displayed On The Card > ");
+						int cardNo = Helper.readInt("Enter Card Number > ");
+						int cvc = Helper.readInt("Enter CVC / CVV > ");
+						String exp = Helper.readString("Enter Expiration Date Of Card");
+						
+						paymentList.add(new Payment(name, cardNo, cvc, exp));
+
+						
 					}else if (parentOption == 5) {
 						//edit payment
 					}else if (parentOption == 6) {
@@ -68,21 +97,51 @@ public class main {
 				int vendorOption = 0;
 				
 				while (vendorOption != 4) {
-					vendorOption = Helper.readInt("Enter option> ");
+
+					vendorOption = Helper.readInt("Enter option > ");
+					
 					if (vendorOption == 1) {
 						//Add menu
+						
+						int menuId = menuList.size() + 1;
+						String menuName = Helper.readString("Enter Menu Name / Title > ");
+						String status = Helper.readString("Enter Menu Status > ");
+						
+						char con = 'Y';
+						
+						while (con == 'Y' || con == 'y') {
+							
+							int itemId = itemList.size() + 1;
+							String itemName = Helper.readString("Enter Item Name > ");
+							String itemDesc = Helper.readString("Enter Item Description > ");
+							Double itemPrice = Helper.readDouble("Enter Price > ");
+									
+							
+							
+							itemList.add(new Item(menuId,itemId, itemName, itemDesc, itemPrice));
+							con = Helper.readChar("Continue Adding Items to " + menuName + " (Y/N) > ");
+							
+							if(con == 'N' || con == 'n') {
+								System.out.println("Menu and Items Successfully Added!");
+								vendorMenu();
+							}
+						}
+						
+						
+						menuList.add(new Menu(menuId, menuName, status)); 
+
+						
 					}else if (vendorOption == 2) {
 						//edit menu
 					}else if (vendorOption == 3) {
 						//manage details
 					}else if (vendorOption == 4) {
 						System.out.println("Goodbye!");
-					}
-				} {
+					}else {
 					System.out.println("Invalid option!");
 				}
 						
-				
+			}
 			}else if (option == 3) {
 				adminMenu();
 				
@@ -92,6 +151,13 @@ public class main {
 					adminOption = Helper.readInt("Enter option > ");
 					if (adminOption == 1) {
 						//add school
+						
+						int id = schoolList.size() + 1;
+						String name = Helper.readString("Enter School Name > ");
+						String add = Helper.readString("Enter School's Address > ");
+						
+						schoolList.add(new School(id, name, add));
+						
 					}else if (adminOption == 2) {
 						//edit school
 						

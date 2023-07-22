@@ -16,6 +16,14 @@ public class School {
 		
 	}
 	
+	public School(int school_id, String name, String address) {
+		
+		this.school_id = school_id;
+		this.name = name;
+		this.address = address;
+		
+	}
+	
 	public String toString() {
 		
 		return String.format("%-10d %-10s %-10s %-10d ", getSchool_id(), getName(), getAddress(), getNoOfOrders());
@@ -41,12 +49,15 @@ public class School {
 	public String getAddress() {
 		return address;
 	}
+	
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
 	public int getNoOfOrders() {
 		return noOfOrders;
 	}
+	
 	public void setNoOfOrders(int noOfOrders) {
 		this.noOfOrders = noOfOrders;
 	}

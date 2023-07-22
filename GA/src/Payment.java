@@ -7,7 +7,6 @@ public class Payment {
 	private String expDate;
 	
 	public Payment(String name, int cardNo, int cvc, String expDate) {
-		super();
 		this.name = name;
 		this.cardNo = cardNo;
 		this.cvc = cvc;
@@ -22,8 +21,6 @@ public class Payment {
 
 	}
 
-
-	
 
 	public String getName() {
 		return name;
