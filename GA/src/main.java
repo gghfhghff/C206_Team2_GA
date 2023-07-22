@@ -8,9 +8,10 @@ public class main {
 		ArrayList<School> schoolList = new ArrayList<School>();
 		ArrayList<Menu> menuList = new ArrayList<Menu>();
 		ArrayList<Order> orderList = new ArrayList<Order>();
+		ArrayList<OrderStatus> orderStatusList = new ArrayList<OrderStatus>();
 		ArrayList<Vendor> vendorList = new ArrayList<Vendor>();
 		
-		//josh
+		
 		
 
 		
@@ -27,13 +28,28 @@ public class main {
 				
 				int parentOption = 0;
 				while (parentOption != 6 ) {
+					parentOption = Helper.readInt("Enter Option> ");
 					if (parentOption == 1) {
 						
 					}else if (parentOption == 2) {
 						//view
+						for (Menu m : menuList) {
+							main.setHeader("View Menu");
+						
+						System.out.println(m);
+						break;
+						}
 					}
 					else if (parentOption == 3) {
 						//view status of order
+						for (OrderStatus o : orderStatusList) {
+							main.setHeader("View Order status");
+							
+							System.out.println(o);
+							
+						}
+					
+						
 					}else if (parentOption == 4) {
 						//add payment
 					}else if (parentOption == 5) {
@@ -51,6 +67,7 @@ public class main {
 				int vendorOption = 0;
 				
 				while (vendorOption != 4) {
+					vendorOption = Helper.readInt("Enter option> ");
 					if (vendorOption == 1) {
 						//Add menu
 					}else if (vendorOption == 2) {
@@ -59,9 +76,9 @@ public class main {
 						//manage details
 					}else if (vendorOption == 4) {
 						System.out.println("Goodbye!");
-					}else {
-						System.out.println("Invalid option!");
 					}
+				} {
+					System.out.println("Invalid option!");
 				}
 						
 				
@@ -76,8 +93,21 @@ public class main {
 						//add school
 					}else if (adminOption == 2) {
 						//edit school
+						
 					}else if (adminOption == 3) {
-						//view order status
+						//view all orders
+						for (Order o : orderList) {
+							main.setHeader("View all orders");
+							
+							System.out.println(o);
+						}
+					}else if (adminOption == 4) {
+						//View all order status
+						for (OrderStatus os : orderStatusList) {
+							main.setHeader("View All Order Statuses");
+							
+							System.out.println(os);
+						}
 					}else if (adminOption == 4) {
 						//view all users
 						int userOption = 0;
@@ -86,10 +116,24 @@ public class main {
 							userOption = Helper.readInt("Enter option > ");
 							if (userOption == 1) {
 								//parent
+								for (User u: userList) {
+								main.setHeader("View All Parents/Guardians");
+									
+									System.out.println(u);
+								}
 							}else if (userOption == 2) {
 								//school
+								for (School s: schoolList) {
+									main.setHeader("View All Schools");
+									
+									System.out.println(s);
+								}
 							}else if (userOption == 3) {
 								//vendor
+								for (Vendor v: vendorList) {
+									main.setHeader("View All Vendors");
+									System.out.println(v);
+								}
 							}else if (userOption == 4) {
 								System.out.println("Goodbye");
 							}else {
@@ -155,11 +199,12 @@ public class main {
 		main.setHeader("Admin Menu");
 		System.out.println("1. Add school");
 		System.out.println("2. Edit school");
-		System.out.println("3. View order status");
-		System.out.println("4. View all users");
-		System.out.println("5. Generate montly reports");
-		System.out.println("6. Delete user accounts");
-		System.out.println("7. Quit");
+		System.out.println("3. View all Orders");
+		System.out.println("4. View order status");
+		System.out.println("5. View all users");
+		System.out.println("6. Generate montly reports");
+		System.out.println("7. Delete user accounts");
+		System.out.println("8. Quit");
 	}
 	private static void viewAllMenu() {
 		main.setHeader("View User Selection");
