@@ -48,10 +48,11 @@ public class main {
 						
 					}else if (parentOption == 2) {
 						//view
+						System.out.println(String.format("%-10s %-10s %10s", "Menu ID", "Menu Name", "Menu status" ));
 						for (Menu m : menuList) {
 							main.setHeader("View Menu");
 						
-						System.out.println(m);
+						System.out.println(m.toString());
 						break;
 						}
 					}
