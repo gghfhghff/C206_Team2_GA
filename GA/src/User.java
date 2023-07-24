@@ -1,8 +1,8 @@
 
 public class User {
 
-	private String name;
 	private int id;
+	private String name;
 	private String contactNum;
 	private String Role;
 
@@ -16,7 +16,7 @@ public class User {
 	}
 	
 	public String toString() {
-		return String.format("%-10s %-10d, %-10s %-10s", getName(), getId(), getContactNum(), getRole());
+		return String.format("%-10s %-15s %10s %15s", getName(), getId(), getContactNum(), getRole());
 		
 	}
 
