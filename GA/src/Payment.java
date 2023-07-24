@@ -2,11 +2,11 @@
 public class Payment {
 	
 	private String name;
-	private int cardNo;
+	private String cardNo;
 	private int cvc;
 	private String expDate;
 	
-	public Payment(String name, int cardNo, int cvc, String expDate) {
+	public Payment(String name, String cardNo, int cvc, String expDate) {
 		this.name = name;
 		this.cardNo = cardNo;
 		this.cvc = cvc;
@@ -32,12 +32,12 @@ public class Payment {
 	}
 
 
-	public int getCardNo() {
+	public String getCardNo() {
 		return cardNo;
 	}
 
 
-	public void setCardNo(int cardNo) {
+	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
 	}
 

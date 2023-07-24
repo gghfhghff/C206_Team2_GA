@@ -13,9 +13,32 @@ public class main {
 		ArrayList<Payment> paymentList = new ArrayList<Payment>();
 		ArrayList<Item> itemList = new ArrayList<Item>();
 
-		OrderStatus o1 = new OrderStatus(1, "Pending");
-		orderStatusList.add(o1);
-
+		
+		// TEST OBJECTS
+		OrderStatus os1 = new OrderStatus(1, "Pending");
+		orderStatusList.add(os1);
+		
+		Payment p1 = new Payment("Bob","1234 5678 1239 9239", 999, "29/2/2000");
+		paymentList.add(p1);
+		
+		Vendor v1 = new Vendor(1, "MACDONALds", "1233 5123", "ABC" );
+		vendorList.add(v1);
+		
+		Menu m1 = new Menu(1,"name","status");
+		menuList.add(m1);
+		
+		Item i1 = new Item(1,1,"name","desc",0.0);
+		itemList.add(i1);
+		
+		School s1 = new School(1,"name","address",123);
+		schoolList.add(s1);
+		
+		Order o1 = new Order(1,10,0.0,"name");
+		orderList.add(o1);
+		
+		User u1 = new User("name",1,"contact number","role");
+		userList.add(u1);
+		
 		int option = 0;
 
 		while (option != 4) {
@@ -45,9 +68,9 @@ public class main {
 
 					} else if (parentOption == 2) {
 						// view
-						System.out.println(String.format("%-10s %-10s %10s", "Menu ID", "Menu Name", "Menu status"));
 						for (Menu m : menuList) {
 							main.setHeader("View Menu");
+							System.out.println(String.format("%-10s %-10s %10s", "Menu ID", "Menu Name", "Menu status"));
 
 							System.out.println(m.toString());
 							break;
@@ -55,9 +78,9 @@ public class main {
 					} else if (parentOption == 3) {
 						// view status of order
 
-						System.out.println(String.format("%-10s %-30s", "Order ID", "Order Status"));
 						for (OrderStatus o : orderStatusList) {
 							main.setHeader("View Order status");
+							System.out.println(String.format("%-10s %-30s", "Order ID", "Order Status"));
 
 							System.out.println(o.toString());
 
@@ -71,7 +94,7 @@ public class main {
 						Helper.line(50, "-");
 
 						String name = Helper.readString("Enter Name Displayed On The Card > ");
-						int cardNo = Helper.readInt("Enter Card Number > ");
+						String cardNo = Helper.readString("Enter Card Number > ");
 						int cvc = Helper.readInt("Enter CVC / CVV > ");
 						String exp = Helper.readString("Enter Expiration Date Of Card");
 
@@ -154,22 +177,23 @@ public class main {
 
 					} else if (adminOption == 3) {
 						// view all orders
-						System.out.println(String.format("%-10s %-15s %10s %15s", "Order ID", "No. of items",
-								"Total cost", "Vendor Name"));
+		
 						for (Order o : orderList) {
 							main.setHeader("View all orders");
+							System.out.println(String.format("%-10s %-15s %10s %15s", "Order ID", "No. of items",
+									"Total cost", "Vendor Name"));
 
 							System.out.println(o.toString());
 						}
 					} else if (adminOption == 4) {
 						// View all order status
-						System.out.println(String.format("%-10s %-15s", "Order ID", "Status"));
 						for (OrderStatus os : orderStatusList) {
 							main.setHeader("View All Order Statuses");
+							System.out.println(String.format("%-10s %-15s", "Order ID", "Status"));
 
 							System.out.println(os.toString());
 						}
-					} else if (adminOption == 4) {
+					} else if (adminOption == 5) {
 						// view all users
 						int userOption = 0;
 						viewAllMenu();
@@ -178,28 +202,32 @@ public class main {
 							if (userOption == 1) {
 								// parent
 
-								System.out.println(String.format("%-10s %-15s %10s %15s", "Name", "ID",
-										"Contact No.", "Role"));
 								for (User u : userList) {
 									main.setHeader("View All Parents/Guardians");
+
+									System.out.println(String.format("%-10s %-15s %10s %15s", "Name", "ID",
+											"Contact No.", "Role"));
 
 									System.out.println(u.toString());
 								}
 							} else if (userOption == 2) {
 								// school
-								System.out.println(String.format("%-10s %-15s %10s %15s", "School ID", "Name",
-										"Address", "No. of orders"));
+								
 								for (School s : schoolList) {
 									main.setHeader("View All Schools");
+									System.out.println(String.format("%-10s %-15s %10s %15s", "School ID", "Name",
+											"Address", "No. of orders"));
 
 									System.out.println(s.toString());
 								}
 							} else if (userOption == 3) {
 								// vendor
-								System.out.println(String.format("%-10s %-15s %10s %15s", "ID", "Name",
-										"Contact No.", "Address"));
+							
 								for (Vendor v : vendorList) {
 									main.setHeader("View All Vendors");
+									System.out.println(String.format("%-10s %-15s %10s %15s", "ID", "Name",
+											"Contact No.", "Address"));
+									
 									System.out.println(v.toString());
 								}
 							} else if (userOption == 4) {
@@ -208,9 +236,9 @@ public class main {
 								System.out.println("Invalid Option");
 							}
 						}
-					} else if (adminOption == 5) {
-						// generate monthly reports
 					} else if (adminOption == 6) {
+						// generate monthly reports
+					} else if (adminOption == 7) {
 						// delete user accounts
 						int deleteOption = 0;
 						deleteMenu();
@@ -228,6 +256,8 @@ public class main {
 								System.out.println("Invalid Option");
 							}
 						}
+					} else if (adminOption == 8) {
+						System.out.println("Goodbye");
 					}
 				}
 			} else if (option == 4) {

@@ -3,9 +3,10 @@ public class Vendor {
 
 	private int id;
 	private String name;
-	private int contactNo;
+	private String contactNo;
 	private String address;
-	public Vendor(int id, String name, int contactNo, String address) {
+	
+	public Vendor(int id, String name, String contactNo, String address) {
 		
 		this.id = id;
 		this.name = name;
@@ -28,10 +29,10 @@ public class Vendor {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getContactNo() {
+	public String getContactNo() {
 		return contactNo;
 	}
-	public void setContactNo(int contactNo) {
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 	public String getAddress() {
