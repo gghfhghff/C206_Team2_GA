@@ -51,8 +51,9 @@ public class main {
 
 				int parentOption = 0;
 				while (parentOption != 6) {
-
+					
 					parentOption = Helper.readInt("Enter Option > ");
+					
 					if (parentOption == 1) {
 
 						Helper.line(50, "-");
@@ -65,6 +66,7 @@ public class main {
 						String role = Helper.readString("Are You A Parent / Guardian ? > ");
 
 						userList.add(new User(name, id, contactNum, role));
+						parentMenu();
 
 					} else if (parentOption == 2) {
 						// view
@@ -75,6 +77,8 @@ public class main {
 							System.out.println(m.toString());
 							break;
 						}
+						parentMenu();
+						
 					} else if (parentOption == 3) {
 						// view status of order
 
@@ -83,8 +87,8 @@ public class main {
 							System.out.println(String.format("%-10s %-30s", "Order ID", "Order Status"));
 
 							System.out.println(o.toString());
-
 						}
+						parentMenu();
 
 					} else if (parentOption == 4) {
 						// add payment
@@ -99,9 +103,34 @@ public class main {
 						String exp = Helper.readString("Enter Expiration Date Of Card");
 
 						paymentList.add(new Payment(name, cardNo, cvc, exp));
+						parentMenu();
 
 					} else if (parentOption == 5) {
 						// edit payment
+						
+						int check = 0;
+						
+						Helper.line(50, "-");
+						System.out.println("Edit Payment Method");
+						Helper.line(50, "-");
+						
+						String delCard = Helper.readString("Enter Card Number To Be Deleted > ");
+						char delPayCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+						if (delPayCfm == 'Y') {
+							for(int i = 0; i < paymentList.size();i++) {
+								if (delCard.equals(paymentList.get(i).getCardNo())){
+									paymentList.remove(i);
+									System.out.println("Card Deleted From System");
+									check++;
+									break;
+								}
+							}
+							if(check == 0) {
+								System.out.println("Card Not Found");
+							}
+						}
+						parentMenu();
+						
 					} else if (parentOption == 6) {
 						System.out.println("Goodbye!");
 					} else {
@@ -147,8 +176,99 @@ public class main {
 
 					} else if (vendorOption == 2) {
 						// edit menu
+						editMenuMenu();
+						int checkItem = 0;
+						int checkMenu = 0;
+						
+						option = Helper.readInt("Enter an option > ");
+
+						if (option == 1) {
+							
+							int editMenu = Helper.readInt("Enter Menu ID To Be Edited > ");
+							
+							for(int i = 0; i < menuList.size();i++) {
+								if (editMenu == (menuList.get(i).getMenu_id())){
+									int editItem = Helper.readInt("Enter Item ID To Be Edited > ");
+									Helper.line(50,"-");
+									checkMenu++;
+									
+									for(int m = 0; m < itemList.size();m++) {
+										if (editItem == (itemList.get(m).getItem_id())){
+											System.out.println(String.format("Item ID: %d \nItem Name: %s \nItem Description: %s \nItem Price: %.2f",itemList.get(m).getItem_id(),itemList.get(m).getItem_name(),itemList.get(m).getItem_description(),itemList.get(m).getItem_price()));
+											String newName = Helper.readString("Enter Item's Updated Name > ");
+											String newDesc = Helper.readString("Enter Item's Updated Description > ");
+											double newPrice = Helper.readDouble("Enter Item's Updated Price > ");
+											itemList.get(m).setItem_name(newName);
+											itemList.get(m).setItem_description(newDesc);
+											itemList.get(m).setItem_price(newPrice);
+											checkItem++;
+											System.out.println("Item Updated Successfully");
+											break;
+											
+										}
+									}
+									if(checkItem == 0) {
+										System.out.println("Item Not Found");
+									}
+								}
+							}
+							if(checkMenu == 0) {
+								System.out.println("Menu Not Found");
+							}
+						}
+						else if(option == 2){
+							int check2 = 0;
+							
+							Helper.line(50, "-");
+							System.out.println("Delete Menu");
+							Helper.line(50, "-");
+							
+							int delMenu = Helper.readInt("Enter Menu ID To Be Deleted > ");
+							char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+							if (delMenuCfm == 'Y') {
+								for(int i = 0; i < menuList.size();i++) {
+									if (delMenu == (menuList.get(i).getMenu_id())){
+										menuList.remove(i);
+										System.out.println("Menu Deleted From System");
+										check2++;
+										break;
+									}
+								}
+								if(check2 == 0) {
+									System.out.println("Menu Not Found");
+								}
+							}
+						}
+						else if(option == 3){
+							System.out.println("Goodbye!");
+						}
+						else {
+							System.out.println("Invalid Option");
+						}
+						vendorMenu();
+						
 					} else if (vendorOption == 3) {
 						// manage details
+						int check = 0;
+						main.setHeader("Edit Vendor Details");
+						
+						int vendorId = Helper.readInt("Enter Vendor ID > ");
+						for(int i = 0; i < vendorList.size();i++) {
+							if (vendorId == (vendorList.get(i).getId())){
+								System.out.println(String.format("Vendor ID: %d \nVendor Name: %s \nVendor Contact Number: %s \nVendor Address: %s",vendorList.get(i).getId(),vendorList.get(i).getName(),vendorList.get(i).getContactNo(),vendorList.get(i).getAddress()));
+								String newNum = Helper.readString("Enter Vendor's Updated Contact Number > ");
+								String newAddress = Helper.readString("Enter Vendor's Updated Address > ");
+								vendorList.get(i).setContactNo(newNum);
+								vendorList.get(i).setAddress(newAddress);
+								check++;
+								System.out.println("Updated Successfully");
+								break;
+							}
+						}
+						if(check == 0) {
+							System.out.println("Vendor Not Found");
+						}
+						vendorMenu();
 					} else if (vendorOption == 4) {
 						System.out.println("Goodbye!");
 					} else {
@@ -161,7 +281,7 @@ public class main {
 
 				int adminOption = 0;
 
-				while (adminOption != 7) {
+				while (adminOption != 8) {
 					adminOption = Helper.readInt("Enter option > ");
 					if (adminOption == 1) {
 						// add school
@@ -174,7 +294,55 @@ public class main {
 
 					} else if (adminOption == 2) {
 						// edit school
-
+						editSchoolMenu();
+						int check = 0;
+			
+						option = Helper.readInt("Enter an option > ");
+						
+					
+						if (option == 1) {	
+							int schoolId = Helper.readInt("Enter School ID > ");
+							for(int i = 0; i < schoolList.size();i++) {
+								if (schoolId == (schoolList.get(i).getSchool_id())){
+									System.out.println(String.format("School ID: %d \nSchool Name: %s \nSchool Address: %s \nSchool No. of Orders: %d",schoolList.get(i).getSchool_id(),schoolList.get(i).getName(),schoolList.get(i).getAddress(),schoolList.get(i).getNoOfOrders()));
+									String newAddress = Helper.readString("Enter School's Updated Address > ");
+									schoolList.get(i).setAddress(newAddress);
+									check++;
+									System.out.println("Updated Successfully");
+									break;
+								}
+							}
+							
+							if(check == 0) {
+								System.out.println("School Not Found");
+							}
+						}
+						
+						else if(option == 2){
+							int check2 = 0;
+							
+							Helper.line(50, "-");
+							System.out.println("Delete School");
+							Helper.line(50, "-");
+							
+							int delSchool = Helper.readInt("Enter School ID To Be Deleted > ");
+							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+							if (delSchoolCfm == 'Y') {
+								for(int i = 0; i < schoolList.size();i++) {
+									if (delSchool == (schoolList.get(i).getSchool_id())){
+										schoolList.remove(i);
+										System.out.println("School Deleted From System");
+										check2++;
+										break;
+									}
+								}
+								if(check2 == 0) {
+									System.out.println("School Not Found");
+								}
+							}
+						}
+						adminMenu();
+						
 					} else if (adminOption == 3) {
 						// view all orders
 		
@@ -246,6 +414,7 @@ public class main {
 							deleteOption = Helper.readInt("Enter option > ");
 							if (deleteOption == 1) {
 								// parent
+								
 							} else if (deleteOption == 2) {
 								// school
 							} else if (deleteOption == 3) {
@@ -266,6 +435,7 @@ public class main {
 				System.out.println("Invalid option!");
 			}
 		}
+
 	}
 
 	private static void startMenu() {
@@ -283,7 +453,7 @@ public class main {
 		System.out.println("3. View status of orders ");
 		System.out.println("4. Add payment method");
 		System.out.println("5. Edit payment method");
-		System.out.println("6. Quit");
+		System.out.println("6. Return to user selection");
 	}
 
 	private static void vendorMenu() {
@@ -291,7 +461,7 @@ public class main {
 		System.out.println("1. Add menu");
 		System.out.println("2. Edit menu");
 		System.out.println("3. Manage Details");
-		System.out.println("4. Quit");
+		System.out.println("4. Return to user selection");
 	}
 
 	private static void adminMenu() {
@@ -303,7 +473,7 @@ public class main {
 		System.out.println("5. View all users");
 		System.out.println("6. Generate montly reports");
 		System.out.println("7. Delete user accounts");
-		System.out.println("8. Quit");
+		System.out.println("8. Return to user selection");
 	}
 
 	private static void viewAllMenu() {
@@ -319,7 +489,7 @@ public class main {
 		System.out.println("1. Parent/Guardian");
 		System.out.println("2. School");
 		System.out.println("3. Vendor");
-		System.out.println("4. Quit");
+		System.out.println("4. Return to Admin Menu");
 	}
 
 	private static void setHeader(String string) {
@@ -327,6 +497,20 @@ public class main {
 		Helper.line(50, "-");
 		System.out.println(string);
 		Helper.line(50, "-");
+	}
+
+	private static void editMenuMenu() {
+		main.setHeader("Edit Menu");
+		System.out.println("1. Edit Menu");
+		System.out.println("2. Delete Menu");
+		System.out.println("3. Return to Vendor Menu");
+	}
+
+	private static void editSchoolMenu() {
+		main.setHeader("Edit School");
+		System.out.println("1. Edit School");
+		System.out.println("2. Delete School");
+		System.out.println("3. Return to Admin Menu");
 	}
 
 }
