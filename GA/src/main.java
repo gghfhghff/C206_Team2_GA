@@ -410,22 +410,73 @@ public class main {
 						// delete user accounts
 						int deleteOption = 0;
 						deleteMenu();
-						while (deleteOption != 4) {
+						
 							deleteOption = Helper.readInt("Enter option > ");
 							if (deleteOption == 1) {
 								// parent
+								int check = 0;
+								int delID = Helper.readInt("Enter Parent/Guardian ID > ");
+								
+								char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+								if (delUserCfm == 'Y') {
+									for(int i = 0; i < userList.size();i++) {
+										if (delID == (userList.get(i).getId())){
+											userList.remove(i);
+											System.out.println("User Deleted From System");
+											check++;
+											break;
+										}
+									}
+									if(check == 0) {
+										System.out.println("User Not Found");
+									}
+								}
 								
 							} else if (deleteOption == 2) {
 								// school
+								int check = 0;
+								int delID = Helper.readInt("Enter School ID > ");
+								
+								char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+								if (delSchoolCfm == 'Y') {
+									for(int i = 0; i < schoolList.size();i++) {
+										if (delID == (schoolList.get(i).getSchool_id())){
+											schoolList.remove(i);
+											System.out.println("School Deleted From System");
+											check++;
+											break;
+										}
+									}
+									if(check == 0) {
+										System.out.println("School Not Found");
+									}
+								}
 							} else if (deleteOption == 3) {
 								// vendor
-							} else if (deleteOption == 4) {
+								int check = 0;
+								int delID = Helper.readInt("Enter Vendor ID > ");
+								
+								char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+								if (delVendorCfm == 'Y') {
+									for(int i = 0; i < vendorList.size();i++) {
+										if (delID == (vendorList.get(i).getId())){
+											vendorList.remove(i);
+											System.out.println("Vendor Deleted From System");
+											check++;
+											break;
+										}
+									}
+									if(check == 0) {
+										System.out.println("Vendor Not Found");
+									}
+								}
+							} 
+							else if (deleteOption == 4) {
 								System.out.println("Goodbye");
-							} else {
-								System.out.println("Invalid Option");
 							}
+							adminMenu();
 						}
-					} else if (adminOption == 8) {
+					 else if (adminOption == 8) {
 						System.out.println("Goodbye");
 					}
 				}
