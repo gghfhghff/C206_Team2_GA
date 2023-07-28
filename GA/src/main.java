@@ -353,7 +353,7 @@ public class main {
 									"Total cost", "Vendor Name"));
 
 							System.out.println(o.toString());
-						}
+						} adminMenu();
 					} else if (adminOption == 4) {
 						// View all order status
 						main.setHeader("View All Order Statuses");
@@ -362,7 +362,7 @@ public class main {
 							System.out.println(String.format("%-10s %-15s", "Order ID", "Status"));
 
 							System.out.println(os.toString());
-						}
+						}adminMenu();
 					} else if (adminOption == 5) {
 						// view all users
 						int userOption = 0;
@@ -379,7 +379,7 @@ public class main {
 											"Contact No.", "Role"));
 
 									System.out.println(u.toString());
-								}
+								}adminMenu();
 							} else if (userOption == 2) {
 								// school
 								main.setHeader("View All Schools");
@@ -389,7 +389,7 @@ public class main {
 											"Address", "No. of orders"));
 
 									System.out.println(s.toString());
-								}
+								}adminMenu();
 							} else if (userOption == 3) {
 								// vendor
 								main.setHeader("View All Vendors");
@@ -399,7 +399,7 @@ public class main {
 											"Contact No.", "Address"));
 									
 									System.out.println(v.toString());
-								}
+								}adminMenu();
 							} else if (userOption == 4) {
 								System.out.println("Goodbye");
 							} else {
