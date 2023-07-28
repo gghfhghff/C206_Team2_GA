@@ -406,6 +406,11 @@ public class main {
 						}
 					} else if (adminOption == 6) {
 						// generate monthly reports
+						main.setHeader("REPORT");
+						System.out.println("Total Number of Users: " + userList.size());
+						System.out.println("Total Number of Schools: " + schoolList.size());
+						System.out.println("Total Number of Vendors: " + vendorList.size());
+						adminMenu();
 					} else if (adminOption == 7) {
 						// delete user accounts
 						int deleteOption = 0;
@@ -522,7 +527,7 @@ public class main {
 		System.out.println("3. View all Orders");
 		System.out.println("4. View order status");
 		System.out.println("5. View all users");
-		System.out.println("6. Generate montly reports");
+		System.out.println("6. Generate reports");
 		System.out.println("7. Delete user accounts");
 		System.out.println("8. Return to user selection");
 	}
