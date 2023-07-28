@@ -70,8 +70,9 @@ public class main {
 
 					} else if (parentOption == 2) {
 						// view
+						main.setHeader("View Menu");
 						for (Menu m : menuList) {
-							main.setHeader("View Menu");
+							
 							System.out.println(String.format("%-10s %-10s %10s", "Menu ID", "Menu Name", "Menu status"));
 
 							System.out.println(m.toString());
@@ -81,9 +82,9 @@ public class main {
 						
 					} else if (parentOption == 3) {
 						// view status of order
-
+						main.setHeader("View Order status");
 						for (OrderStatus o : orderStatusList) {
-							main.setHeader("View Order status");
+							
 							System.out.println(String.format("%-10s %-30s", "Order ID", "Order Status"));
 
 							System.out.println(o.toString());
@@ -345,9 +346,9 @@ public class main {
 						
 					} else if (adminOption == 3) {
 						// view all orders
-		
+						main.setHeader("View all orders");
 						for (Order o : orderList) {
-							main.setHeader("View all orders");
+							
 							System.out.println(String.format("%-10s %-15s %10s %15s", "Order ID", "No. of items",
 									"Total cost", "Vendor Name"));
 
@@ -355,8 +356,9 @@ public class main {
 						}
 					} else if (adminOption == 4) {
 						// View all order status
+						main.setHeader("View All Order Statuses");
 						for (OrderStatus os : orderStatusList) {
-							main.setHeader("View All Order Statuses");
+							
 							System.out.println(String.format("%-10s %-15s", "Order ID", "Status"));
 
 							System.out.println(os.toString());
@@ -369,9 +371,9 @@ public class main {
 							userOption = Helper.readInt("Enter option > ");
 							if (userOption == 1) {
 								// parent
-
+								main.setHeader("View All Parents/Guardians");
 								for (User u : userList) {
-									main.setHeader("View All Parents/Guardians");
+									
 
 									System.out.println(String.format("%-10s %-15s %10s %15s", "Name", "ID",
 											"Contact No.", "Role"));
@@ -380,9 +382,9 @@ public class main {
 								}
 							} else if (userOption == 2) {
 								// school
-								
+								main.setHeader("View All Schools");
 								for (School s : schoolList) {
-									main.setHeader("View All Schools");
+									
 									System.out.println(String.format("%-10s %-15s %10s %15s", "School ID", "Name",
 											"Address", "No. of orders"));
 
@@ -390,9 +392,9 @@ public class main {
 								}
 							} else if (userOption == 3) {
 								// vendor
-							
+								main.setHeader("View All Vendors");
 								for (Vendor v : vendorList) {
-									main.setHeader("View All Vendors");
+									
 									System.out.println(String.format("%-10s %-15s %10s %15s", "ID", "Name",
 											"Contact No.", "Address"));
 									
