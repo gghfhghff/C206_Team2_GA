@@ -407,7 +407,7 @@ public class main {
 							}
 						}
 					} else if (adminOption == 6) {
-						// generate monthly reports
+						// generate reports
 						main.setHeader("REPORT");
 						System.out.println("Total Number of Users: " + userList.size());
 						System.out.println("Total Number of Schools: " + schoolList.size());
