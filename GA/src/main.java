@@ -64,8 +64,26 @@ public class main {
 						int id = userList.size() + 1;
 						String contactNum = Helper.readString("Enter Your Contact Number > ");
 						String role = Helper.readString("Are You A Parent / Guardian ? > ");
+						
+						
+						for(int i = 0; i < userList.size(); i++) {
+							
+							if (userList.get(i).getName().equalsIgnoreCase(name) 
+									&& userList.get(i).getContactNum().equalsIgnoreCase(contactNum)) {
+								
+								System.out.println("User already has an existing account !");
+								
+							}else if(role.equalsIgnoreCase("parent") == false || role.equalsIgnoreCase("guardian") == false) {
+								
+								System.out.println("Invalid input for 'Parent / Guardian !");
+								
+							}else {
+								
+								userList.add(new User(name, id, contactNum, role));
 
-						userList.add(new User(name, id, contactNum, role));
+							}
+							
+						}
 						parentMenu();
 
 					} else if (parentOption == 2) {
@@ -372,11 +390,11 @@ public class main {
 							if (userOption == 1) {
 								// parent
 								main.setHeader("View All Parents/Guardians");
+								System.out.println(String.format("%-10s %-15s %10s %15s", "Name", "ID",
+										"Contact No.", "Role"));
 								for (User u : userList) {
 									
-
-									System.out.println(String.format("%-10s %-15s %10s %15s", "Name", "ID",
-											"Contact No.", "Role"));
+									
 
 									System.out.println(u.toString());
 								}adminMenu();
