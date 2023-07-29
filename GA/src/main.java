@@ -65,25 +65,44 @@ public class main {
 						String contactNum = Helper.readString("Enter Your Contact Number > ");
 						String role = Helper.readString("Are You A Parent / Guardian ? > ");
 						
+						boolean userFound = false;
 						
 						for(int i = 0; i < userList.size(); i++) {
 							
 							if (userList.get(i).getName().equalsIgnoreCase(name) 
-									&& userList.get(i).getContactNum().equalsIgnoreCase(contactNum)) {
+									&& userList.get(i).getContactNum().equalsIgnoreCase(contactNum)) { // To find if user already exists
+								
+								userFound = true;
 								
 								System.out.println("User already has an existing account !");
 								
-							}else if(role.equalsIgnoreCase("parent") == false || role.equalsIgnoreCase("guardian") == false) {
+								break;
 								
-								System.out.println("Invalid input for 'Parent / Guardian !");
 								
-							}else {
-								
-								userList.add(new User(name, id, contactNum, role));
-
 							}
-							
 						}
+						if(userFound == false) {
+								
+								if(!name.isEmpty() && !contactNum.isEmpty()) {
+									
+									if(role.equalsIgnoreCase("Parent") || role.equalsIgnoreCase("Guardian")) {
+										
+										userList.add(new User(name, id, contactNum, role));
+										
+										System.out.println("Account Successfully Created !");
+									}else{
+										
+										System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+									}
+
+								}else{
+										
+									System.out.println("Information provided is incomplete !");
+									
+									}
+								
+							}		
+						
 						parentMenu();
 
 					} else if (parentOption == 2) {
@@ -94,7 +113,7 @@ public class main {
 							System.out.println(String.format("%-10s %-10s %10s", "Menu ID", "Menu Name", "Menu status"));
 
 							System.out.println(m.toString());
-							break;
+							
 						}
 						parentMenu();
 						
@@ -119,9 +138,56 @@ public class main {
 						String name = Helper.readString("Enter Name Displayed On The Card > ");
 						String cardNo = Helper.readString("Enter Card Number > ");
 						int cvc = Helper.readInt("Enter CVC / CVV > ");
-						String exp = Helper.readString("Enter Expiration Date Of Card");
-
-						paymentList.add(new Payment(name, cardNo, cvc, exp));
+						String exp = Helper.readString("Enter Expiration Date Of Card > ");
+						
+						boolean payFound = false;
+						
+						for(int i = 0; i < paymentList.size(); i++) {
+							
+							if(paymentList.get(i).getCardNo().equals(cardNo) && paymentList.get(i).getCvc() == cvc 
+									&& paymentList.get(i).getExpDate().equals(exp)) {
+								
+								payFound = true;
+								
+								System.out.println("Current Payment Method Already Exists !");
+								
+								break;
+							}
+							
+						}
+						
+						if(payFound == false) {
+							
+							if (!name.isEmpty() && !cardNo.isEmpty() && cvc != 0 && !exp.isEmpty()) {
+								
+								if (cvc >= 100) {
+									
+									if(cardNo.length() == 19) {
+										
+										paymentList.add(new Payment(name, cardNo, cvc, exp));
+										
+										System.out.println("New Payment Successfully Added !");
+										
+									}else {
+										
+										System.out.println("Card Number Entered Does Not Meet The Requirements !");
+										
+									}
+									
+								}else {
+									
+									System.out.println("CVC Entered Does Not Meet The Requirements !");
+									
+								}
+									
+							}else {
+								
+								System.out.println("Information entered is incomplete !");
+								
+							}
+							
+						}
+						
 						parentMenu();
 
 					} else if (parentOption == 5) {
@@ -172,7 +238,38 @@ public class main {
 						int menuId = menuList.size() + 1;
 						String menuName = Helper.readString("Enter Menu Name / Title > ");
 						String status = Helper.readString("Enter Menu Status > ");
-
+						
+						boolean menuFound = false;
+						
+						for (int i = 0; i < menuList.size(); i++) {
+							
+							if(menuList.get(i).getMenu_name().equals(menuName) && menuList.get(i).getMenu_status().equals(status)) {
+								
+								System.out.println("Menu Already Exists !");
+								
+								menuFound = true;
+								
+								break;
+								
+							}
+						}
+						
+						if (menuFound == false) {
+							
+							if(!menuName.isEmpty() && !status.isEmpty()) {
+								
+								menuList.add(new Menu(menuId, menuName, status));
+								
+								System.out.println("Menu Successfully Added !");
+							
+							}else{
+								
+								System.out.println("Information Entered Is Incomplete !");
+								
+							}
+							
+						}
+						
 						char con = 'Y';
 
 						while (con == 'Y' || con == 'y') {
@@ -182,17 +279,46 @@ public class main {
 							String itemDesc = Helper.readString("Enter Item Description > ");
 							Double itemPrice = Helper.readDouble("Enter Price > ");
 							
+							boolean itemFound = false;
 							
-							itemList.add(new Item(menuId, itemId, itemName, itemDesc, itemPrice));
+							for(int i = 0;i < itemList.size(); i++) {
+								
+								if(itemList.get(i).getItem_name().equals(itemName) && itemList.get(i).getItem_description().equals(itemDesc)
+										&& itemList.get(i).getItem_price() == itemPrice) {
+									
+									System.out.println("Item Already Exists In Menu !");
+									
+									itemFound = true;
+									
+									break;
+									
+								}
+								
+							}
+							
+							if (itemFound == false) {
+								
+								if(!itemName.isEmpty() && !itemDesc.isEmpty() && itemPrice != 0) {
+									
+									itemList.add(new Item(menuId, itemId, itemName, itemDesc, itemPrice));
+									System.out.println("Items Successfully Added!");
+
+
+									
+								}else {
+									
+									System.out.println("Information Entered Is Incomplete !");
+									
+								}
+								
+							}
 							con = Helper.readChar("Continue Adding Items to " + menuName + " (Y/N) > ");
 
 							if (con == 'N' || con == 'n') {
-								System.out.println("Menu and Items Successfully Added!");
 								vendorMenu();
 							}
 						}
 
-						menuList.add(new Menu(menuId, menuName, status));
 
 					} else if (vendorOption == 2) {
 						// edit menu
@@ -309,8 +435,42 @@ public class main {
 						int id = schoolList.size() + 1;
 						String name = Helper.readString("Enter School Name > ");
 						String add = Helper.readString("Enter School's Address > ");
+						
+						boolean schFound = false;
+						
+						for (int i = 0; i < schoolList.size(); i++) {
+							
+							if(schoolList.get(i).getName().equalsIgnoreCase(name) && 
+									schoolList.get(i).getAddress().equalsIgnoreCase(add)) {
+								
+								schFound = true;
+								
+								System.out.println("School Already Exists !");
+								
+								break;
+								
+							}
+							
+						}
+						
+						if (schFound == false) {
+							
+							if(!name.isEmpty() && !add.isEmpty()) {
+								
+								schoolList.add(new School(id, name, add));
+								
+								System.out.println("School Successfully Added !");
 
-						schoolList.add(new School(id, name, add));
+							}else {
+								
+								System.out.println("Information Entered Is Incompelte !");
+								
+							}
+							
+						}
+						
+					
+						adminMenu();
 
 					} else if (adminOption == 2) {
 						// edit school
