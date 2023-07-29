@@ -181,7 +181,8 @@ public class main {
 							String itemName = Helper.readString("Enter Item Name > ");
 							String itemDesc = Helper.readString("Enter Item Description > ");
 							Double itemPrice = Helper.readDouble("Enter Price > ");
-
+							
+							
 							itemList.add(new Item(menuId, itemId, itemName, itemDesc, itemPrice));
 							con = Helper.readChar("Continue Adding Items to " + menuName + " (Y/N) > ");
 
