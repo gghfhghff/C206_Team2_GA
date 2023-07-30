@@ -563,6 +563,8 @@ public class main {
 						for (OrderStatus o : orderStatusList) {
 							if (orderID == o.getOrderID()) {
 								System.out.println(o.toString());
+							}else {
+								System.out.println("Order not found!");
 							}
 
 						}
@@ -831,6 +833,8 @@ public class main {
 						for (OrderStatus o : orderStatusList) {
 							if (orderID == o.getOrderID()) {
 								System.out.println(o.toString());
+							}else {
+								System.out.println("Order not found!");
 							}
 
 						}
