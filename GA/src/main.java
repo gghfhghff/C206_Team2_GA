@@ -201,7 +201,6 @@ public class main {
 											
 											System.out.println("Total Price = " + totalPrice);
 											
-											System.out.println("Order Successfully placed !");
 											
 											orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
 						
@@ -217,7 +216,41 @@ public class main {
 								con = Helper.readChar("Would You Like To Place Another Order ? (Y/N) > ");
 								
 								if(con == 'N' || con == 'n'){
-									parentMenu();
+									
+									System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s","No.", "Name", "Card Number", "CVC / CVV" , "Expiry Date"));
+									
+									int number = 1;
+									
+									for (int i = 0; i < paymentList.size(); i++) {
+										
+										System.out.print(String.format("%-10s", number));
+										
+										System.out.println(paymentList.get(i).toString());
+										
+										number ++;
+										
+										}
+									
+									int choice = Helper.readInt("Enter Method Payment Number > ");
+									
+									if (choice == number) {
+										
+										System.out.println("Order Successfully placed !");
+										parentMenu();
+										break;
+										
+									}else {
+										
+										System.out.println("Invalid Number Entered !");
+										parentMenu();
+										break;
+										
+									}
+									
+									
+									
+									
+									
 								}
 								
 							}
