@@ -169,87 +169,63 @@ public class main {
 							char con = 'Y';
 
 							while (con == 'Y' || con == 'y') {
+							    int itemID = Helper.readInt("Enter Item ID you would like to order > ");
+							    boolean itemFound = false;
 
-								int itemID = Helper.readInt("Enter Item ID you would like to order > ");
+							    for (int i = 0; i < itemList.size(); i++) {
+							        if (itemID == itemList.get(i).getItem_id()) {
+							            itemFound = true;
 
-								boolean itemFound = false;
+							            String vendorName = itemList.get(i).getVendor_name();
+							            String itemName = itemList.get(i).getItem_name();
+							            double itemPrice = itemList.get(i).getItem_price();
 
-								for (int i = 0; i < itemList.size(); i++) {
+							            System.out.println("Item Name: " + itemName);
+							            System.out.println("Item Price: " + itemPrice);
 
-									if (itemID != itemList.get(i).getItem_id()) {
+							            int qty = Helper.readInt("How Many Qty Would You Like To Purchase? > ");
+							            double totalPrice = itemPrice * qty;
+							            System.out.println("Total Price = " + totalPrice);
 
-										System.out.println("Invalid Item ID Entered !");
-										itemFound = true;
-										break;
+							            con = Helper.readChar("Would You Like To Place Another Order? (Y/N) > ");
+							            
+							            if (con == 'N' || con == 'n') {
+							            	
+							                System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.", "Name", "Card Number", "CVC / CVV", "Expiry Date"));
 
-									}
+							                int number = 1;
 
-								}
+							                for (int j = 0; j < paymentList.size(); j++) {
+							                    System.out.print(String.format("%-10s", number));
+							                    System.out.println(paymentList.get(j).toString());
+							                    number++;
+							                }
 
-								if (itemFound == false) {
+							                int choice = Helper.readInt("Enter Method Payment Number > ");
 
-									for (int i = 0; i < itemList.size(); i++) {
+							                if (choice >= 1 && choice <= paymentList.size()) {
+							                	
+							                    System.out.println("Order Successfully placed !");
+							                    orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
+							                    orderStatusList.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
+							                    parentMenu();
+							                    
+							                } else {
+							                	
+							                    System.out.println("Invalid Number Entered !");
+							                    parentMenu();
+							                    
+							                }
+							            }
+							            break; // Exit the loop since the item is found
+							        }
+							    }
 
-										if (itemID == itemList.get(i).getItem_id()) {
-
-											String vendorName = itemList.get(i).getVendor_name();
-
-											System.out.println("Item Name: " + itemList.get(i).getItem_name());
-											System.out.println("Item Price: " + itemList.get(i).getItem_price());
-
-											int qty = Helper.readInt("How Many Qty Would You Like To Purchase ? > ");
-
-											double totalPrice = itemList.get(i).getItem_price() * qty;
-
-											System.out.println("Total Price = " + totalPrice);
-
-											orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
-
-											break;
-										}
-
-									}
-
-								}
-
-								con = Helper.readChar("Would You Like To Place Another Order ? (Y/N) > ");
-
-								if (con == 'N' || con == 'n') {
-
-									System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.", "Name",
-											"Card Number", "CVC / CVV", "Expiry Date"));
-
-									int number = 1;
-
-									for (int i = 0; i < paymentList.size(); i++) {
-
-										System.out.print(String.format("%-10s", number));
-
-										System.out.println(paymentList.get(i).toString());
-
-										number++;
-
-									}
-
-									int choice = Helper.readInt("Enter Method Payment Number > ");
-
-									if (choice == number) {
-
-										System.out.println("Order Successfully placed !");
-										parentMenu();
-										break;
-
-									} else {
-
-										System.out.println("Invalid Number Entered !");
-										parentMenu();
-										break;
-
-									}
-
-								}
-
+							    if (!itemFound) {
+							        System.out.println("Invalid Item ID Entered !");
+							    }
 							}
+
 						}
 
 					} else if (parentOption == 4) {
