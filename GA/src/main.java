@@ -24,7 +24,7 @@ public class main {
 		Vendor v1 = new Vendor(1, "MACDONALds", "1233 5123", "ABC" );
 		vendorList.add(v1);
 		
-		Menu m1 = new Menu(1,"name","status");
+		Menu m1 = new Menu(1,"name","status","vendor name");
 		menuList.add(m1);
 		
 		Item i1 = new Item(1,1,"name","desc",0.0);
@@ -50,7 +50,7 @@ public class main {
 				parentMenu();
 
 				int parentOption = 0;
-				while (parentOption != 6) {
+				while (parentOption != 7) {
 					
 					parentOption = Helper.readInt("Enter Option > ");
 					
@@ -108,27 +108,136 @@ public class main {
 					} else if (parentOption == 2) {
 						// view
 						main.setHeader("View Menu");
+						
+						System.out.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name", "Menu status", "Vendor"));
+
 						for (Menu m : menuList) {
 							
-							System.out.println(String.format("%-10s %-10s %10s", "Menu ID", "Menu Name", "Menu status"));
-
 							System.out.println(m.toString());
 							
 						}
 						parentMenu();
 						
-					} else if (parentOption == 3) {
+					}else if (parentOption == 3) {
+						
+						main.setHeader("List of Menus");
+						
+						System.out.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name", "Menu status", "Vendor"));
+
+						for (Menu m : menuList) {
+							
+							System.out.println(m.toString());
+							
+						}
+						
+						int menuID = Helper.readInt("Enter Menu ID To View > ");
+						
+						boolean menuFound = true;
+						
+						for(int i = 0; i < menuList.size(); i++) {
+							
+							if (menuID != menuList.get(i).getMenu_id()) {
+																
+								System.out.println("Invalid Menu ID Entered !");
+								break;
+						
+							}
+							
+						}
+						
+						if(menuFound == true) {
+							
+							main.setHeader("Menu ID : " + menuID + " Item List");
+							
+							String output = String.format("%-10s %-10s %-15s %-10s\n", "Item ID", "Item Name", "Item Description", "Item Price");
+							for (int i = 0; i < itemList.size(); i++) {
+								
+								if (menuID == itemList.get(i).getMenu_id()) {
+									
+									output += String.format("%-10s %-10s %-15s $%-10s", itemList.get(i).getItem_id(), itemList.get(i).getItem_name(), itemList.get(i).getItem_description(),
+											itemList.get(i).getItem_price());
+											
+								}	
+							}
+							
+							System.out.println(output);
+							
+							char con = 'Y';
+							
+							while (con == 'Y' || con == 'y') {
+								
+								int itemID = Helper.readInt("Enter Item ID you would like to order > ");
+								
+								boolean itemFound = false;
+								
+								for(int i = 0; i < itemList.size(); i++) {
+									
+									if(itemID != itemList.get(i).getItem_id()) {
+										
+										System.out.println("Invalid Item ID Entered !");
+										itemFound = true;
+										break;
+										
+									}
+									
+								}
+								
+								if (itemFound == false) {
+									
+									
+									
+									for (int i = 0; i < itemList.size(); i++) {
+										
+										if(itemID == itemList.get(i).getItem_id()) {
+											
+											String vendorName = itemList.get(i).getVendor_name();
+											
+											System.out.println("Item Name: " + itemList.get(i).getItem_name());
+											System.out.println("Item Price: " + itemList.get(i).getItem_price());
+											
+											int qty = Helper.readInt("How Many Qty Would You Like To Purchase ? > ");
+											
+											double totalPrice = itemList.get(i).getItem_price() * qty;
+											
+											System.out.println("Total Price = " + totalPrice);
+											
+											System.out.println("Order Successfully placed !");
+											
+											orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
+						
+													
+											break;
+										}
+										
+									}
+									
+									
+								}
+								
+								con = Helper.readChar("Would You Like To Place Another Order ? (Y/N) > ");
+								
+								if(con == 'N' || con == 'n'){
+									parentMenu();
+								}
+								
+							}
+					}
+						
+
+						
+					} else if (parentOption == 4) {
 						// view status of order
 						main.setHeader("View Order status");
+						
+						System.out.println(String.format("%-10s %-30s", "Order ID", "Order Status"));
+
 						for (OrderStatus o : orderStatusList) {
 							
-							System.out.println(String.format("%-10s %-30s", "Order ID", "Order Status"));
-
 							System.out.println(o.toString());
 						}
 						parentMenu();
 
-					} else if (parentOption == 4) {
+					} else if (parentOption == 5) {
 						// add payment
 
 						Helper.line(50, "-");
@@ -190,7 +299,7 @@ public class main {
 						
 						parentMenu();
 
-					} else if (parentOption == 5) {
+					} else if (parentOption == 6) {
 						// edit payment
 						
 						int check = 0;
@@ -216,7 +325,7 @@ public class main {
 						}
 						parentMenu();
 						
-					} else if (parentOption == 6) {
+					} else if (parentOption == 7) {
 						System.out.println("Goodbye!");
 					} else {
 						System.out.println("Invalid option!");
@@ -238,6 +347,7 @@ public class main {
 						int menuId = menuList.size() + 1;
 						String menuName = Helper.readString("Enter Menu Name / Title > ");
 						String status = Helper.readString("Enter Menu Status > ");
+						String vendorName = Helper.readString("Enter Vendor's Name > ");
 						
 						boolean menuFound = false;
 						
@@ -258,7 +368,7 @@ public class main {
 							
 							if(!menuName.isEmpty() && !status.isEmpty()) {
 								
-								menuList.add(new Menu(menuId, menuName, status));
+								menuList.add(new Menu(menuId, menuName, status, vendorName));
 								
 								System.out.println("Menu Successfully Added !");
 							
@@ -526,20 +636,24 @@ public class main {
 					} else if (adminOption == 3) {
 						// view all orders
 						main.setHeader("View all orders");
+						
+						System.out.println(String.format("%-10s %-15s %10s %15s", "Order ID", "No. of items",
+								"Total cost", "Vendor Name"));
+						
 						for (Order o : orderList) {
 							
-							System.out.println(String.format("%-10s %-15s %10s %15s", "Order ID", "No. of items",
-									"Total cost", "Vendor Name"));
+							
 
 							System.out.println(o.toString());
 						} adminMenu();
 					} else if (adminOption == 4) {
 						// View all order status
 						main.setHeader("View All Order Statuses");
+						
+						System.out.println(String.format("%-10s %-15s", "Order ID", "Status"));
+
 						for (OrderStatus os : orderStatusList) {
 							
-							System.out.println(String.format("%-10s %-15s", "Order ID", "Status"));
-
 							System.out.println(os.toString());
 						}adminMenu();
 					} else if (adminOption == 5) {
@@ -555,27 +669,31 @@ public class main {
 										"Contact No.", "Role"));
 								for (User u : userList) {
 									
-									
-
 									System.out.println(u.toString());
+									
 								}adminMenu();
 							} else if (userOption == 2) {
 								// school
 								main.setHeader("View All Schools");
+								
+								System.out.println(String.format("%-10s %-15s %10s %15s", "School ID", "Name",
+										"Address", "No. of orders"));
+								
 								for (School s : schoolList) {
-									
-									System.out.println(String.format("%-10s %-15s %10s %15s", "School ID", "Name",
-											"Address", "No. of orders"));
+			
 
 									System.out.println(s.toString());
 								}adminMenu();
 							} else if (userOption == 3) {
 								// vendor
+								
 								main.setHeader("View All Vendors");
+								
+								System.out.println(String.format("%-10s %-15s %10s %15s", "ID", "Name",
+										"Contact No.", "Address"));
+								
 								for (Vendor v : vendorList) {
-									
-									System.out.println(String.format("%-10s %-15s %10s %15s", "ID", "Name",
-											"Contact No.", "Address"));
+		
 									
 									System.out.println(v.toString());
 								}adminMenu();
@@ -687,10 +805,11 @@ public class main {
 		main.setHeader("Parent/Guardian Menu");
 		System.out.println("1. Create new account");
 		System.out.println("2. View menu");
-		System.out.println("3. View status of orders ");
-		System.out.println("4. Add payment method");
-		System.out.println("5. Edit payment method");
-		System.out.println("6. Return to user selection");
+		System.out.println("3. Place order");
+		System.out.println("4. View status of orders ");
+		System.out.println("5. Add payment method");
+		System.out.println("6. Edit payment method");
+		System.out.println("7. Return to user selection");
 	}
 
 	private static void vendorMenu() {
