@@ -49,7 +49,7 @@ public class main {
 				parentMenu();
 
 				int parentOption = 0;
-				while (parentOption != 7) {
+				while (parentOption != 8) {
 
 					parentOption = Helper.readInt("Enter Option > ");
 
@@ -225,10 +225,42 @@ public class main {
 							        System.out.println("Invalid Item ID Entered !");
 							    }
 							}
-
 						}
-
 					} else if (parentOption == 4) {
+							// cancel order
+
+							int check = 0;
+
+							Helper.line(50, "-");
+							System.out.println("Cancel Order");
+							Helper.line(50, "-");
+
+							int delOrder = Helper.readInt("Enter Order ID for Cancellation > ");
+							char delOrderCfm = Helper.readChar("Enter Cancellation Confirmation (Y/N) > ");
+							if (delOrderCfm == 'Y') {
+								for (int i = 0; i < orderList.size(); i++) {
+									if (delOrder == (orderList.get(i).getOrder_id())) {
+										orderList.remove(i);
+										System.out.println("Order Cancelled");
+										check++;
+										break;
+									}
+								}
+								if (check == 0) {
+									System.out.println("Order Not Found");
+								}
+								else {
+									for (int i = 0; i < orderStatusList.size(); i++) {
+										if (delOrder == (orderStatusList.get(i).getOrderID())) {
+											orderStatusList.remove(i);
+											break;
+										}
+									}
+								}
+							}
+							parentMenu();
+
+					} else if (parentOption == 5) {
 						// view status of order
 						main.setHeader("View Order status");
 
@@ -240,7 +272,7 @@ public class main {
 						}
 						parentMenu();
 
-					} else if (parentOption == 5) {
+					} else if (parentOption == 6) {
 						// add payment
 
 						Helper.line(50, "-");
@@ -302,7 +334,7 @@ public class main {
 
 						parentMenu();
 
-					} else if (parentOption == 6) {
+					} else if (parentOption == 7) {
 						// edit payment
 
 						int check = 0;
@@ -328,7 +360,7 @@ public class main {
 						}
 						parentMenu();
 
-					} else if (parentOption == 7) {
+					} else if (parentOption == 8) {
 						System.out.println("Goodbye!");
 					} else {
 						System.out.println("Invalid option!");
@@ -841,11 +873,11 @@ public class main {
 		System.out.println("1. Create new account");
 		System.out.println("2. View menu");
 		System.out.println("3. Place order");
-		System.out.println("4. View status of orders ");
-		System.out.println("5. Add payment method");
-		System.out.println("6. Edit payment method");
-
-		System.out.println("7. Return to user selection");
+		System.out.println("4. Cancel Order");
+		System.out.println("5. View status of orders ");
+		System.out.println("6. Add payment method");
+		System.out.println("7. Edit payment method");
+		System.out.println("8. Return to user selection");
 	}
 
 	private static void vendorMenu() {
