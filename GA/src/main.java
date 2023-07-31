@@ -361,9 +361,10 @@ public class main {
 						parentMenu();
 
 					} else if (parentOption == 8) {
-						System.out.println("Goodbye!");
+						System.out.println("Returning to menu...");
 					} else {
 						System.out.println("Invalid option!");
+						parentMenu();
 					}
 				}
 
@@ -372,7 +373,7 @@ public class main {
 
 				int vendorOption = 0;
 
-				while (vendorOption != 4) {
+				while (vendorOption != 5) {
 
 					vendorOption = Helper.readInt("Enter option > ");
 
@@ -579,9 +580,10 @@ public class main {
 						vendorMenu();
 
 					} else if (vendorOption == 5) {
-						System.out.println("Goodbye!");
+						System.out.println("Returning to Menu...");
 					} else {
 						System.out.println("Invalid option!");
+						vendorMenu();
 					}
 
 				}
@@ -830,7 +832,7 @@ public class main {
 								}
 							}
 						} else if (deleteOption == 4) {
-							System.out.println("Goodbye");
+							System.out.println("Return");
 						}
 						adminMenu();
 					} else if (adminOption == 8) {
@@ -848,7 +850,10 @@ public class main {
 						}
 						adminMenu();
 					} else if (adminOption == 9) {
-						System.out.println("Goodbye");
+						System.out.println("Returning to Menu...");
+					} else {
+						System.out.println("Invalid option!");
+						adminMenu();
 					}
 				}
 			} else if (option == 4) {
