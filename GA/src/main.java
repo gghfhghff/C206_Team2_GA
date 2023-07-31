@@ -590,7 +590,7 @@ public class main {
 
 				int adminOption = 0;
 
-				while (adminOption != 8) {
+				while (adminOption != 9) {
 					adminOption = Helper.readInt("Enter option > ");
 					if (adminOption == 1) {
 						// add school
