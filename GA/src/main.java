@@ -803,6 +803,7 @@ public class main {
 								viewAllMenu();
 							} else if (userOption == 4) {
 								System.out.println("Goodbye");
+								adminMenu();
 							} else {
 								System.out.println("Invalid Option");
 							}
@@ -905,6 +906,8 @@ public class main {
 				}
 			} else if (option == 4) {
 				System.out.println("Goodbye!");
+				
+				
 			} else {
 				System.out.println("Invalid option!");
 			}
