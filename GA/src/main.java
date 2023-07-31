@@ -775,7 +775,7 @@ public class main {
 									System.out.println(u.toString());
 
 								}
-								adminMenu();
+								viewAllMenu();
 							} else if (userOption == 2) {
 								// school
 								main.setHeader("View All Schools");
@@ -787,7 +787,7 @@ public class main {
 
 									System.out.println(s.toString());
 								}
-								adminMenu();
+								viewAllMenu();
 							} else if (userOption == 3) {
 								// vendor
 
@@ -800,7 +800,7 @@ public class main {
 
 									System.out.println(v.toString());
 								}
-								adminMenu();
+								viewAllMenu();
 							} else if (userOption == 4) {
 								System.out.println("Goodbye");
 							} else {
@@ -839,7 +839,7 @@ public class main {
 									System.out.println("User Not Found");
 								}
 							}
-
+							adminMenu();
 						} else if (deleteOption == 2) {
 							// school
 							int check = 0;
@@ -858,7 +858,7 @@ public class main {
 								if (check == 0) {
 									System.out.println("School Not Found");
 								}
-							}
+							}adminMenu();
 						} else if (deleteOption == 3) {
 							// vendor
 							int check = 0;
