@@ -70,8 +70,8 @@ public class main {
 
 							if (userList.get(i).getName().equalsIgnoreCase(name)
 									&& userList.get(i).getContactNum().equalsIgnoreCase(contactNum)) { // To find if
-																										// user already
-																										// exists
+								// user already
+								// exists
 
 								userFound = true;
 
@@ -169,96 +169,96 @@ public class main {
 							char con = 'Y';
 
 							while (con == 'Y' || con == 'y') {
-							    int itemID = Helper.readInt("Enter Item ID you would like to order > ");
-							    boolean itemFound = false;
+								int itemID = Helper.readInt("Enter Item ID you would like to order > ");
+								boolean itemFound = false;
 
-							    for (int i = 0; i < itemList.size(); i++) {
-							        if (itemID == itemList.get(i).getItem_id()) {
-							            itemFound = true;
+								for (int i = 0; i < itemList.size(); i++) {
+									if (itemID == itemList.get(i).getItem_id()) {
+										itemFound = true;
 
-							            String vendorName = itemList.get(i).getVendor_name();
-							            String itemName = itemList.get(i).getItem_name();
-							            double itemPrice = itemList.get(i).getItem_price();
+										String vendorName = itemList.get(i).getVendor_name();
+										String itemName = itemList.get(i).getItem_name();
+										double itemPrice = itemList.get(i).getItem_price();
 
-							            System.out.println("Item Name: " + itemName);
-							            System.out.println("Item Price: " + itemPrice);
+										System.out.println("Item Name: " + itemName);
+										System.out.println("Item Price: " + itemPrice);
 
-							            int qty = Helper.readInt("How Many Qty Would You Like To Purchase? > ");
-							            double totalPrice = itemPrice * qty;
-							            System.out.println("Total Price = " + totalPrice);
+										int qty = Helper.readInt("How Many Qty Would You Like To Purchase? > ");
+										double totalPrice = itemPrice * qty;
+										System.out.println("Total Price = " + totalPrice);
 
-							            con = Helper.readChar("Would You Like To Place Another Order? (Y/N) > ");
-							            
-							            if (con == 'N' || con == 'n') {
-							            	
-							                System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.", "Name", "Card Number", "CVC / CVV", "Expiry Date"));
+										con = Helper.readChar("Would You Like To Place Another Order? (Y/N) > ");
 
-							                int number = 1;
+										if (con == 'N' || con == 'n') {
 
-							                for (int j = 0; j < paymentList.size(); j++) {
-							                    System.out.print(String.format("%-10s", number));
-							                    System.out.println(paymentList.get(j).toString());
-							                    number++;
-							                }
+											System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.", "Name", "Card Number", "CVC / CVV", "Expiry Date"));
 
-							                int choice = Helper.readInt("Enter Method Payment Number > ");
+											int number = 1;
 
-							                if (choice >= 1 && choice <= paymentList.size()) {
-							                	
-							                    System.out.println("Order Successfully placed !");
-							                    orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
-							                    orderStatusList.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
-							                    parentMenu();
-							                    
-							                } else {
-							                	
-							                    System.out.println("Invalid Number Entered !");
-							                    parentMenu();
-							                    
-							                }
-							            }
-							            break; // Exit the loop since the item is found
-							        }
-							    }
+											for (int j = 0; j < paymentList.size(); j++) {
+												System.out.print(String.format("%-10s", number));
+												System.out.println(paymentList.get(j).toString());
+												number++;
+											}
 
-							    if (!itemFound) {
-							        System.out.println("Invalid Item ID Entered !");
-							    }
+											int choice = Helper.readInt("Enter Method Payment Number > ");
+
+											if (choice >= 1 && choice <= paymentList.size()) {
+
+												System.out.println("Order Successfully placed !");
+												orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
+												orderStatusList.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
+												parentMenu();
+
+											} else {
+
+												System.out.println("Invalid Number Entered !");
+												parentMenu();
+
+											}
+										}
+										break; // Exit the loop since the item is found
+									}
+								}
+
+								if (!itemFound) {
+									System.out.println("Invalid Item ID Entered !");
+								}
 							}
 						}
 					} else if (parentOption == 4) {
-							// cancel order
+						// cancel order
 
-							int check = 0;
+						int check = 0;
 
-							Helper.line(50, "-");
-							System.out.println("Cancel Order");
-							Helper.line(50, "-");
+						Helper.line(50, "-");
+						System.out.println("Cancel Order");
+						Helper.line(50, "-");
 
-							int delOrder = Helper.readInt("Enter Order ID for Cancellation > ");
-							char delOrderCfm = Helper.readChar("Enter Cancellation Confirmation (Y/N) > ");
-							if (delOrderCfm == 'Y') {
-								for (int i = 0; i < orderList.size(); i++) {
-									if (delOrder == (orderList.get(i).getOrder_id())) {
-										orderList.remove(i);
-										System.out.println("Order Cancelled");
-										check++;
+						int delOrder = Helper.readInt("Enter Order ID for Cancellation > ");
+						char delOrderCfm = Helper.readChar("Enter Cancellation Confirmation (Y/N) > ");
+						if (delOrderCfm == 'Y') {
+							for (int i = 0; i < orderList.size(); i++) {
+								if (delOrder == (orderList.get(i).getOrder_id())) {
+									orderList.remove(i);
+									System.out.println("Order Cancelled");
+									check++;
+									break;
+								}
+							}
+							if (check == 0) {
+								System.out.println("Order Not Found");
+							}
+							else {
+								for (int i = 0; i < orderStatusList.size(); i++) {
+									if (delOrder == (orderStatusList.get(i).getOrderID())) {
+										orderStatusList.remove(i);
 										break;
 									}
 								}
-								if (check == 0) {
-									System.out.println("Order Not Found");
-								}
-								else {
-									for (int i = 0; i < orderStatusList.size(); i++) {
-										if (delOrder == (orderStatusList.get(i).getOrderID())) {
-											orderStatusList.remove(i);
-											break;
-										}
-									}
-								}
 							}
-							parentMenu();
+						}
+						parentMenu();
 
 					} else if (parentOption == 5) {
 						// view status of order
@@ -690,9 +690,9 @@ public class main {
 						adminMenu();
 
 					}else if(adminOption == 3) {
-						
+
 						main.setHeader("Add Vendor");
-						
+
 						int id = vendorList.size() + 1;
 						String name = Helper.readString("Enter Vendor's Name > ");
 						String contact = Helper.readString("Enter Vendor's Contact Number > ");
@@ -703,7 +703,7 @@ public class main {
 						for (int i = 0; i < vendorList.size(); i++) {
 
 							if (vendorList.get(i).getName().equalsIgnoreCase(name)
-									
+
 									&& vendorList.get(i).getAddress().equalsIgnoreCase(add) && vendorList.get(i).getContactNo().equalsIgnoreCase(contact)) {
 
 								vendFound = true;
@@ -733,8 +733,8 @@ public class main {
 						}
 
 						adminMenu();
-						
-						
+
+
 					}
 					else if (adminOption == 4) {
 						// view all orders
