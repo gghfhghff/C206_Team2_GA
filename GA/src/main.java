@@ -57,7 +57,6 @@ public class main {
 
 					if (parentOption == 1) {
 
-						inputUser(userList);
 						User u1 = inputUser(userList);
 						addUser(userList,u1);
 						
@@ -735,15 +734,10 @@ public class main {
 								viewAllMenu();
 							} else if (userOption == 2) {
 								// school
-								main.setHeader("View All Schools");
-
-								System.out.println(String.format("%-10s %-15s %-10s %-15s", "School ID", "Name",
-										"Address", "No. of orders"));
-
-								for (School s : schoolList) {
-
-									System.out.println(s.toString());
-								}
+								
+								retrieveAllUsers(userList);
+								viewAllUsers(userList);
+								
 								viewAllMenu();
 							} else if (userOption == 3) {
 								// vendor
@@ -780,23 +774,7 @@ public class main {
 						deleteOption = Helper.readInt("Enter option > ");
 						if (deleteOption == 1) {
 							// parent
-							int check = 0;
-							int delID = Helper.readInt("Enter Parent/Guardian ID > ");
-
-							char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delUserCfm == 'Y') {
-								for (int i = 0; i < userList.size(); i++) {
-									if (delID == (userList.get(i).getId())) {
-										userList.remove(i);
-										System.out.println("User Deleted From System");
-										check++;
-										break;
-									}
-								}
-								if (check == 0) {
-									System.out.println("User Not Found");
-								}
-							}
+							deleteUser(userList);
 							adminMenu();
 						} else if (deleteOption == 2) {
 							// school
@@ -1015,8 +993,55 @@ public class main {
 
 		parentMenu();
 		
-		
 	}
+	
+	private static String retrieveAllUsers(ArrayList<User> userList) {
+		
+		String output = "";
+		
+		for(int i = 0; i < userList.size(); i++ ) {
+			
+			output+= String.format("%-20s\n", userList.get(i).toString());
+			
+		}
+		
+		return output;
+	}
+	
+	private static void viewAllUsers (ArrayList<User> userList) {
+		
+		
+		main.setHeader("View All Parents/Guardians");
+			String output = String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role");
+		
 
+			output += retrieveAllUsers(userList);
+			
+			System.out.println(output);
+
+	}
+	
+	private static void deleteUser (ArrayList<User> userList) {
+		
+		// parent
+		int check = 0;
+		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
+
+		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delUserCfm == 'Y') {
+			for (int i = 0; i < userList.size(); i++) {
+				if (delID == (userList.get(i).getId())) {
+					userList.remove(i);
+					System.out.println("User Deleted From System");
+					check++;
+					break;
+				}
+			}
+			if (check == 0) {
+				System.out.println("User Not Found");
+			}
+		}
+
+	}
 
 }
