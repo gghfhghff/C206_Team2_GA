@@ -740,7 +740,7 @@ public class main {
 						// view all orders
 						main.setHeader("View all orders");
 
-						System.out.println(String.format("%-10s %-15s %10s %15s", "Order ID", "No. of items",
+						System.out.println(String.format("%-10s %-15s %-15s %-15s", "Order ID", "No. of items",
 								"Total cost", "Vendor Name"));
 
 						for (Order o : orderList) {
@@ -769,7 +769,7 @@ public class main {
 								// parent
 								main.setHeader("View All Parents/Guardians");
 								System.out.println(
-										String.format("%-10s %-15s %10s %15s", "Name", "ID", "Contact No.", "Role"));
+										String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role"));
 								for (User u : userList) {
 
 									System.out.println(u.toString());
@@ -780,7 +780,7 @@ public class main {
 								// school
 								main.setHeader("View All Schools");
 
-								System.out.println(String.format("%-10s %-15s %10s %15s", "School ID", "Name",
+								System.out.println(String.format("%-10s %-15s %-10s %-15s", "School ID", "Name",
 										"Address", "No. of orders"));
 
 								for (School s : schoolList) {
@@ -794,7 +794,7 @@ public class main {
 								main.setHeader("View All Vendors");
 
 								System.out.println(
-										String.format("%-10s %-15s %10s %15s", "ID", "Name", "Contact No.", "Address"));
+										String.format("%-10s %-15s %-10s %-15s", "ID", "Name", "Contact No.", "Address"));
 
 								for (Vendor v : vendorList) {
 

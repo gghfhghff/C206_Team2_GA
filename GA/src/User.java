@@ -16,7 +16,7 @@ public class User {
 	}
 	
 	public String toString() {
-		return String.format("%-10s %-15s %10s %15s", getName(), getId(), getContactNum(), getRole());
+		return String.format("%-10s %-15s %-15s %-15s", getName(), getId(), getContactNum(), getRole());
 		
 	}
 

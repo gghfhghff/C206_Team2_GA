@@ -29,7 +29,7 @@ public class Order {
 
 	public String toString() {
 		
-		return String.format("%-10d %-10d %.2f", getOrder_id(), getNoOfItems(), getOrderTotalCost() );
+		return String.format("%-10d %-15d %-15.2f %-15s", getOrder_id(), getNoOfItems(), getOrderTotalCost(),getVendorName() );
 
 	}
 
