@@ -37,8 +37,8 @@ public class main {
 		Order o1 = new Order(1, 10, 0.0, "name");
 		orderList.add(o1);
 
-		User u1 = new User("name", 1, "contact number", "role");
-		userList.add(u1);
+//		User u1 = new User("name", 1, "contact number", "role");
+//		userList.add(u1);
 
 		int option = 0;
 
@@ -57,56 +57,11 @@ public class main {
 
 					if (parentOption == 1) {
 
-						Helper.line(50, "-");
-						System.out.println("Account Creation");
-						Helper.line(50, "-");
-
-						String name = Helper.readString("Enter Your Name > ");
-						int id = userList.size() + 1;
-						String contactNum = Helper.readString("Enter Your Contact Number > ");
-						String role = Helper.readString("Are You A Parent / Guardian ? > ");
-
-						boolean userFound = false;
-
-						for (int i = 0; i < userList.size(); i++) {
-
-							if (userList.get(i).getName().equalsIgnoreCase(name)
-									&& userList.get(i).getContactNum().equalsIgnoreCase(contactNum)) { // To find if
-								// user already
-								// exists
-
-								userFound = true;
-
-								System.out.println("User already has an existing account !");
-
-								break;
-
-							}
-						}
-						if (userFound == false) {
-
-							if (!name.isEmpty() && !contactNum.isEmpty()) {
-
-								if (role.equalsIgnoreCase("Parent") || role.equalsIgnoreCase("Guardian")) {
-
-									userList.add(new User(name, id, contactNum, role));
-
-									System.out.println("Account Successfully Created !");
-								} else {
-
-									System.out.println("Invalid Input fOR 'Parent / Guardian' !");
-								}
-
-							} else {
-
-								System.out.println("Information provided is incomplete !");
-
-							}
-
-						}
-
-						parentMenu();
-
+						inputUser(userList);
+						User u1 = inputUser(userList);
+						addUser(userList,u1);
+						
+						
 					} else if (parentOption == 2) {
 						// view
 						main.setHeader("View Menu");
@@ -996,5 +951,72 @@ public class main {
 		System.out.println("2. Delete School");
 		System.out.println("3. Return to Admin Menu");
 	}
+	
+	private static User inputUser(ArrayList<User> userList) {
+		
+		Helper.line(50, "-");
+		System.out.println("Account Creation");
+		Helper.line(50, "-");
+
+		String name = Helper.readString("Enter Your Name > ");
+		int id = userList.size() + 1;
+		String contactNum = Helper.readString("Enter Your Contact Number > ");
+		String role = Helper.readString("Are You A Parent / Guardian ? > ");
+		
+		
+		User u1 = new User(name,id,contactNum,role);
+	
+		return u1;
+	}
+	
+	private static void addUser(ArrayList<User> userList, User u1) {
+		
+		
+		boolean userFound = false;
+
+		for (int i = 0; i < userList.size(); i++) {
+
+			if (userList.get(i).getName().equalsIgnoreCase(u1.getName())
+					&& userList.get(i).getContactNum().equals(u1.getContactNum())) { // To find if
+				// user already
+				// exists
+
+				userFound = true;
+
+				System.out.println("User already has an existing account !");
+
+				break;
+
+			}
+		}
+		
+		if (userFound == false) {
+
+			if (!u1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+
+				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+
+					userList.add(u1);
+
+					System.out.println("Account Successfully Created !");
+					
+				} else {
+
+					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+				}
+
+			} else {
+
+				System.out.println("Information provided is incomplete !");
+
+			}
+
+		}
+
+		parentMenu();
+		
+		
+	}
+
 
 }
