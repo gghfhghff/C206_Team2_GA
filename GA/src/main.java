@@ -12,6 +12,8 @@ public class main {
 		ArrayList<Vendor> vendorList = new ArrayList<Vendor>();
 		ArrayList<Payment> paymentList = new ArrayList<Payment>();
 		ArrayList<Item> itemList = new ArrayList<Item>();
+		
+		private String josh;
 
 		// TEST OBJECTS
 		OrderStatus os1 = new OrderStatus(1, "Pending");
