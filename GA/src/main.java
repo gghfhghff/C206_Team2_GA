@@ -12,8 +12,6 @@ public class main {
 		ArrayList<Vendor> vendorList = new ArrayList<Vendor>();
 		ArrayList<Payment> paymentList = new ArrayList<Payment>();
 		ArrayList<Item> itemList = new ArrayList<Item>();
-		
-		private String josh;
 
 		// TEST OBJECTS
 		OrderStatus os1 = new OrderStatus(1, "Pending");
@@ -58,9 +56,8 @@ public class main {
 					if (parentOption == 1) {
 
 						User u1 = inputUser(userList);
-						addUser(userList,u1);
-						
-						
+						addUser(userList, u1);
+
 					} else if (parentOption == 2) {
 						// view
 						main.setHeader("View Menu");
@@ -147,7 +144,8 @@ public class main {
 
 										if (con == 'N' || con == 'n') {
 
-											System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.", "Name", "Card Number", "CVC / CVV", "Expiry Date"));
+											System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.",
+													"Name", "Card Number", "CVC / CVV", "Expiry Date"));
 
 											int number = 1;
 
@@ -162,8 +160,10 @@ public class main {
 											if (choice >= 1 && choice <= paymentList.size()) {
 
 												System.out.println("Order Successfully placed !");
-												orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
-												orderStatusList.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
+												orderList.add(
+														new Order(orderList.size() + 1, qty, totalPrice, vendorName));
+												orderStatusList
+														.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
 												parentMenu();
 
 											} else {
@@ -204,8 +204,7 @@ public class main {
 							}
 							if (check == 0) {
 								System.out.println("Order Not Found");
-							}
-							else {
+							} else {
 								for (int i = 0; i < orderStatusList.size(); i++) {
 									if (delOrder == (orderStatusList.get(i).getOrderID())) {
 										orderStatusList.remove(i);
@@ -528,7 +527,7 @@ public class main {
 						for (OrderStatus o : orderStatusList) {
 							if (orderID == o.getOrderID()) {
 								System.out.println(o.toString());
-							}else {
+							} else {
 								System.out.println("Order not found!");
 							}
 
@@ -539,7 +538,7 @@ public class main {
 						System.out.println("Returning to Menu...");
 					} else {
 						System.out.println("Invalid option!");
-						vendorMenu();	
+						vendorMenu();
 					}
 
 				}
@@ -645,7 +644,7 @@ public class main {
 						}
 						adminMenu();
 
-					}else if(adminOption == 3) {
+					} else if (adminOption == 3) {
 
 						main.setHeader("Add Vendor");
 
@@ -660,7 +659,8 @@ public class main {
 
 							if (vendorList.get(i).getName().equalsIgnoreCase(name)
 
-									&& vendorList.get(i).getAddress().equalsIgnoreCase(add) && vendorList.get(i).getContactNo().equalsIgnoreCase(contact)) {
+									&& vendorList.get(i).getAddress().equalsIgnoreCase(add)
+									&& vendorList.get(i).getContactNo().equalsIgnoreCase(contact)) {
 
 								vendFound = true;
 
@@ -676,7 +676,7 @@ public class main {
 
 							if (!name.isEmpty() && !add.isEmpty() && !contact.isEmpty()) {
 
-								vendorList.add(new Vendor(id, name,contact, add));
+								vendorList.add(new Vendor(id, name, contact, add));
 
 								System.out.println("Vendor Successfully Added !");
 
@@ -690,9 +690,7 @@ public class main {
 
 						adminMenu();
 
-
-					}
-					else if (adminOption == 4) {
+					} else if (adminOption == 4) {
 						// view all orders
 						main.setHeader("View all orders");
 
@@ -734,18 +732,18 @@ public class main {
 								viewAllMenu();
 							} else if (userOption == 2) {
 								// school
-								
+
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
-								
+
 								viewAllMenu();
 							} else if (userOption == 3) {
 								// vendor
 
 								main.setHeader("View All Vendors");
 
-								System.out.println(
-										String.format("%-10s %-15s %-10s %-15s", "ID", "Name", "Contact No.", "Address"));
+								System.out.println(String.format("%-10s %-15s %-10s %-15s", "ID", "Name", "Contact No.",
+										"Address"));
 
 								for (Vendor v : vendorList) {
 
@@ -794,7 +792,8 @@ public class main {
 								if (check == 0) {
 									System.out.println("School Not Found");
 								}
-							}adminMenu();
+							}
+							adminMenu();
 						} else if (deleteOption == 3) {
 							// vendor
 							int check = 0;
@@ -826,7 +825,7 @@ public class main {
 						for (OrderStatus o : orderStatusList) {
 							if (orderID == o.getOrderID()) {
 								System.out.println(o.toString());
-							}else {
+							} else {
 								System.out.println("Order not found!");
 							}
 
@@ -841,8 +840,7 @@ public class main {
 				}
 			} else if (option == 4) {
 				System.out.println("Goodbye!");
-				
-				
+
 			} else {
 				System.out.println("Invalid option!");
 			}
@@ -929,9 +927,9 @@ public class main {
 		System.out.println("2. Delete School");
 		System.out.println("3. Return to Admin Menu");
 	}
-	
+
 	private static User inputUser(ArrayList<User> userList) {
-		
+
 		Helper.line(50, "-");
 		System.out.println("Account Creation");
 		Helper.line(50, "-");
@@ -940,16 +938,16 @@ public class main {
 		int id = userList.size() + 1;
 		String contactNum = Helper.readString("Enter Your Contact Number > ");
 		String role = Helper.readString("Are You A Parent / Guardian ? > ");
-		
-		
-		User u1 = new User(name,id,contactNum,role);
-	
+
+		User u1 = new User(name, id, contactNum, role);
+
 		return u1;
 	}
-	
+
+	// ========================================add
+	// users==================================
 	private static void addUser(ArrayList<User> userList, User u1) {
-		
-		
+
 		boolean userFound = false;
 
 		for (int i = 0; i < userList.size(); i++) {
@@ -967,7 +965,7 @@ public class main {
 
 			}
 		}
-		
+
 		if (userFound == false) {
 
 			if (!u1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
@@ -977,7 +975,7 @@ public class main {
 					userList.add(u1);
 
 					System.out.println("Account Successfully Created !");
-					
+
 				} else {
 
 					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
@@ -992,37 +990,416 @@ public class main {
 		}
 
 		parentMenu();
-		
+
 	}
 	
-	private static String retrieveAllUsers(ArrayList<User> userList) {
-		
-		String output = "";
-		
-		for(int i = 0; i < userList.size(); i++ ) {
-			
-			output+= String.format("%-20s\n", userList.get(i).toString());
-			
+	private static void addSchool(ArrayList<School> schoolList, School school1) {
+
+		boolean schoolFound = false;
+
+		for (int i = 0; i < schoolList.size(); i++) {
+
+			if (schoolList.get(i).getSchool_id()==(school1.getSchool_id())
+					&& schoolList.get(i).getName().equalsIgnoreCase(school1.getName()) && schoolList.get(i).getAddress().equalsIgnoreCase(school1.getAddress())
+					&& schoolList.get(i).getNoOfOrders() == school1.getNoOfOrders()) { 
+				
+				// To find if
+				// user already
+				// exists
+
+				schoolFound = true;
+
+				System.out.println("School already added !");
+
+				break;
+
+			}
 		}
-		
+
+		if (schoolFound == false) {
+
+			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+
+				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+
+					schoolList.add(school1);
+
+					System.out.println("Account Successfully Created !");
+
+				} else {
+
+					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+				}
+
+			} else {
+
+				System.out.println("Information provided is incomplete !");
+
+			}
+
+		}
+
+		parentMenu();
+
+	}
+	
+	private static void addMenu(ArrayList<Menu> menuList, Menu menu1) {
+
+		boolean menuFound = false;
+
+		for (int i = 0; i < menuList.size(); i++) {
+
+			if (menuList.get(i).getMenu_id()==(menu1.getMenu_id())
+					&& menuList.get(i).getMenu_name().equalsIgnoreCase(menu1.getMenu_name()) && menuList.get(i).getMenu_status().equalsIgnoreCase(menu1.getMenu_name())
+							&& menuList.get(i).getVendor_name().equalsIgnoreCase(menu1.getVendor_name())) {
+				 
+				
+				// To find if
+				// user already
+				// exists
+
+				menuFound = true;
+
+				System.out.println("Menu already exists! !");
+
+				break;
+
+			}
+		}
+
+		if (menuFound == false) {
+
+			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+
+				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+
+					schoolList.add(school1);
+
+					System.out.println("Account Successfully Created !");
+
+				} else {
+
+					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+				}
+
+			} else {
+
+				System.out.println("Information provided is incomplete !");
+
+			}
+
+		}
+
+		parentMenu();
+
+	}
+	
+	private static void addOrder(ArrayList<Order> orderList, Order order1) {
+
+		boolean orderFound = false;
+
+		for (int i = 0; i < orderList.size(); i++) {
+
+			if (orderList.get(i).getOrder_id()==(order1.getOrder_id())
+					&& orderList.get(i).getNoOfItems() == (order1.getNoOfItems()) && orderList.get(i).getOrderTotalCost() == (order1.getOrderTotalCost())
+							&& orderList.get(i).getVendorName().equalsIgnoreCase(order1.getVendorName())) {
+				 
+				
+				// To find if
+				// user already
+				// exists
+
+				orderFound = true;
+
+				System.out.println("Menu already exists! !");
+
+				break;
+
+			}
+		}
+
+		if (orderFound == false) {
+
+			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+
+				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+
+					schoolList.add(school1);
+
+					System.out.println("Account Successfully Created !");
+
+				} else {
+
+					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+				}
+
+			} else {
+
+				System.out.println("Information provided is incomplete !");
+
+			}
+
+		}
+
+		parentMenu();
+
+	}
+	
+	private static void addPayment(ArrayList<Payment> paymentList, Payment payment1) {
+
+		boolean paymentFound = false;
+
+		for (int i = 0; i < paymentList.size(); i++) {
+
+			if (paymentList.get(i).getName().equalsIgnoreCase(payment1.getName())
+					&& paymentList.get(i).getCardNo() == (payment1.getCardNo()) && paymentList.get(i).getCvc() == (payment1.getCvc())
+							&& paymentList.get(i).getExpDate().equalsIgnoreCase(payment1.getExpDate())) {
+				 
+				
+				// To find if
+				// user already
+				// exists
+
+				paymentFound = true;
+
+				System.out.println("Menu already exists! !");
+
+				break;
+
+			}
+		}
+
+		if (paymentFound == false) {
+
+			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+
+				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+
+					schoolList.add(school1);
+
+					System.out.println("Account Successfully Created !");
+
+				} else {
+
+					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+				}
+
+			} else {
+
+				System.out.println("Information provided is incomplete !");
+
+			}
+
+		}
+
+		parentMenu();
+
+	}
+	
+	private static void addVendor(ArrayList<Vendor> vendorList, Vendor vendor1) {
+
+		boolean vendorFound = false;
+
+		for (int i = 0; i < vendorList.size(); i++) {
+
+			if (vendorList.get(i).getId()== (vendor1.getId())
+					&& vendorList.get(i).getName().equalsIgnoreCase(vendor1.getName()) && vendorList.get(i).getContactNo().equals(vendor1.getContactNo())
+							&& vendorList.get(i).getAddress().equalsIgnoreCase(vendor1.getAddress())) {
+				 
+				
+				// To find if
+				// user already
+				// exists
+
+				vendorFound = true;
+
+				System.out.println("Menu already exists! !");
+
+				break;
+
+			}
+		}
+
+		if (vendorFound == false) {
+
+			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+
+				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+
+					schoolList.add(school1);
+
+					System.out.println("Account Successfully Created !");
+
+				} else {
+
+					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+				}
+
+			} else {
+
+				System.out.println("Information provided is incomplete !");
+
+			}
+
+		}
+
+		parentMenu();
+
+	}
+	
+	
+
+	// =====================================view
+	// users=====================================
+	private static String retrieveAllUsers(ArrayList<User> userList) {
+
+		String output = "";
+
+		for (int i = 0; i < userList.size(); i++) {
+
+			output += String.format("%-20s\n", userList.get(i).toString());
+
+		}
+
+		return output;
+	}
+
+	private static String retrieveAllSchools(ArrayList<School> schoolList) {
+		String output = "";
+
+		for (int i = 0; i < schoolList.size(); i++) {
+
+			output += String.format("%-20s\n", schoolList.get(i).toString());
+
+		}
+
 		return output;
 	}
 	
-	private static void viewAllUsers (ArrayList<User> userList) {
-		
-		
-		main.setHeader("View All Parents/Guardians");
-			String output = String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role");
-		
+	private static String retrieveAllMenus(ArrayList<Menu> menuList) {
+		String output = "";
 
-			output += retrieveAllUsers(userList);
-			
-			System.out.println(output);
+		for (int i = 0; i < menuList.size(); i++) {
+
+			output += String.format("%-20s\n", menuList.get(i).toString());
+
+		}
+
+		return output;
+	}
+	private static String retrieveAllOrders(ArrayList<Order> orderList) {
+		String output = "";
+
+		for (int i = 0; i < orderList.size(); i++) {
+
+			output += String.format("%-20s\n", orderList.get(i).toString());
+
+		}
+
+		return output;
+	}
+	
+	private static String retrieveAllOrderstatus(ArrayList<OrderStatus> orderStatusList) {
+		String output = "";
+
+		for (int i = 0; i < orderStatusList.size(); i++) {
+
+			output += String.format("%-20s\n", orderStatusList.get(i).toString());
+
+		}
+
+		return output;
+	}
+	
+	private static String retrieveAllPayments(ArrayList<Payment> paymentList) {
+		String output = "";
+
+		for (int i = 0; i < paymentList.size(); i++) {
+
+			output += String.format("%-20s\n", paymentList.get(i).toString());
+
+		}
+
+		return output;
+	}
+	private static String retrieveAllVendors(ArrayList<Vendor> vendorList) {
+		String output = "";
+
+		for (int i = 0; i < vendorList.size(); i++) {
+
+			output += String.format("%-20s\n", vendorList.get(i).toString());
+
+		}
+
+		return output;
+	}
+	
+	private static void viewAllUsers(ArrayList<User> userList) {
+
+		main.setHeader("View All Parents/Guardians");
+		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role");
+
+		output += retrieveAllUsers(userList);
+
+		System.out.println(output);
+
+	}
+	private static void viewAllSchools(ArrayList<School> schoolList) {
+
+		main.setHeader("View All Schools");
+		String output = String.format("%-10s %-15s %-15s %-15s", "ID", "Name", "Address", "No. of orders");
+
+		output += retrieveAllSchools(schoolList);
+
+		System.out.println(output);
+
+	}
+	private static void viewAllMenus(ArrayList<Menu> menuList) {
+
+		main.setHeader("View All Menus");
+		String output = String.format("%-10s %-15s %-15s %-15s", "ID", "Name", "status", "Vendor Name");
+
+		output += retrieveAllMenus(menuList);
+
+		System.out.println(output);
+
+	}
+	private static void viewAllOrders(ArrayList<Order> orderList) {
+
+		main.setHeader("View All Orders");
+		String output = String.format("%-10s %-15s %-15s %-15s", "ID", "No. of items", "total cost", "Vendor Name");
+
+		output += retrieveAllOrders(orderList);
+
+		System.out.println(output);
+
+	}
+	private static void viewAllOrderStatus(ArrayList<OrderStatus> orderStatusList) {
+
+		main.setHeader("View All Order Statuses");
+		String output = String.format("%-10s %-15s", "ID", "Status");
+
+		output += retrieveAllOrderstatus(orderStatusList);
+
+		System.out.println(output);
 
 	}
 	
-	private static void deleteUser (ArrayList<User> userList) {
-		
+	private static void viewAllPayment(ArrayList<Payment> paymentList) {
+
+		main.setHeader("View All Payments");
+		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "Card No.", "CVC", "Exp date");
+
+
+		output += retrieveAllPayments(paymentList);
+
+		System.out.println(output);
+
+	}
+	
+	// ==================================delete users=============================
+	private static void deleteUser(ArrayList<User> userList) {
+
 		// parent
 		int check = 0;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
@@ -1039,6 +1416,119 @@ public class main {
 			}
 			if (check == 0) {
 				System.out.println("User Not Found");
+			}
+		}
+
+	}
+	
+	private static void deleteSchool(ArrayList<School> schoolList) {
+
+		// parent
+		int check = 0;
+		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
+
+		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delUserCfm == 'Y') {
+			for (int i = 0; i < schoolList.size(); i++) {
+				if (delID == (schoolList.get(i).getSchool_id())) {
+					schoolList.remove(i);
+					System.out.println("SChool Deleted From System");
+					check++;
+					break;
+				}
+			}
+			if (check == 0) {
+				System.out.println("School Not Found");
+			}
+		}
+
+	}
+	
+	private static void deleteMenu(ArrayList<Menu> menuList) {
+
+		// parent
+		int check = 0;
+		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
+
+		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delUserCfm == 'Y') {
+			for (int i = 0; i < menuList.size(); i++) {
+				if (delID == (menuList.get(i).getMenu_id())) {
+					menuList.remove(i);
+					System.out.println("Menu Deleted From System");
+					check++;
+					break;
+				}
+			}
+			if (check == 0) {
+				System.out.println("Menu Not Found");
+			}
+		}
+
+	}
+	private static void deleteOrder(ArrayList<Order> orderList) {
+
+		// parent
+		int check = 0;
+		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
+
+		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delUserCfm == 'Y') {
+			for (int i = 0; i < orderList.size(); i++) {
+				if (delID == (orderList.get(i).getOrder_id())) {
+					orderList.remove(i);
+					System.out.println("Order Deleted From System");
+					check++;
+					break;
+				}
+			}
+			if (check == 0) {
+				System.out.println("Order Not Found");
+			}
+		}
+
+	}
+	private static void deletePayment(ArrayList<Payment> paymentList) {
+
+		// parent
+		int check = 0;
+		String delName = Helper.readString("Enter Parent/Guardian ID > ");
+
+		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delUserCfm == 'Y') {
+			for (int i = 0; i < paymentList.size(); i++) {
+				if (delName.equalsIgnoreCase(paymentList.get(i).getName())) {
+					paymentList.remove(i);
+					System.out.println("Payment Deleted From System");
+					check++;
+					break;
+				}
+			}
+			if (check == 0) {
+				System.out.println("Payment Not Found");
+			}
+		}
+
+	}
+	
+	private static void deleteVendor(ArrayList<Vendor> vendorList) {
+
+		// parent
+		int check = 0;
+		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
+
+		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delUserCfm == 'Y') {
+			for (int i = 0; i < vendorList.size(); i++) {
+				if (delID == (vendorList.get(i).getId())) {
+					vendorList.remove(i);
+					System.out.println("Vendor Deleted From System");
+					check++;
+					break;
+				}
+			}
+			if (check == 0) {
+				System.out.println("Vendor Not Found");
 			}
 		}
 
