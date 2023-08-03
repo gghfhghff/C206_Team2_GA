@@ -1199,7 +1199,7 @@ public class main {
 
 		if (vendorFound == false) {
 
-			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+			if (!vendor1.getName().isEmpty() && !vendor1.getContactNo().isEmpty() ) {
 
 				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
 
