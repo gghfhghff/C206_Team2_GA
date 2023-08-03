@@ -1145,6 +1145,56 @@ public class main {
 
 	}
 	
+	private static void addOrderStatus(ArrayList<OrderStatus> orderStatusList, OrderStatus os1) {
+
+		boolean orderStatusFound = false;
+
+		for (int i = 0; i < orderStatusList.size(); i++) {
+
+			if (orderStatusList.get(i).getOrderID()==(os1.getOrderID())
+					&& orderStatusList.get(i).getStatus().equalsIgnoreCase(os1.getStatus())) {
+				 
+				
+				// To find if
+				// user already
+				// exists
+
+				orderStatusFound = true;
+
+				System.out.println("Menu already exists! !");
+
+				break;
+
+			}
+		}
+
+		if (orderStatusFound == false) {
+
+			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+
+				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+
+					schoolList.add(school1);
+
+					System.out.println("Account Successfully Created !");
+
+				} else {
+
+					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+				}
+
+			} else {
+
+				System.out.println("Information provided is incomplete !");
+
+			}
+
+		}
+
+		parentMenu();
+
+	}
+	
 	private static void addPayment(ArrayList<Payment> paymentList, Payment payment1) {
 
 		boolean paymentFound = false;
@@ -1477,6 +1527,28 @@ public class main {
 			for (int i = 0; i < orderList.size(); i++) {
 				if (delID == (orderList.get(i).getOrder_id())) {
 					orderList.remove(i);
+					System.out.println("Order Deleted From System");
+					check++;
+					break;
+				}
+			}
+			if (check == 0) {
+				System.out.println("Order Not Found");
+			}
+		}
+
+	}
+	private static void deleteOrderStatus(ArrayList<OrderStatus> orderStatusList) {
+
+		// parent
+		int check = 0;
+		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
+
+		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delUserCfm == 'Y') {
+			for (int i = 0; i < orderStatusList.size(); i++) {
+				if (delID == (orderStatusList.get(i).getOrderID())) {
+					orderStatusList.remove(i);
 					System.out.println("Order Deleted From System");
 					check++;
 					break;
