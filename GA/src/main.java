@@ -334,91 +334,10 @@ public class main {
 
 					if (vendorOption == 1) {
 						// Add menu
-
-						int menuId = menuList.size() + 1;
-						String menuName = Helper.readString("Enter Menu Name / Title > ");
-						String status = Helper.readString("Enter Menu Status > ");
-						String vendorName = Helper.readString("Enter Vendor's Name > ");
-
-						boolean menuFound = false;
-
-						for (int i = 0; i < menuList.size(); i++) {
-
-							if (menuList.get(i).getMenu_name().equals(menuName)
-									&& menuList.get(i).getMenu_status().equals(status)) {
-
-								System.out.println("Menu Already Exists !");
-
-								menuFound = true;
-
-								break;
-
-							}
-						}
-
-						if (menuFound == false) {
-
-							if (!menuName.isEmpty() && !status.isEmpty()) {
-
-								menuList.add(new Menu(menuId, menuName, status, vendorName));
-
-								System.out.println("Menu Successfully Added !");
-
-							} else {
-
-								System.out.println("Information Entered Is Incomplete !");
-
-							}
-
-						}
-
-						char con = 'Y';
-
-						while (con == 'Y' || con == 'y') {
-
-							int itemId = itemList.size() + 1;
-							String itemName = Helper.readString("Enter Item Name > ");
-							String itemDesc = Helper.readString("Enter Item Description > ");
-							Double itemPrice = Helper.readDouble("Enter Price > ");
-
-							boolean itemFound = false;
-
-							for (int i = 0; i < itemList.size(); i++) {
-
-								if (itemList.get(i).getItem_name().equals(itemName)
-										&& itemList.get(i).getItem_description().equals(itemDesc)
-										&& itemList.get(i).getItem_price() == itemPrice) {
-
-									System.out.println("Item Already Exists In Menu !");
-
-									itemFound = true;
-
-									break;
-
-								}
-
-							}
-
-							if (itemFound == false) {
-
-								if (!itemName.isEmpty() && !itemDesc.isEmpty() && itemPrice != 0) {
-
-									itemList.add(new Item(menuId, itemId, itemName, itemDesc, itemPrice));
-									System.out.println("Items Successfully Added!");
-
-								} else {
-
-									System.out.println("Information Entered Is Incomplete !");
-
-								}
-
-							}
-							con = Helper.readChar("Continue Adding Items to " + menuName + " (Y/N) > ");
-
-							if (con == 'N' || con == 'n') {
-								vendorMenu();
-							}
-						}
+						
+						Menu menu1 = inputMenu(menuList);
+						addMenu(menuList, itemList, menu1);
+						
 
 					} else if (vendorOption == 2) {
 						// edit menu
@@ -552,44 +471,8 @@ public class main {
 					if (adminOption == 1) {
 						// add school
 
-						int id = schoolList.size() + 1;
-						String name = Helper.readString("Enter School Name > ");
-						String add = Helper.readString("Enter School's Address > ");
-
-						boolean schFound = false;
-
-						for (int i = 0; i < schoolList.size(); i++) {
-
-							if (schoolList.get(i).getName().equalsIgnoreCase(name)
-									&& schoolList.get(i).getAddress().equalsIgnoreCase(add)) {
-
-								schFound = true;
-
-								System.out.println("School Already Exists !");
-
-								break;
-
-							}
-
-						}
-
-						if (schFound == false) {
-
-							if (!name.isEmpty() && !add.isEmpty()) {
-
-								schoolList.add(new School(id, name, add));
-
-								System.out.println("School Successfully Added !");
-
-							} else {
-
-								System.out.println("Information Entered Is Incompelte !");
-
-							}
-
-						}
-
-						adminMenu();
+						School school1 = inputSchool(schoolList);
+						addSchool(schoolList,school1);
 
 					} else if (adminOption == 2) {
 						// edit school
@@ -930,9 +813,7 @@ public class main {
 
 	private static User inputUser(ArrayList<User> userList) {
 
-		Helper.line(50, "-");
-		System.out.println("Account Creation");
-		Helper.line(50, "-");
+		main.setHeader("Account Creation");
 
 		String name = Helper.readString("Enter Your Name > ");
 		int id = userList.size() + 1;
@@ -993,74 +874,82 @@ public class main {
 
 	}
 	
+	private static School inputSchool(ArrayList<School> schoolList) {
+		
+		main.setHeader("Add School");
+	
+		int id = schoolList.size() + 1;
+		String name = Helper.readString("Enter School Name > ");
+		String add = Helper.readString("Enter School's Address > ");
+		
+		School school1 = new School(id, name, add);
+		
+		return school1;
+	}
+	
 	private static void addSchool(ArrayList<School> schoolList, School school1) {
 
-		boolean schoolFound = false;
+		boolean schFound = false;
 
 		for (int i = 0; i < schoolList.size(); i++) {
 
-			if (schoolList.get(i).getSchool_id()==(school1.getSchool_id())
-					&& schoolList.get(i).getName().equalsIgnoreCase(school1.getName()) && schoolList.get(i).getAddress().equalsIgnoreCase(school1.getAddress())
-					&& schoolList.get(i).getNoOfOrders() == school1.getNoOfOrders()) { 
-				
-				// To find if
-				// user already
-				// exists
+			if (schoolList.get(i).getName().equalsIgnoreCase(school1.getName())
+					&& schoolList.get(i).getAddress().equalsIgnoreCase(school1.getAddress())) {
 
-				schoolFound = true;
+				schFound = true;
 
-				System.out.println("School already added !");
+				System.out.println("School Already Exists !");
 
 				break;
 
 			}
+
 		}
 
-		if (schoolFound == false) {
+		if (schFound == false) {
 
-			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+			if (!school1.getName().isEmpty() && !school1.getAddress().isEmpty()) {
 
-				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+				schoolList.add(school1);
 
-					schoolList.add(school1);
-
-					System.out.println("Account Successfully Created !");
-
-				} else {
-
-					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
-				}
+				System.out.println("School Successfully Added !");
 
 			} else {
 
-				System.out.println("Information provided is incomplete !");
+				System.out.println("Information Entered Is Incompelte !");
 
 			}
 
 		}
 
-		parentMenu();
-
+		adminMenu();
 	}
-	
-	private static void addMenu(ArrayList<Menu> menuList, Menu menu1) {
+	private static Menu inputMenu(ArrayList<Menu> menuList) {
+		
+
+		int menuId = menuList.size() + 1;
+		String menuName = Helper.readString("Enter Menu Name / Title > ");
+		String status = Helper.readString("Enter Menu Status > ");
+		String vendorName = Helper.readString("Enter Vendor's Name > ");
+
+		Menu menu1 = new Menu(menuId, menuName, status, vendorName);
+		
+		return menu1;
+		
+		
+	}
+	private static void addMenu(ArrayList<Menu> menuList, ArrayList<Item> itemList,Menu menu1) {
 
 		boolean menuFound = false;
 
 		for (int i = 0; i < menuList.size(); i++) {
 
-			if (menuList.get(i).getMenu_id()==(menu1.getMenu_id())
-					&& menuList.get(i).getMenu_name().equalsIgnoreCase(menu1.getMenu_name()) && menuList.get(i).getMenu_status().equalsIgnoreCase(menu1.getMenu_name())
-							&& menuList.get(i).getVendor_name().equalsIgnoreCase(menu1.getVendor_name())) {
-				 
-				
-				// To find if
-				// user already
-				// exists
+			if (menuList.get(i).getMenu_name().equals(menu1.getMenu_name())
+					&& menuList.get(i).getMenu_status().equals(menu1.getMenu_status())) {
+
+				System.out.println("Menu Already Exists !");
 
 				menuFound = true;
-
-				System.out.println("Menu already exists! !");
 
 				break;
 
@@ -1069,31 +958,69 @@ public class main {
 
 		if (menuFound == false) {
 
-			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+			if (!menu1.getMenu_name().isEmpty() && !menu1.getMenu_status().isEmpty()) {
 
-				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+				menuList.add(menu1);
 
-					schoolList.add(school1);
-
-					System.out.println("Account Successfully Created !");
-
-				} else {
-
-					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
-				}
+				System.out.println("Menu Successfully Added !");
 
 			} else {
 
-				System.out.println("Information provided is incomplete !");
+				System.out.println("Information Entered Is Incomplete !");
 
 			}
 
 		}
 
-		parentMenu();
+		char con = 'Y';
 
-	}
-	
+		while (con == 'Y' || con == 'y') {
+
+			int itemId = itemList.size() + 1;
+			String itemName = Helper.readString("Enter Item Name > ");
+			String itemDesc = Helper.readString("Enter Item Description > ");
+			Double itemPrice = Helper.readDouble("Enter Price > ");
+
+			boolean itemFound = false;
+
+			for (int i = 0; i < itemList.size(); i++) {
+
+				if (itemList.get(i).getItem_name().equals(itemName)
+						&& itemList.get(i).getItem_description().equals(itemDesc)
+						&& itemList.get(i).getItem_price() == itemPrice) {
+
+					System.out.println("Item Already Exists In Menu !");
+
+					itemFound = true;
+
+					break;
+
+				}
+
+			}
+
+			if (itemFound == false) {
+
+				if (!itemName.isEmpty() && !itemDesc.isEmpty() && itemPrice != 0) {
+
+					itemList.add(new Item(menu1.getMenu_id(), itemId, itemName, itemDesc, itemPrice));
+					System.out.println("Items Successfully Added!");
+
+				} else {
+
+					System.out.println("Information Entered Is Incomplete !");
+
+				}
+
+			}
+			con = Helper.readChar("Continue Adding Items to " + menu1.getMenu_name() + " (Y/N) > ");
+
+			if (con == 'N' || con == 'n') {
+				vendorMenu();
+			}
+		}
+		}
+
 	private static void addOrder(ArrayList<Order> orderList, Order order1) {
 
 		boolean orderFound = false;
