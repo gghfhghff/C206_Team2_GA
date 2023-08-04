@@ -73,115 +73,9 @@ public class main {
 						parentMenu();
 
 					} else if (parentOption == 3) {
-
-						main.setHeader("List of Menus");
-
-						System.out.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name",
-								"Menu status", "Vendor"));
-
-						for (Menu m : menuList) {
-
-							System.out.println(m.toString());
-
-						}
-
-						int menuID = Helper.readInt("Enter Menu ID To View > ");
-
-						boolean menuFound = true;
-
-						for (int i = 0; i < menuList.size(); i++) {
-
-							if (menuID != menuList.get(i).getMenu_id()) {
-
-								System.out.println("Invalid Menu ID Entered !");
-								break;
-
-							}
-
-						}
-
-						if (menuFound == true) {
-
-							main.setHeader("Menu ID : " + menuID + " Item List");
-
-							String output = String.format("%-10s %-10s %-15s %-10s\n", "Item ID", "Item Name",
-									"Item Description", "Item Price");
-							for (int i = 0; i < itemList.size(); i++) {
-
-								if (menuID == itemList.get(i).getMenu_id()) {
-
-									output += String.format("%-10s %-10s %-15s $%-10s", itemList.get(i).getItem_id(),
-											itemList.get(i).getItem_name(), itemList.get(i).getItem_description(),
-											itemList.get(i).getItem_price());
-
-								}
-							}
-
-							System.out.println(output);
-
-							char con = 'Y';
-
-							while (con == 'Y' || con == 'y') {
-								int itemID = Helper.readInt("Enter Item ID you would like to order > ");
-								boolean itemFound = false;
-
-								for (int i = 0; i < itemList.size(); i++) {
-									if (itemID == itemList.get(i).getItem_id()) {
-										itemFound = true;
-
-										String vendorName = itemList.get(i).getVendor_name();
-										String itemName = itemList.get(i).getItem_name();
-										double itemPrice = itemList.get(i).getItem_price();
-
-										System.out.println("Item Name: " + itemName);
-										System.out.println("Item Price: " + itemPrice);
-
-										int qty = Helper.readInt("How Many Qty Would You Like To Purchase? > ");
-										double totalPrice = itemPrice * qty;
-										System.out.println("Total Price = " + totalPrice);
-
-										con = Helper.readChar("Would You Like To Place Another Order? (Y/N) > ");
-
-										if (con == 'N' || con == 'n') {
-
-											System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.",
-													"Name", "Card Number", "CVC / CVV", "Expiry Date"));
-
-											int number = 1;
-
-											for (int j = 0; j < paymentList.size(); j++) {
-												System.out.print(String.format("%-10s", number));
-												System.out.println(paymentList.get(j).toString());
-												number++;
-											}
-
-											int choice = Helper.readInt("Enter Method Payment Number > ");
-
-											if (choice >= 1 && choice <= paymentList.size()) {
-
-												System.out.println("Order Successfully placed !");
-												orderList.add(
-														new Order(orderList.size() + 1, qty, totalPrice, vendorName));
-												orderStatusList
-														.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
-												parentMenu();
-
-											} else {
-
-												System.out.println("Invalid Number Entered !");
-												parentMenu();
-
-											}
-										}
-										break; // Exit the loop since the item is found
-									}
-								}
-
-								if (!itemFound) {
-									System.out.println("Invalid Item ID Entered !");
-								}
-							}
-						}
+ //TODO 
+//						addOrder(orderList, menuList, itemList, paymentList,
+//								 orderStatusList);
 					} else if (parentOption == 4) {
 						// cancel order
 
@@ -230,64 +124,10 @@ public class main {
 					} else if (parentOption == 6) {
 						// add payment
 
-						Helper.line(50, "-");
-						System.out.println("Add a new payment method");
-						Helper.line(50, "-");
+						Payment payment1 = inputPayment(paymentList);
+						addPayment(paymentList, payment1);
 
-						String name = Helper.readString("Enter Name Displayed On The Card > ");
-						String cardNo = Helper.readString("Enter Card Number > ");
-						int cvc = Helper.readInt("Enter CVC / CVV > ");
-						String exp = Helper.readString("Enter Expiration Date Of Card > ");
-
-						boolean payFound = false;
-
-						for (int i = 0; i < paymentList.size(); i++) {
-
-							if (paymentList.get(i).getCardNo().equals(cardNo) && paymentList.get(i).getCvc() == cvc
-									&& paymentList.get(i).getExpDate().equals(exp)) {
-
-								payFound = true;
-
-								System.out.println("Current Payment Method Already Exists !");
-
-								break;
-							}
-
-						}
-
-						if (payFound == false) {
-
-							if (!name.isEmpty() && !cardNo.isEmpty() && cvc != 0 && !exp.isEmpty()) {
-
-								if (cvc >= 100) {
-
-									if (cardNo.length() == 19) {
-
-										paymentList.add(new Payment(name, cardNo, cvc, exp));
-
-										System.out.println("New Payment Successfully Added !");
-
-									} else {
-
-										System.out.println("Card Number Entered Does Not Meet The Requirements !");
-
-									}
-
-								} else {
-
-									System.out.println("CVC Entered Does Not Meet The Requirements !");
-
-								}
-
-							} else {
-
-								System.out.println("Information entered is incomplete !");
-
-							}
-
-						}
-
-						parentMenu();
+						
 
 					} else if (parentOption == 7) {
 						// edit payment
@@ -529,49 +369,8 @@ public class main {
 
 					} else if (adminOption == 3) {
 
-						main.setHeader("Add Vendor");
-
-						int id = vendorList.size() + 1;
-						String name = Helper.readString("Enter Vendor's Name > ");
-						String contact = Helper.readString("Enter Vendor's Contact Number > ");
-						String add = Helper.readString("Enter Vendor's Address > ");
-
-						boolean vendFound = false;
-
-						for (int i = 0; i < vendorList.size(); i++) {
-
-							if (vendorList.get(i).getName().equalsIgnoreCase(name)
-
-									&& vendorList.get(i).getAddress().equalsIgnoreCase(add)
-									&& vendorList.get(i).getContactNo().equalsIgnoreCase(contact)) {
-
-								vendFound = true;
-
-								System.out.println("School Already Exists !");
-
-								break;
-
-							}
-
-						}
-
-						if (vendFound == false) {
-
-							if (!name.isEmpty() && !add.isEmpty() && !contact.isEmpty()) {
-
-								vendorList.add(new Vendor(id, name, contact, add));
-
-								System.out.println("Vendor Successfully Added !");
-
-							} else {
-
-								System.out.println("Information Entered Is Incompelte !");
-
-							}
-
-						}
-
-						adminMenu();
+						Vendor vendor1 = inputVendor(vendorList);
+						addVendor(vendorList, vendor1);
 
 					} else if (adminOption == 4) {
 						// view all orders
@@ -1020,57 +819,118 @@ public class main {
 			}
 		}
 		}
+	private static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList,ArrayList<Item> itemList,ArrayList<Payment> paymentList,
+			ArrayList<OrderStatus> orderStatusList, Order order1) {
 
-	private static void addOrder(ArrayList<Order> orderList, Order order1) {
+		main.setHeader("List of Menus");
 
-		boolean orderFound = false;
+		System.out.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name",
+				"Menu status", "Vendor"));
 
-		for (int i = 0; i < orderList.size(); i++) {
+		for (Menu m : menuList) {
 
-			if (orderList.get(i).getOrder_id()==(order1.getOrder_id())
-					&& orderList.get(i).getNoOfItems() == (order1.getNoOfItems()) && orderList.get(i).getOrderTotalCost() == (order1.getOrderTotalCost())
-							&& orderList.get(i).getVendorName().equalsIgnoreCase(order1.getVendorName())) {
-				 
-				
-				// To find if
-				// user already
-				// exists
+			System.out.println(m.toString());
 
-				orderFound = true;
+		}
 
-				System.out.println("Menu already exists! !");
+		int menuID = Helper.readInt("Enter Menu ID To View > ");
 
+		boolean menuFound = true;
+
+		for (int i = 0; i < menuList.size(); i++) {
+
+			if (menuID != menuList.get(i).getMenu_id()) {
+
+				System.out.println("Invalid Menu ID Entered !");
 				break;
 
 			}
+
 		}
 
-		if (orderFound == false) {
+		if (menuFound == true) {
 
-			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+			main.setHeader("Menu ID : " + menuID + " Item List");
 
-				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+			String output = String.format("%-10s %-10s %-15s %-10s\n", "Item ID", "Item Name",
+					"Item Description", "Item Price");
+			for (int i = 0; i < itemList.size(); i++) {
 
-					schoolList.add(school1);
+				if (menuID == itemList.get(i).getMenu_id()) {
 
-					System.out.println("Account Successfully Created !");
+					output += String.format("%-10s %-10s %-15s $%-10s", itemList.get(i).getItem_id(),
+							itemList.get(i).getItem_name(), itemList.get(i).getItem_description(),
+							itemList.get(i).getItem_price());
 
-				} else {
-
-					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
 				}
-
-			} else {
-
-				System.out.println("Information provided is incomplete !");
-
 			}
 
+			System.out.println(output);
+
+			char con = 'Y';
+
+			while (con == 'Y' || con == 'y') {
+				int itemID = Helper.readInt("Enter Item ID you would like to order > ");
+				boolean itemFound = false;
+
+				for (int i = 0; i < itemList.size(); i++) {
+					if (itemID == itemList.get(i).getItem_id()) {
+						itemFound = true;
+
+						String vendorName = itemList.get(i).getVendor_name();
+						String itemName = itemList.get(i).getItem_name();
+						double itemPrice = itemList.get(i).getItem_price();
+
+						System.out.println("Item Name: " + itemName);
+						System.out.println("Item Price: " + itemPrice);
+
+						int qty = Helper.readInt("How Many Qty Would You Like To Purchase? > ");
+						double totalPrice = itemPrice * qty;
+						System.out.println("Total Price = " + totalPrice);
+
+						con = Helper.readChar("Would You Like To Place Another Order? (Y/N) > ");
+
+						if (con == 'N' || con == 'n') {
+
+							System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.",
+									"Name", "Card Number", "CVC / CVV", "Expiry Date"));
+
+							int number = 1;
+
+							for (int j = 0; j < paymentList.size(); j++) {
+								System.out.print(String.format("%-10s", number));
+								System.out.println(paymentList.get(j).toString());
+								number++;
+							}
+
+							int choice = Helper.readInt("Enter Method Payment Number > ");
+
+							if (choice >= 1 && choice <= paymentList.size()) {
+
+								System.out.println("Order Successfully placed !");
+								orderList.add(
+										new Order(orderList.size() + 1, qty, totalPrice, vendorName));
+								orderStatusList
+										.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
+								parentMenu();
+
+							} else {
+
+								System.out.println("Invalid Number Entered !");
+								parentMenu();
+
+							}
+						}
+						break; // Exit the loop since the item is found
+					}
+				}
+
+				if (!itemFound) {
+					System.out.println("Invalid Item ID Entered !");
+				}
+			}
 		}
-
-		parentMenu();
-
-	}
+		}
 	
 	private static void addOrderStatus(ArrayList<OrderStatus> orderStatusList, OrderStatus os1) {
 
@@ -1122,106 +982,126 @@ public class main {
 
 	}
 	
+	
+	private static Payment inputPayment(ArrayList<Payment> paymentList) {
+
+		main.setHeader("Add Payment Method");
+
+		String name = Helper.readString("Enter Name Displayed On The Card > ");
+		String cardNo = Helper.readString("Enter Card Number > ");
+		int cvc = Helper.readInt("Enter CVC / CVV > ");
+		String exp = Helper.readString("Enter Expiration Date Of Card > ");
+		
+		Payment payment1 = new Payment (name, cardNo, cvc, exp);
+		
+		return payment1;
+		
+	}
 	private static void addPayment(ArrayList<Payment> paymentList, Payment payment1) {
 
-		boolean paymentFound = false;
+		boolean payFound = false;
 
 		for (int i = 0; i < paymentList.size(); i++) {
 
-			if (paymentList.get(i).getName().equalsIgnoreCase(payment1.getName())
-					&& paymentList.get(i).getCardNo() == (payment1.getCardNo()) && paymentList.get(i).getCvc() == (payment1.getCvc())
-							&& paymentList.get(i).getExpDate().equalsIgnoreCase(payment1.getExpDate())) {
-				 
-				
-				// To find if
-				// user already
-				// exists
+			if (paymentList.get(i).getCardNo().equals(payment1.getCardNo()) && paymentList.get(i).getCvc() == payment1.getCvc()
+					&& paymentList.get(i).getExpDate().equals(payment1.getExpDate())) {
 
-				paymentFound = true;
+				payFound = true;
 
-				System.out.println("Menu already exists! !");
+				System.out.println("Current Payment Method Already Exists !");
 
 				break;
-
 			}
+
 		}
 
-		if (paymentFound == false) {
+		if (payFound == false) {
 
-			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
+			if (!payment1.getName().isEmpty() && payment1.getCardNo().isEmpty() && payment1.getCvc() != 0 && !payment1.getExpDate().isEmpty()) {
 
-				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+				if (payment1.getCvc() >= 100) {
 
-					schoolList.add(school1);
+					if (payment1.getCardNo().length() == 19) {
 
-					System.out.println("Account Successfully Created !");
+						paymentList.add(new Payment(payment1.getName(), payment1.getCardNo(), payment1.getCvc(), payment1.getExpDate()));
+
+						System.out.println("New Payment Successfully Added !");
+
+					} else {
+
+						System.out.println("Card Number Entered Does Not Meet The Requirements !");
+
+					}
 
 				} else {
 
-					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
+					System.out.println("CVC Entered Does Not Meet The Requirements !");
+
 				}
 
 			} else {
 
-				System.out.println("Information provided is incomplete !");
+				System.out.println("Information entered is incomplete !");
 
 			}
 
 		}
 
 		parentMenu();
-
 	}
-	
+	private static Vendor inputVendor(ArrayList<Vendor> vendorList) {
+		
+		main.setHeader("Add Vendor");
+
+		int id = vendorList.size() + 1;
+		String name = Helper.readString("Enter Vendor's Name > ");
+		String contact = Helper.readString("Enter Vendor's Contact Number > ");
+		String add = Helper.readString("Enter Vendor's Address > ");
+		
+		Vendor vendor1 = new Vendor(id, name, contact, add);
+
+		return vendor1;
+		
+		
+	}
 	private static void addVendor(ArrayList<Vendor> vendorList, Vendor vendor1) {
 
-		boolean vendorFound = false;
+		boolean vendFound = false;
 
 		for (int i = 0; i < vendorList.size(); i++) {
 
-			if (vendorList.get(i).getId()== (vendor1.getId())
-					&& vendorList.get(i).getName().equalsIgnoreCase(vendor1.getName()) && vendorList.get(i).getContactNo().equals(vendor1.getContactNo())
-							&& vendorList.get(i).getAddress().equalsIgnoreCase(vendor1.getAddress())) {
-				 
-				
-				// To find if
-				// user already
-				// exists
+			if (vendorList.get(i).getName().equalsIgnoreCase(vendor1.getName())
 
-				vendorFound = true;
+					&& vendorList.get(i).getAddress().equalsIgnoreCase(vendor1.getAddress())
+					&& vendorList.get(i).getContactNo().equalsIgnoreCase(vendor1.getContactNo())) {
 
-				System.out.println("Menu already exists! !");
+				vendFound = true;
+
+				System.out.println("School Already Exists !");
 
 				break;
 
 			}
+
 		}
 
-		if (vendorFound == false) {
+		if (vendFound == false) {
 
-			if (!vendor1.getName().isEmpty() && !vendor1.getContactNo().isEmpty() ) {
+			if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
 
-				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
+				vendorList.add(new Vendor(vendor1.getId(), vendor1.getName(), vendor1.getContactNo(), vendor1.getAddress()));
 
-					schoolList.add(school1);
-
-					System.out.println("Account Successfully Created !");
-
-				} else {
-
-					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
-				}
+				System.out.println("Vendor Successfully Added !");
 
 			} else {
 
-				System.out.println("Information provided is incomplete !");
+				System.out.println("Information Entered Is Incompelte !");
 
 			}
 
 		}
 
-		parentMenu();
-
+		adminMenu();
 	}
 	
 	
