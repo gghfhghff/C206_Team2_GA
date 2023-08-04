@@ -626,7 +626,7 @@ public class main {
 
 	// ========================================add
 	// users==================================
-	private static void addUser(ArrayList<User> userList, User u1) {
+	static void addUser(ArrayList<User> userList, User u1) {
 
 		boolean userFound = false;
 
@@ -1108,7 +1108,7 @@ public class main {
 
 	// =====================================view
 	// users=====================================
-	private static String retrieveAllUsers(ArrayList<User> userList) {
+	public static String retrieveAllUsers(ArrayList<User> userList) {
 
 		String output = "";
 

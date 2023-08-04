@@ -80,6 +80,47 @@ public class test {
 			assertSame("Check that User is added", parent1, userList.get(0));
 
 		}
+		
+		@Test
+		public void testDeleteUser() {
+			//UserList is null or zero
+			assertNotNull("Check if there is valid User arraylist to delete from", userList);
+			
+			//delete user to the user list
+			userList.remove(parent1);
+			
+			//Test that the list of the size will decrease by 1 after it has been added
+			assertEquals("Check that the list size is 0 after it has been deleted",0,userList.size());
+			
+			//Test that the new user has been deleted list
+			assertSame("Check that User is deleted", userList.size(), 0);
+			
+		}
+		
+		
+		@Test
+		public void testRetrieveAllUsers() {
+			
+			//UserList is null or zero
+			assertNotNull("Check if there is valid User arraylist to view from", userList);
+			
+			//test if the list of users retrieved from the userList is empty - boundary
+			String allUsers= main.retrieveAllUsers(userList);
+			String testOutput = "";
+			assertEquals("Check that viewAllUsers is empty", testOutput, allUsers);
+			
+			//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
+			main.addUser(userList, parent1);
+			main.addUser(userList, guardian1);
+			assertEquals("Test that User arraylist size is 2", 2, userList.size());
+			
+			//test if the expected output string same as the list of users retrieved 	
+			allUsers= main.retrieveAllUsers(userList);
+			testOutput = String.format("%-10s %-30d %-10s %-10s\n","John Doe", 001, "1234 5678", "Parent");
+			testOutput += String.format("%-10s %-30d %-10s %-10s\n","Josh Tan", 002, "8765 4321", "Guardian");
+		
+			assertEquals("Test that ViewAllUsers displays correctly", testOutput, allUsers);
+		}
 //		
 //		@Test
 //		public void testAddExistingUser() {
