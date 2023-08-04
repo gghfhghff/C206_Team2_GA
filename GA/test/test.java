@@ -35,31 +35,32 @@ public class test {
 	
 	@Before
 	public void setUp() throws Exception {
+		// TO DELETE ORDERSTATUS
 		OrderStatus orderstatus1 = new OrderStatus(001, "Pending");
 		OrderStatus orderstatus2 = new OrderStatus(002, "Completed");
 		
-		Payment payment1 = new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
-		Payment payment2 = new Payment("Bobby", "1234 5678 1239 9239", 123, "10/01/2031");
+		payment1 = new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
+		payment2 = new Payment("Bobby", "1234 5678 1239 9239", 123, "10/01/2031");
 		
 
-		Vendor vendor1 = new Vendor(1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
-		Vendor vendor2 = new Vendor(1, "MATT Pte Ltd", "1212 3434", "11 Adriel Circle");
+		vendor1 = new Vendor(1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
+		vendor2 = new Vendor(1, "MATT Pte Ltd", "1212 3434", "11 Adriel Circle");
 		
 
-		Menu menu1 = new Menu(001, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
-		Menu menu2 = new Menu(002, "KFC", "Paused", "MATT Pte Ltd");
+		menu1 = new Menu(001, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
+		menu2 = new Menu(002, "KFC", "Paused", "MATT Pte Ltd");
 		
 
-		Item item1 = new Item(001, 001, "Chicken Rice", "Matthias Favourite", 4.0);
-		Item item2 = new Item(001, 002, "Nasi Lemak", "Matthis Second Favourite", 5.0);
+		item1 = new Item(001, 001, "Chicken Rice", "Matthias Favourite", 4.0);
+		item2 = new Item(001, 002, "Nasi Lemak", "Matthis Second Favourite", 5.0);
 		
 
-		School school1 = new School(001, "MATTHIS Primary School", "10 Matthis Avenue", 10);
-		School school2 = new School(002, "JIAN Sparkletots", "6 Glenda Avenue", 5);
+		school1 = new School(001, "MATTHIS Primary School", "10 Matthis Avenue", 10);
+		school2 = new School(002, "JIAN Sparkletots", "6 Glenda Avenue", 5);
 		
 
-		 order1 = new Order(001, 10, 50.0, "JOSH Pte Ltd");
-		 order2 = new Order(002, 5, 10.0, "JOSH Pte Ltd");
+		order1 = new Order(001, 10, 50.0, "JOSH Pte Ltd");
+		order2 = new Order(002, 5, 10.0, "JOSH Pte Ltd");
 		
 
 		parent1 = new User("John Doe", 001, "1234 5678", "Parent");
