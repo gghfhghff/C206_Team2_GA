@@ -35,7 +35,7 @@ public class main {
 		Order o1 = new Order(1, 10, 0.0, "name");
 		orderList.add(o1);
 
-//		User u1 = new User("name", 1, "contact number", "role");
+		User u1 = new User("name", 1, "contact number", "role");
 //		userList.add(u1);
 
 		int option = 0;
@@ -55,7 +55,7 @@ public class main {
 
 					if (parentOption == 1) {
 
-						User u1 = inputUser(userList);
+//						User u1 = inputUser(userList);
 						addUser(userList, u1);
 
 					} else if (parentOption == 2) {
@@ -1114,7 +1114,7 @@ public class main {
 
 		for (int i = 0; i < userList.size(); i++) {
 
-			output += String.format("%-20s\n", userList.get(i).toString());
+			output += String.format(userList.get(i).toString());
 
 		}
 

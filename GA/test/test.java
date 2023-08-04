@@ -58,12 +58,12 @@ public class test {
 		School school2 = new School(002, "JIAN Sparkletots", "6 Glenda Avenue", 5);
 		
 
-		Order order1 = new Order(001, 10, 50.0, "JOSH Pte Ltd");
-		Order order2 = new Order(002, 5, 10.0, "JOSH Pte Ltd");
+		 order1 = new Order(001, 10, 50.0, "JOSH Pte Ltd");
+		 order2 = new Order(002, 5, 10.0, "JOSH Pte Ltd");
 		
 
-		User parent1 = new User("John Doe", 001, "1234 5678", "Parent");
-		User guardian1 = new User("Josh Tan", 002, "8765 4321", "Guardian");
+		parent1 = new User("John Doe", 001, "1234 5678", "Parent");
+		guardian1 = new User("Josh Tan", 002, "8765 4321", "Guardian");
 		
 	}
 		@Test
@@ -116,8 +116,8 @@ public class test {
 			
 			//test if the expected output string same as the list of users retrieved 	
 			allUsers= main.retrieveAllUsers(userList);
-			testOutput = String.format("%-10s %-30d %-10s %-10s\n","John Doe", 001, "1234 5678", "Parent");
-			testOutput += String.format("%-10s %-30d %-10s %-10s\n","Josh Tan", 002, "8765 4321", "Guardian");
+			testOutput = String.format("%-10s %-15d %-15s %-15s","John Doe", 001, "1234 5678", "Parent");
+			testOutput += String.format("%-10s %-15d %-15s %-15s","Josh Tan", 002, "8765 4321", "Guardian");
 		
 			assertEquals("Test that ViewAllUsers displays correctly", testOutput, allUsers);
 		}
