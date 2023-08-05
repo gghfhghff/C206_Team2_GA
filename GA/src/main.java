@@ -686,7 +686,7 @@ public class main {
 		return school1;
 	}
 	
-	private static void addSchool(ArrayList<School> schoolList, School school1) {
+	public static void addSchool(ArrayList<School> schoolList, School school1) {
 
 		boolean schFound = false;
 
@@ -1121,7 +1121,7 @@ public class main {
 		return output;
 	}
 
-	private static String retrieveAllSchools(ArrayList<School> schoolList) {
+	public static String retrieveAllSchools(ArrayList<School> schoolList) {
 		String output = "";
 
 		for (int i = 0; i < schoolList.size(); i++) {
