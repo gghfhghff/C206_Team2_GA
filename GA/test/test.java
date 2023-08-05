@@ -45,8 +45,8 @@ public class test {
 		vendor1 = new Vendor(1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
 		vendor2 = new Vendor(1, "MATT Pte Ltd", "1212 3434", "11 Adriel Circle");
 
-		menu1 = new Menu(001, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
-		menu2 = new Menu(002, "KFC", "Paused", "MATT Pte Ltd");
+		menu1 = new Menu(1, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
+		menu2 = new Menu(2, "KFC", "Paused", "MATT Pte Ltd");
 
 		item1 = new Item(001, 001, "Chicken Rice", "Matthias Favourite", 4.0);
 		item2 = new Item(001, 002, "Nasi Lemak", "Matthis Second Favourite", 5.0);
@@ -110,18 +110,18 @@ public class test {
 	public void testRetrieveAllSchools() {
 
 		// UserList is null or zero
-		assertNotNull("Check if there is valid User arraylist to view from", schoolList);
+		assertNotNull("Check if there is valid School arraylist to view from", schoolList);
 
 		// test if the list of users retrieved from the userList is empty - boundary
 		String allSchools = main.retrieveAllSchools(schoolList);
 		String testOutput = "";
-		assertEquals("Check that viewAllUsers is empty", testOutput, allSchools);
+		assertEquals("Check that viewAllSchools is empty", testOutput, allSchools);
 
 		// Given an empty list, after adding 2 items, test if the size of the list is 2
 		// - normal
 		main.addSchool(schoolList, school1);
 		main.addSchool(schoolList, school2);
-		assertEquals("Test that User arraylist size is 2", 2, schoolList.size());
+		assertEquals("Test that School arraylist size is 2", 2, schoolList.size());
 
 		// test if the expected output string same as the list of users retrieved
 		allSchools = main.retrieveAllSchools(schoolList);
@@ -130,6 +130,85 @@ public class test {
 
 		assertEquals("Test that ViewAllSchools displays correctly", testOutput, allSchools);
 	}
+	@Test
+
+	public void testRetrieveAllMenus() {
+
+		// UserList is null or zero
+		assertNotNull("Check if there is valid User arraylist to view from", menuList);
+
+		// test if the list of users retrieved from the userList is empty - boundary
+		String allMenu = main.retrieveAllMenus(menuList);
+		String testOutput = "";
+		assertEquals("Check that viewAllMenus is empty", testOutput, allMenu);
+
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		// - normal
+		main.addMenu(menuList, menu1);
+		main.addMenu(menuList, menu2);
+		assertEquals("Test that Menu arraylist size is 2", 2, menuList.size());
+
+		// test if the expected output string same as the list of users retrieved
+		allMenu = main.retrieveAllMenus(menuList);
+		testOutput = String.format("%-10d %-15s %-15s %-15s\n", 001, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
+		testOutput += String.format("%-10d %-15s %-15s %-15s\n", 002, "KFC", "Paused", "MATT Pte Ltd");
+
+		assertEquals("Test that ViewAllMenus displays correctly", testOutput, allMenu);
+	}
+	
+	@Test
+
+	public void testRetrieveAllOrders() {
+
+		// UserList is null or zero
+		assertNotNull("Check if there is valid Order arraylist to view from", orderList);
+
+		// test if the list of users retrieved from the userList is empty - boundary
+		String allOrders = main.retrieveAllOrders(orderList);
+		String testOutput = "";
+		assertEquals("Check that viewAllOrders is empty", testOutput, allOrders);
+
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		// - normal
+		main.addOrder(orderList, order1);
+		main.addOrder(orderList, order2);
+		assertEquals("Test that Menu arraylist size is 2", 2, menuList.size());
+
+		// test if the expected output string same as the list of users retrieved
+		allOrders = main.retrieveAllMenus(menuList);
+		testOutput = String.format("%-10d %-15d %-15.2f %-15s\n",001, 10, 50.0, "JOSH Pte Ltd");
+		testOutput += String.format("%-10d %-15d %-15.2f %-15s\n",002, 5, 10.0, "JOSH Pte Ltd");
+
+		assertEquals("Test that ViewAllOrders displays correctly", testOutput, allOrders);
+	}
+	
+	@Test
+
+	public void testRetrieveAllPayments() {
+
+		// paymentList is null or zero
+		assertNotNull("Check if there is valid Payment arraylist to view from", paymentList);
+
+		// test if the list of payments retrieved from the paymentList is empty - boundary
+		String allPayments = main.retrieveAllPayments(paymentList);
+		String testOutput = "";
+		assertEquals("Check that viewAllPayments is empty", testOutput, allPayments);
+
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		// - normal
+		main.addPayment(paymentList, payment1);
+		main.addPayment(paymentList, payment2);
+		assertEquals("Test that payment arraylist size is 2", 2, paymentList.size());
+
+		// test if the expected output string same as the list of users retrieved
+		allPayments = main.retrieveAllPayments(paymentList);
+		testOutput = String.format("%-10s %-25s %-15d %-15s\n","Bob", "1234 5678 1234 5678", 321, "12/11/2030");
+		testOutput += String.format("%-10s %-25s %-15d %-15s\n","Bobby", "1234 5678 1239 9239", 123, "10/01/2031");
+
+		assertEquals("Test that ViewAllPayments displays correctly", testOutput, allPayments);
+	}
+	
+	
 
 	// ------------------------delete-----------------------------
 

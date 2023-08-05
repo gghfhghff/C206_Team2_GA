@@ -155,7 +155,15 @@ public class main {
 						}
 						parentMenu();
 
-					} else if (parentOption == 8) {
+					} else if(parentOption == 8){
+						//view payment
+						
+						retrieveAllPayments(paymentList);
+						viewAllPayment(paymentList);
+						parentMenu();
+					}
+					
+					else if (parentOption == 9) {
 						System.out.println("Returning to menu...");
 					} else {
 						System.out.println("Invalid option!");
@@ -176,7 +184,7 @@ public class main {
 						// Add menu
 						
 						Menu menu1 = inputMenu(menuList);
-						addMenu(menuList, itemList, menu1);
+						addMenu(menuList, menu1);
 						
 
 					} else if (vendorOption == 2) {
@@ -403,22 +411,18 @@ public class main {
 							userOption = Helper.readInt("Enter option > ");
 							if (userOption == 1) {
 								// parent
-								main.setHeader("View All Parents/Guardians");
-								System.out.println(
-										String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role"));
-								for (User u : userList) {
-
-									System.out.println(u.toString());
-
-								}
+								
+								retrieveAllUsers(userList);
+								viewAllUsers(userList);
+								viewAllMenu();
+								
 								viewAllMenu();
 							} else if (userOption == 2) {
 								// school
 
-								retrieveAllUsers(userList);
-								viewAllUsers(userList);
-
-								viewAllMenu();
+							retrieveAllSchools(schoolList);
+							viewAllSchools(schoolList);
+							viewAllMenu();
 							} else if (userOption == 3) {
 								// vendor
 
@@ -547,7 +551,8 @@ public class main {
 		System.out.println("5. View status of orders ");
 		System.out.println("6. Add payment method");
 		System.out.println("7. Edit payment method");
-		System.out.println("8. Return to user selection");
+		System.out.println("8. View payment method");
+		System.out.println("9. Return to user selection");
 	}
 
 	private static void vendorMenu() {
@@ -672,20 +677,20 @@ public class main {
 		parentMenu();
 
 	}
-	
+
 	private static School inputSchool(ArrayList<School> schoolList) {
-		
+
 		main.setHeader("Add School");
-	
+
 		int id = schoolList.size() + 1;
 		String name = Helper.readString("Enter School Name > ");
 		String add = Helper.readString("Enter School's Address > ");
-		
+
 		School school1 = new School(id, name, add);
-		
+
 		return school1;
 	}
-	
+
 	public static void addSchool(ArrayList<School> schoolList, School school1) {
 
 		boolean schFound = false;
@@ -723,8 +728,8 @@ public class main {
 
 		adminMenu();
 	}
+
 	private static Menu inputMenu(ArrayList<Menu> menuList) {
-		
 
 		int menuId = menuList.size() + 1;
 		String menuName = Helper.readString("Enter Menu Name / Title > ");
@@ -732,12 +737,12 @@ public class main {
 		String vendorName = Helper.readString("Enter Vendor's Name > ");
 
 		Menu menu1 = new Menu(menuId, menuName, status, vendorName);
-		
+
 		return menu1;
-		
-		
+
 	}
-	private static void addMenu(ArrayList<Menu> menuList, ArrayList<Item> itemList,Menu menu1) {
+
+	public static void addMenu(ArrayList<Menu> menuList, Menu menu1) {
 
 		boolean menuFound = false;
 
@@ -775,18 +780,18 @@ public class main {
 
 		while (con == 'Y' || con == 'y') {
 
-			int itemId = itemList.size() + 1;
+			int itemId = menuList.size() + 1;
 			String itemName = Helper.readString("Enter Item Name > ");
 			String itemDesc = Helper.readString("Enter Item Description > ");
 			Double itemPrice = Helper.readDouble("Enter Price > ");
 
 			boolean itemFound = false;
 
-			for (int i = 0; i < itemList.size(); i++) {
+			for (int i = 0; i < menuList.size(); i++) {
 
-				if (itemList.get(i).getItem_name().equals(itemName)
-						&& itemList.get(i).getItem_description().equals(itemDesc)
-						&& itemList.get(i).getItem_price() == itemPrice) {
+				if (menuList.get(i).getItem_name().equals(itemName)
+						&& menuList.get(i).getItem_description().equals(itemDesc)
+						&& menuList.get(i).getItem_price() == itemPrice) {
 
 					System.out.println("Item Already Exists In Menu !");
 
@@ -818,14 +823,13 @@ public class main {
 				vendorMenu();
 			}
 		}
-		}
-	private static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList,ArrayList<Item> itemList,ArrayList<Payment> paymentList,
-			ArrayList<OrderStatus> orderStatusList, Order order1) {
+	}
+
+	public static void addOrder(ArrayList<Order> orderList, Order order1) {
 
 		main.setHeader("List of Menus");
 
-		System.out.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name",
-				"Menu status", "Vendor"));
+		System.out.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name", "Menu status", "Vendor"));
 
 		for (Menu m : menuList) {
 
@@ -852,8 +856,8 @@ public class main {
 
 			main.setHeader("Menu ID : " + menuID + " Item List");
 
-			String output = String.format("%-10s %-10s %-15s %-10s\n", "Item ID", "Item Name",
-					"Item Description", "Item Price");
+			String output = String.format("%-10s %-10s %-15s %-10s\n", "Item ID", "Item Name", "Item Description",
+					"Item Price");
 			for (int i = 0; i < itemList.size(); i++) {
 
 				if (menuID == itemList.get(i).getMenu_id()) {
@@ -892,8 +896,8 @@ public class main {
 
 						if (con == 'N' || con == 'n') {
 
-							System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.",
-									"Name", "Card Number", "CVC / CVV", "Expiry Date"));
+							System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.", "Name",
+									"Card Number", "CVC / CVV", "Expiry Date"));
 
 							int number = 1;
 
@@ -908,10 +912,8 @@ public class main {
 							if (choice >= 1 && choice <= paymentList.size()) {
 
 								System.out.println("Order Successfully placed !");
-								orderList.add(
-										new Order(orderList.size() + 1, qty, totalPrice, vendorName));
-								orderStatusList
-										.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
+								orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
+								orderStatusList.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
 								parentMenu();
 
 							} else {
@@ -930,18 +932,17 @@ public class main {
 				}
 			}
 		}
-		}
-	
+	}
+
 	private static void addOrderStatus(ArrayList<OrderStatus> orderStatusList, OrderStatus os1) {
 
 		boolean orderStatusFound = false;
 
 		for (int i = 0; i < orderStatusList.size(); i++) {
 
-			if (orderStatusList.get(i).getOrderID()==(os1.getOrderID())
+			if (orderStatusList.get(i).getOrderID() == (os1.getOrderID())
 					&& orderStatusList.get(i).getStatus().equalsIgnoreCase(os1.getStatus())) {
-				 
-				
+
 				// To find if
 				// user already
 				// exists
@@ -981,8 +982,7 @@ public class main {
 		parentMenu();
 
 	}
-	
-	
+
 	private static Payment inputPayment(ArrayList<Payment> paymentList) {
 
 		main.setHeader("Add Payment Method");
@@ -991,19 +991,21 @@ public class main {
 		String cardNo = Helper.readString("Enter Card Number > ");
 		int cvc = Helper.readInt("Enter CVC / CVV > ");
 		String exp = Helper.readString("Enter Expiration Date Of Card > ");
-		
-		Payment payment1 = new Payment (name, cardNo, cvc, exp);
-		
+
+		Payment payment1 = new Payment(name, cardNo, cvc, exp);
+
 		return payment1;
-		
+
 	}
-	private static void addPayment(ArrayList<Payment> paymentList, Payment payment1) {
+
+	public static void addPayment(ArrayList<Payment> paymentList, Payment payment1) {
 
 		boolean payFound = false;
 
 		for (int i = 0; i < paymentList.size(); i++) {
 
-			if (paymentList.get(i).getCardNo().equals(payment1.getCardNo()) && paymentList.get(i).getCvc() == payment1.getCvc()
+			if (paymentList.get(i).getCardNo().equals(payment1.getCardNo())
+					&& paymentList.get(i).getCvc() == payment1.getCvc()
 					&& paymentList.get(i).getExpDate().equals(payment1.getExpDate())) {
 
 				payFound = true;
@@ -1017,13 +1019,15 @@ public class main {
 
 		if (payFound == false) {
 
-			if (!payment1.getName().isEmpty() && payment1.getCardNo().isEmpty() && payment1.getCvc() != 0 && !payment1.getExpDate().isEmpty()) {
+			if (!payment1.getName().isEmpty() && payment1.getCardNo().isEmpty() && payment1.getCvc() != 0
+					&& !payment1.getExpDate().isEmpty()) {
 
 				if (payment1.getCvc() >= 100) {
 
 					if (payment1.getCardNo().length() == 19) {
 
-						paymentList.add(new Payment(payment1.getName(), payment1.getCardNo(), payment1.getCvc(), payment1.getExpDate()));
+						paymentList.add(new Payment(payment1.getName(), payment1.getCardNo(), payment1.getCvc(),
+								payment1.getExpDate()));
 
 						System.out.println("New Payment Successfully Added !");
 
@@ -1049,21 +1053,22 @@ public class main {
 
 		parentMenu();
 	}
+
 	private static Vendor inputVendor(ArrayList<Vendor> vendorList) {
-		
+
 		main.setHeader("Add Vendor");
 
 		int id = vendorList.size() + 1;
 		String name = Helper.readString("Enter Vendor's Name > ");
 		String contact = Helper.readString("Enter Vendor's Contact Number > ");
 		String add = Helper.readString("Enter Vendor's Address > ");
-		
+
 		Vendor vendor1 = new Vendor(id, name, contact, add);
 
 		return vendor1;
-		
-		
+
 	}
+
 	private static void addVendor(ArrayList<Vendor> vendorList, Vendor vendor1) {
 
 		boolean vendFound = false;
@@ -1089,7 +1094,8 @@ public class main {
 
 			if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
 
-				vendorList.add(new Vendor(vendor1.getId(), vendor1.getName(), vendor1.getContactNo(), vendor1.getAddress()));
+				vendorList.add(
+						new Vendor(vendor1.getId(), vendor1.getName(), vendor1.getContactNo(), vendor1.getAddress()));
 
 				System.out.println("Vendor Successfully Added !");
 
@@ -1103,8 +1109,6 @@ public class main {
 
 		adminMenu();
 	}
-	
-	
 
 	// =====================================view
 	// users=====================================
@@ -1132,8 +1136,8 @@ public class main {
 
 		return output;
 	}
-	
-	private static String retrieveAllMenus(ArrayList<Menu> menuList) {
+
+	public static String retrieveAllMenus(ArrayList<Menu> menuList) {
 		String output = "";
 
 		for (int i = 0; i < menuList.size(); i++) {
@@ -1144,7 +1148,8 @@ public class main {
 
 		return output;
 	}
-	private static String retrieveAllOrders(ArrayList<Order> orderList) {
+
+	public static String retrieveAllOrders(ArrayList<Order> orderList) {
 		String output = "";
 
 		for (int i = 0; i < orderList.size(); i++) {
@@ -1155,8 +1160,8 @@ public class main {
 
 		return output;
 	}
-	
-	private static String retrieveAllOrderstatus(ArrayList<OrderStatus> orderStatusList) {
+
+	public static String retrieveAllOrderstatus(ArrayList<OrderStatus> orderStatusList) {
 		String output = "";
 
 		for (int i = 0; i < orderStatusList.size(); i++) {
@@ -1167,8 +1172,8 @@ public class main {
 
 		return output;
 	}
-	
-	private static String retrieveAllPayments(ArrayList<Payment> paymentList) {
+
+	public static String retrieveAllPayments(ArrayList<Payment> paymentList) {
 		String output = "";
 
 		for (int i = 0; i < paymentList.size(); i++) {
@@ -1179,7 +1184,8 @@ public class main {
 
 		return output;
 	}
-	private static String retrieveAllVendors(ArrayList<Vendor> vendorList) {
+
+	public static String retrieveAllVendors(ArrayList<Vendor> vendorList) {
 		String output = "";
 
 		for (int i = 0; i < vendorList.size(); i++) {
@@ -1190,8 +1196,8 @@ public class main {
 
 		return output;
 	}
-	
-	private static void viewAllUsers(ArrayList<User> userList) {
+
+	public static void viewAllUsers(ArrayList<User> userList) {
 
 		main.setHeader("View All Parents/Guardians");
 		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role");
@@ -1201,7 +1207,8 @@ public class main {
 		System.out.println(output);
 
 	}
-	private static void viewAllSchools(ArrayList<School> schoolList) {
+
+	public static void viewAllSchools(ArrayList<School> schoolList) {
 
 		main.setHeader("View All Schools");
 		String output = String.format("%-10s %-15s %-15s %-15s", "ID", "Name", "Address", "No. of orders");
@@ -1211,7 +1218,8 @@ public class main {
 		System.out.println(output);
 
 	}
-	private static void viewAllMenus(ArrayList<Menu> menuList) {
+
+	public static void viewAllMenus(ArrayList<Menu> menuList) {
 
 		main.setHeader("View All Menus");
 		String output = String.format("%-10s %-15s %-15s %-15s", "ID", "Name", "status", "Vendor Name");
@@ -1221,7 +1229,8 @@ public class main {
 		System.out.println(output);
 
 	}
-	private static void viewAllOrders(ArrayList<Order> orderList) {
+
+	public static void viewAllOrders(ArrayList<Order> orderList) {
 
 		main.setHeader("View All Orders");
 		String output = String.format("%-10s %-15s %-15s %-15s", "ID", "No. of items", "total cost", "Vendor Name");
@@ -1231,7 +1240,8 @@ public class main {
 		System.out.println(output);
 
 	}
-	private static void viewAllOrderStatus(ArrayList<OrderStatus> orderStatusList) {
+
+	public static void viewAllOrderStatus(ArrayList<OrderStatus> orderStatusList) {
 
 		main.setHeader("View All Order Statuses");
 		String output = String.format("%-10s %-15s", "ID", "Status");
@@ -1241,21 +1251,20 @@ public class main {
 		System.out.println(output);
 
 	}
-	
-	private static void viewAllPayment(ArrayList<Payment> paymentList) {
+
+	public static void viewAllPayment(ArrayList<Payment> paymentList) {
 
 		main.setHeader("View All Payments");
 		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "Card No.", "CVC", "Exp date");
-
 
 		output += retrieveAllPayments(paymentList);
 
 		System.out.println(output);
 
 	}
-	
+
 	// ==================================delete users=============================
-	private static void deleteUser(ArrayList<User> userList) {
+	public static void deleteUser(ArrayList<User> userList) {
 
 		// parent
 		int check = 0;
@@ -1277,8 +1286,8 @@ public class main {
 		}
 
 	}
-	
-	private static void deleteSchool(ArrayList<School> schoolList) {
+
+	public static void deleteSchool(ArrayList<School> schoolList) {
 
 		// parent
 		int check = 0;
@@ -1300,8 +1309,8 @@ public class main {
 		}
 
 	}
-	
-	private static void deleteMenu(ArrayList<Menu> menuList) {
+
+	public static void deleteMenu(ArrayList<Menu> menuList) {
 
 		// parent
 		int check = 0;
@@ -1323,7 +1332,8 @@ public class main {
 		}
 
 	}
-	private static void deleteOrder(ArrayList<Order> orderList) {
+
+	public static void deleteOrder(ArrayList<Order> orderList) {
 
 		// parent
 		int check = 0;
@@ -1345,7 +1355,8 @@ public class main {
 		}
 
 	}
-	private static void deleteOrderStatus(ArrayList<OrderStatus> orderStatusList) {
+
+	public static void deleteOrderStatus(ArrayList<OrderStatus> orderStatusList) {
 
 		// parent
 		int check = 0;
@@ -1367,7 +1378,8 @@ public class main {
 		}
 
 	}
-	private static void deletePayment(ArrayList<Payment> paymentList) {
+
+	public static void deletePayment(ArrayList<Payment> paymentList) {
 
 		// parent
 		int check = 0;
@@ -1389,8 +1401,8 @@ public class main {
 		}
 
 	}
-	
-	private static void deleteVendor(ArrayList<Vendor> vendorList) {
+
+	public static void deleteVendor(ArrayList<Vendor> vendorList) {
 
 		// parent
 		int check = 0;

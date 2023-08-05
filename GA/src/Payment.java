@@ -17,7 +17,7 @@ public class Payment {
 	
 	public String toString() {
 		
-		return String.format("%-10s %-25s %-10d %-10s", getName(), getCardNo(), getCvc(), getExpDate());
+		return String.format("%-10s %-25s %-15d %-15s", getName(), getCardNo(), getCvc(), getExpDate());
 
 	}
 
