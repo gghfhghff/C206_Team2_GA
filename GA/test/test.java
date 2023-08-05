@@ -122,72 +122,107 @@ public class test {
 		
 			assertEquals("Test that ViewAllUsers displays correctly", testOutput, allUsers);
 		}
-//		
-//		@Test
-//		public void testAddExistingUser() {
-//			//User List is not null, able to add existing item
-//			assertNotNull("Check if there is valid User arraylist to add to", userList);
-//
-//			 main.add(parent1);
-//
-//			//
-//			for (int i = 0; i < userList.size(); i++) {
-//				
-//				String a = parent1.getContactNum();
-//				
-//				assertFalse("Check that there is a duplicate in the list",userList.get(i).getContactNum() == a);
-//				break;
-//				
-//			}
-//			//Test that the new user has been successfully added into the list
-//			assertSame("Check that User is added", parent1, userList.get(1));
-//
-//		}
 		
+		@Test
+		public void testDeleteMenu() {
+			//menuList is null or zero
+			assertNotNull("Check if there is valid Menu arraylist to delete from", menuList);
+			
+			//delete menu from the menu list
+			menuList.remove(menu1);
+			
+			//Test that the list of the size will decrease by 1 after it has been added
+			assertEquals("Check that the list size is 0 after it has been deleted",0,menuList.size());
+			
+			//Test that the new menu has been deleted from list
+			assertSame("Check that Menu is deleted", menuList.size(), 0);
+			
+		}
 		
+		@Test
+		public void testDeleteOrder() {
+			//orderList is null or zero
+			assertNotNull("Check if there is valid Order arraylist to delete from", orderList);
+			
+			//delete user from the order list
+			orderList.remove(order1);
+			orderStatusList.remove(orderStatus1);
+
+			
+			//Test that the list of the size will decrease by 1 after it has been added
+			assertEquals("Check that the list size is 0 after it has been deleted",0,orderList.size());
+			assertEquals("Check that the list size is 0 after it has been deleted",0,orderStatusList.size());
+			
+			//Test that the new order has been deleted from list
+			assertSame("Check that Order is deleted", orderList.size(), 0);
+			assertSame("Check that Order is deleted", orderStatusList.size(), 0);
+			
+		}
 		
-//		@Test
-//		public void testRetrieveAllCamcorder() {
-//			// Test if Item list is not null but empty -boundary
-//			assertNotNull("Test if there is valid Camcorder arraylist to retrieve item", camcorderList);
-//			
-//			//test if the list of camcorders retrieved from the SourceCentre is empty - boundary
-//			String allCamcorder= ResourceCentre.retrieveAllCamcorder(camcorderList);
-//			String testOutput = "";
-//			assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
-//			
-//			//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
-//			ResourceCentre.addCamcorder(camcorderList, cc1);
-//			ResourceCentre.addCamcorder(camcorderList, cc2);
-//			assertEquals("Test that Camcorder arraylist size is 2", 2, camcorderList.size());
-//			
-//			//test if the expected output string same as the list of camcorders retrieved from the SourceCentre	
-//			allCamcorder= ResourceCentre.retrieveAllCamcorder(camcorderList);
-//			testOutput = String.format("%-10s %-30s %-10s %-10s %-20s\n","CC0011", "Nikon HDSLR", "Yes", "", "40");
-//			testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","CC0012", "Sony DSC-RX100M7", "Yes", "", "20" );
-//		
-//			assertEquals("Test that ViewAllCamcorderlist", testOutput, allCamcorder);
-//			
-//		}
-//		
-//		@Test
-//		public void testDoReturnChromebook() {
-//			//boundary
-//			assertNotNull("Check if there is valid chromebook arraylist to add to", chromebookList);
-//			ResourceCentre.addChromebook(chromebookList, cb1);
-//
-//			//error
-//			Boolean isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
-//			assertFalse("Check that available chromebook CB0011 is returned - false?", isReturned);		
-//			//normal
-//			ResourceCentre.addChromebook(chromebookList, cb2);
-//			cb2.setIsAvailable(false);
-//			isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0012");
-//			assertTrue("Check that loanded out chromebook CB0012 is returned - true", isReturned);
-//			//error
-//			isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0013");
-//			assertFalse("Check that non-existing chromebook CB0013  is returned - false?", isReturned);
-//		}
+		@Test
+		public void testDeleteSchool() {
+			//schoolList is null or zero
+			assertNotNull("Check if there is valid School arraylist to delete from", schoolList);
+			
+			//delete school from the school list
+			schoolList.remove(school1);
+			
+			//Test that the list of the size will decrease by 1 after it has been added
+			assertEquals("Check that the list size is 0 after it has been deleted",0,schoolList.size());
+			
+			//Test that the new school has been deleted from list
+			assertSame("Check that School is deleted", schoolList.size(), 0);
+			
+		}
+		
+		@Test
+		public void testDeleteVendor() {
+			//vendorList is null or zero
+			assertNotNull("Check if there is valid Vendor arraylist to delete from", vendorList);
+			
+			//delete vendor from the vendor list
+			vendorList.remove(vendor1);
+			
+			//Test that the list of the size will decrease by 1 after it has been added
+			assertEquals("Check that the list size is 0 after it has been deleted",0,vendorList.size());
+			
+			//Test that the new vendor has been deleted from list
+			assertSame("Check that Vendor is deleted", vendorList.size(), 0);
+			
+		}
+		
+		@Test
+		public void testDeletePayment() {
+			//paymentList is null or zero
+			assertNotNull("Check if there is valid Payment arraylist to delete from", paymentList);
+			
+			//delete payment from the payment list
+			paymentList.remove(payment1);
+			
+			//Test that the list of the size will decrease by 1 after it has been added
+			assertEquals("Check that the list size is 0 after it has been deleted",0,paymentList.size());
+			
+			//Test that the new payment has been deleted from list
+			assertSame("Check that Payment is deleted", paymentList.size(), 0);
+			
+		}
+		
+		@Test
+		public void testDeleteItem() {
+			//itemList is null or zero
+			assertNotNull("Check if there is valid Item arraylist to delete from", itemList);
+			
+			//delete item from the item list
+			itemList.remove(item1);
+			
+			//Test that the list of the size will decrease by 1 after it has been added
+			assertEquals("Check that the list size is 0 after it has been deleted",0,itemList.size());
+			
+			//Test that the new item has been deleted from list
+			assertSame("Check that Item is deleted", itemList.size(), 0);
+			
+		}
+
 		
 	}
 
