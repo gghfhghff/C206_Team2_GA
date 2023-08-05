@@ -26,7 +26,7 @@ public class School {
 	
 	public String toString() {
 		
-		return String.format("%-10d %-15s %-15s %-15d", getSchool_id(), getName(), getAddress(), getNoOfOrders());
+		return String.format("%-10d %-15s %-15s %-15d\n", getSchool_id(), getName(), getAddress(), getNoOfOrders());
 
 	}
 

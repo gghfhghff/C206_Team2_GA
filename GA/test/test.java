@@ -99,8 +99,8 @@ public class test {
 
 		// test if the expected output string same as the list of users retrieved
 		allUsers = main.retrieveAllUsers(userList);
-		testOutput = String.format("%-10s %-15d %-15s %-15s", "John Doe", 001, "1234 5678", "Parent");
-		testOutput += String.format("%-10s %-15d %-15s %-15s", "Josh Tan", 002, "8765 4321", "Guardian");
+		testOutput = String.format("%-10s %-15d %-15s %-15s\n", "John Doe", 001, "1234 5678", "Parent");
+		testOutput += String.format("%-10s %-15d %-15s %-15s\n", "Josh Tan", 002, "8765 4321", "Guardian");
 
 		assertEquals("Test that ViewAllUsers displays correctly", testOutput, allUsers);
 	}
@@ -125,8 +125,8 @@ public class test {
 
 		// test if the expected output string same as the list of users retrieved
 		allSchools = main.retrieveAllSchools(schoolList);
-		testOutput = String.format("%-10d %-15s %-15s %-15d", 001, "MATTHIS Primary School", "10 Matthis Avenue", 10);
-		testOutput += String.format("%-10d %-15s %-15s %-15d", 002, "JIAN Sparkletots", "6 Glenda Avenue", 5);
+		testOutput = String.format("%-10d %-15s %-15s %-15d\n", 001, "MATTHIS Primary School", "10 Matthis Avenue", 10);
+		testOutput += String.format("%-10d %-15s %-15s %-15d\n", 002, "JIAN Sparkletots", "6 Glenda Avenue", 5);
 
 		assertEquals("Test that ViewAllSchools displays correctly", testOutput, allSchools);
 	}
