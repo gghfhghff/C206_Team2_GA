@@ -127,7 +127,6 @@ public class main {
 						Payment payment1 = inputPayment(paymentList);
 						addPayment(paymentList, payment1);
 
-						
 
 					} else if (parentOption == 7) {
 						// edit payment
@@ -183,8 +182,8 @@ public class main {
 					if (vendorOption == 1) {
 						// Add menu
 						
-						Menu menu1 = inputMenu(menuList);
-						addMenu(menuList, menu1);
+//						Menu menu1 = inputMenu(menuList);
+//						addMenu(menuList, menu1);
 						
 
 					} else if (vendorOption == 2) {
@@ -742,7 +741,7 @@ public class main {
 
 	}
 
-	public static void addMenu(ArrayList<Menu> menuList, Menu menu1) {
+	public static void addMenu(ArrayList<Menu> menuList, ArrayList<Item> itemList, Menu menu1, Item item1) {
 
 		boolean menuFound = false;
 
@@ -789,7 +788,7 @@ public class main {
 
 			for (int i = 0; i < menuList.size(); i++) {
 
-				if (menuList.get(i).getItem_name().equals(itemName)
+				if (itemList.get(i).getItem_name.equals(itemName)
 						&& menuList.get(i).getItem_description().equals(itemDesc)
 						&& menuList.get(i).getItem_price() == itemPrice) {
 
@@ -1019,15 +1018,14 @@ public class main {
 
 		if (payFound == false) {
 
-			if (!payment1.getName().isEmpty() && payment1.getCardNo().isEmpty() && payment1.getCvc() != 0
+			if (!payment1.getName().isEmpty() && !payment1.getCardNo().isEmpty() && payment1.getCvc() != 0
 					&& !payment1.getExpDate().isEmpty()) {
 
 				if (payment1.getCvc() >= 100) {
 
 					if (payment1.getCardNo().length() == 19) {
 
-						paymentList.add(new Payment(payment1.getName(), payment1.getCardNo(), payment1.getCvc(),
-								payment1.getExpDate()));
+						paymentList.add(payment1);
 
 						System.out.println("New Payment Successfully Added !");
 
@@ -1130,7 +1128,7 @@ public class main {
 
 		for (int i = 0; i < schoolList.size(); i++) {
 
-			output += String.format("%-20s\n", schoolList.get(i).toString());
+			output += String.format(schoolList.get(i).toString());
 
 		}
 
@@ -1178,7 +1176,7 @@ public class main {
 
 		for (int i = 0; i < paymentList.size(); i++) {
 
-			output += String.format("%-20s\n", paymentList.get(i).toString());
+			output += String.format(paymentList.get(i).toString());
 
 		}
 
