@@ -74,8 +74,8 @@ public class main {
 
 					} else if (parentOption == 3) {
 						// TODO
-						addOrder(orderList, menuList, itemList, paymentList,
-								 orderStatusList);
+//						addOrder(orderList, menuList, itemList, paymentList,
+//								 orderStatusList);
 					} else if (parentOption == 4) {
 						// cancel order
 
@@ -195,8 +195,9 @@ public class main {
 							
 							Item item1 = inputItem(itemList, menu1);
 							addMenu(menuList,itemList, menu1,item1);
-							
+
 							con = Helper.readChar("Continue Adding Items to " + menu1.getMenu_name() + " (Y/N) > ");
+
 
 							if (con == 'N' || con == 'n') {
 								vendorMenu();
@@ -855,60 +856,6 @@ public class main {
 
 		}
 
-		char con = 'Y';
-
-		while (con == 'Y' || con == 'y') {
-			
-			
-			con = Helper.readChar("Continue Adding Items to " + menu1.getMenu_name() + " (Y/N) > ");
-
-			if (con == 'N' || con == 'n') {
-				vendorMenu();
-			}
-		}
-			
-//			TODO: inputItem();
-//			int itemId = menuList.size() + 1;
-//			String itemName = Helper.readString("Enter Item Name > ");
-//			String itemDesc = Helper.readString("Enter Item Description > ");
-//			Double itemPrice = Helper.readDouble("Enter Price > ");
-
-			
-//			TODO: addItem();
-//			boolean itemFound = false;
-//
-//			for (int i = 0; i < menuList.size(); i++) {
-//
-//				if (itemList.get(i).getItem_name.equals(itemName)
-//						&& menuList.get(i).getItem_description().equals(itemDesc)
-//						&& menuList.get(i).getItem_price() == itemPrice) {
-//
-//					System.out.println("Item Already Exists In Menu !");
-//
-//					itemFound = true;
-//
-//					break;
-//
-//				}
-//
-//			}
-//
-//			if (itemFound == false) {
-//
-//				if (!itemName.isEmpty() && !itemDesc.isEmpty() && itemPrice != 0) {
-//
-//					itemList.add(new Item(menu1.getMenu_id(), itemId, itemName, itemDesc, itemPrice));
-//					System.out.println("Items Successfully Added!");
-//
-//				} else {
-//
-//					System.out.println("Information Entered Is Incomplete !");
-//
-//				}
-//
-//			}
-			
-	
 		
 	}
 
