@@ -165,7 +165,7 @@ public class main {
 					else if (parentOption == 9) {
 						System.out.println("Returning to menu...");
 						startMenu();
-						
+						break;
 						
 					} else {
 						System.out.println("Invalid option!");
@@ -1257,7 +1257,7 @@ public class main {
 	public static void viewAllPayment(ArrayList<Payment> paymentList) {
 
 		main.setHeader("View All Payments");
-		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "Card No.", "CVC", "Exp date");
+		String output = String.format("%-10s %-25s %-15s %-15s", "Name", "Card No.", "CVC", "Exp date");
 
 		output += retrieveAllPayments(paymentList);
 
