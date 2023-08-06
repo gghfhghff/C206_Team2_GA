@@ -162,6 +162,7 @@ public class main {
 						retrieveAllPayments(paymentList);
 						viewAllPayment(paymentList);
 						parentMenu();
+					
 					}
 
 					else if (parentOption == 9) {
@@ -433,7 +434,6 @@ public class main {
 								viewAllUsers(userList);
 								viewAllMenu();
 
-								viewAllMenu();
 							} else if (userOption == 2) {
 								// school
 
