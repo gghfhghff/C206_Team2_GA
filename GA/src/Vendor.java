@@ -14,7 +14,7 @@ public class Vendor {
 		this.address = address;
 	}
 	public String toString() {
-		return String.format("%-10d %-30s %-10s %-10s\n",getId(), getName(), getContactNo(),getAddress());
+		return String.format("%-10d %-30s %-10s %-10s",getId(), getName(), getContactNo(),getAddress());
 		
 	}
 	public int getId() {

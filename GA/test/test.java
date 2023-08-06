@@ -222,7 +222,7 @@ public class test {
 		// - normal
 		main.addVendor(vendorList, vendor1);
 		main.addVendor(vendorList, vendor2);
-		assertEquals("Test that Vendor Arraylist size is 2", 2, paymentList.size());
+		assertEquals("Test that Vendor Arraylist size is 2", 2, vendorList.size());
 
 		// test if the expected output string same as the list of payments retrieved
 		allVendors = main.retrieveAllVendors(vendorList);

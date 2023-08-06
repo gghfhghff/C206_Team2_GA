@@ -380,7 +380,7 @@ public class main {
 					} else if (adminOption == 3) {
 
 						Vendor vendor1 = inputVendor(vendorList);
-						addVendor(vendorList, vendor1);
+						addVendor(vendorList, vendor1);	
 
 					} else if (adminOption == 4) {
 						// view all orders
@@ -456,6 +456,7 @@ public class main {
 						// delete user accounts
 						int deleteOption = 0;
 						deleteMenu();
+						
 
 						deleteOption = Helper.readInt("Enter option > ");
 						if (deleteOption == 1) {
@@ -1087,24 +1088,24 @@ public class main {
 
 				break;
 
-			}else if (vendFound == false) {
-
-				if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
-
-					vendorList.add(
-							new Vendor(vendor1.getId(), vendor1.getName(), vendor1.getContactNo(), vendor1.getAddress()));
-
-					System.out.println("Vendor Successfully Added !");
-
-				} else {
-
-					System.out.println("Information Entered Is Incompelte !");
-
-				}
+			}
 
 		}
 
-		
+		if (vendFound == false) {
+
+			if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
+
+				vendorList.add(
+						new Vendor(vendor1.getId(), vendor1.getName(), vendor1.getContactNo(), vendor1.getAddress()));
+
+				System.out.println("Vendor Successfully Added !");
+
+			} else {
+
+				System.out.println("Information Entered Is Incompelte !");
+
+			}
 
 		}
 
