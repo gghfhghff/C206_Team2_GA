@@ -1248,7 +1248,7 @@ public class main {
 	public static void viewAllPayment(ArrayList<Payment> paymentList) {
 
 		main.setHeader("View All Payments");
-		String output = String.format("%-10s %-25s %-15s %-15s", "Name", "Card No.", "CVC", "Exp date");
+		String output = String.format("%-10s %-25s %-15s %-15s\n", "Name", "Card No.", "CVC", "Exp date");
 
 		output += retrieveAllPayments(paymentList);
 
