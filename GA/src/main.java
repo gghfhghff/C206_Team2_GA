@@ -165,6 +165,8 @@ public class main {
 					else if (parentOption == 9) {
 						System.out.println("Returning to menu...");
 						startMenu();
+						
+						
 					} else {
 						System.out.println("Invalid option!");
 						parentMenu();
