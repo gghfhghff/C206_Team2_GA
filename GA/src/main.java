@@ -496,8 +496,14 @@ public class main {
 										adminMenu();
 										break;
 										
-									} else {
+									} else if (delVendorCfm == 'N' || delVendorCfm == 'n'){
 										System.out.println("vendor not deleted");
+										adminMenu();
+										break;
+									}else {
+										System.out.println("Invalid option!");
+										adminMenu();
+										break;
 									}
 
 								}
