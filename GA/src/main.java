@@ -14,8 +14,8 @@ public class main {
 		ArrayList<Item> itemList = new ArrayList<Item>();
 
 		// TEST OBJECTS
-		OrderStatus os1 = new OrderStatus(1, "Pending");
-		orderStatusList.add(os1);
+//		OrderStatus os1 = new OrderStatus(1, "Pending");
+//		orderStatusList.add(os1);
 
 		Payment p1 = new Payment("Bob", "1234 5678 1239 9239", 999, "29/2/2000");
 		paymentList.add(p1);
@@ -74,8 +74,11 @@ public class main {
 
 					} else if (parentOption == 3) {
 						// TODO
-//						addOrder(orderList, menuList, itemList, paymentList,
-//								 orderStatusList);
+						addOrder(orderList, menuList, itemList, paymentList,
+								 orderStatusList);
+
+						
+//						addOrderStatus(orderStatusList,orderList,os1);
 					} else if (parentOption == 4) {
 						// cancel order
 
@@ -186,9 +189,6 @@ public class main {
 
 						Menu menu1 = inputMenu(menuList);
 
-						
-						//TODO:SSSSS
-						
 						char con = 'Y';
 
 						while (con == 'Y' || con == 'y') {
@@ -859,7 +859,8 @@ public class main {
 		
 	}
 
-	public static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList, Order order1) {
+	public static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList,ArrayList<Item> itemList,ArrayList<Payment> paymentList,
+			ArrayList<OrderStatus> orderStatusList) {
 
 		main.setHeader("List of Menus");
 
@@ -909,6 +910,9 @@ public class main {
 
 			while (con == 'Y' || con == 'y') {
 				int itemID = Helper.readInt("Enter Item ID you would like to order > ");
+				
+				//
+				
 				boolean itemFound = false;
 
 				for (int i = 0; i < itemList.size(); i++) {
@@ -947,7 +951,6 @@ public class main {
 
 								System.out.println("Order Successfully placed !");
 								orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
-								orderStatusList.add(new OrderStatus(orderStatusList.size() + 1, "Pending"));
 								parentMenu();
 
 							} else {
@@ -968,53 +971,10 @@ public class main {
 		}
 	}
 
-	private static void addOrderStatus(ArrayList<OrderStatus> orderStatusList, OrderStatus os1) {
+	private static void addOrderStatus(ArrayList<OrderStatus> orderStatusList,ArrayList<Order> orderList, OrderStatus os1) {
 
-		boolean orderStatusFound = false;
-
-		for (int i = 0; i < orderStatusList.size(); i++) {
-
-			if (orderStatusList.get(i).getOrderID() == (os1.getOrderID())
-					&& orderStatusList.get(i).getStatus().equalsIgnoreCase(os1.getStatus())) {
-
-				// To find if
-				// user already
-				// exists
-
-				orderStatusFound = true;
-
-				System.out.println("Menu already exists! !");
-
-				break;
-
-			}
-		}
-
-		if (orderStatusFound == false) {
-
-			if (!school1.getName().isEmpty() && !u1.getContactNum().isEmpty()) {
-
-				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
-
-					schoolList.add(school1);
-
-					System.out.println("Account Successfully Created !");
-
-				} else {
-
-					System.out.println("Invalid Input fOR 'Parent / Guardian' !");
-				}
-
-			} else {
-
-				System.out.println("Information provided is incomplete !");
-
-			}
-
-		}
-
-		parentMenu();
-
+		orderStatusList.add(orderList.size(),os1);
+		
 	}
 
 	private static Payment inputPayment(ArrayList<Payment> paymentList) {

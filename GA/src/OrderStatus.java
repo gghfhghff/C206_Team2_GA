@@ -3,6 +3,7 @@ public class OrderStatus {
 
 	private int orderID;
 	private String status;
+	
 	public OrderStatus(int orderID, String status) {
 
 		this.orderID = orderID;
