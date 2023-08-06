@@ -73,7 +73,7 @@ public class main {
 						parentMenu();
 
 					} else if (parentOption == 3) {
- //TODO 
+						// TODO
 //						addOrder(orderList, menuList, itemList, paymentList,
 //								 orderStatusList);
 					} else if (parentOption == 4) {
@@ -127,7 +127,6 @@ public class main {
 						Payment payment1 = inputPayment(paymentList);
 						addPayment(paymentList, payment1);
 
-
 					} else if (parentOption == 7) {
 						// edit payment
 
@@ -154,19 +153,19 @@ public class main {
 						}
 						parentMenu();
 
-					} else if(parentOption == 8){
-						//view payment
-						
+					} else if (parentOption == 8) {
+						// view payment
+
 						retrieveAllPayments(paymentList);
 						viewAllPayment(paymentList);
 						parentMenu();
 					}
-					
+
 					else if (parentOption == 9) {
 						System.out.println("Returning to menu...");
 						startMenu();
 						break;
-						
+
 					} else {
 						System.out.println("Invalid option!");
 						parentMenu();
@@ -184,10 +183,9 @@ public class main {
 
 					if (vendorOption == 1) {
 						// Add menu
-						
+
 //						Menu menu1 = inputMenu(menuList);
 //						addMenu(menuList, menu1);
-						
 
 					} else if (vendorOption == 2) {
 						// edit menu
@@ -322,7 +320,7 @@ public class main {
 						// add school
 
 						School school1 = inputSchool(schoolList);
-						addSchool(schoolList,school1);
+						addSchool(schoolList, school1);
 
 					} else if (adminOption == 2) {
 						// edit school
@@ -380,7 +378,7 @@ public class main {
 					} else if (adminOption == 3) {
 
 						Vendor vendor1 = inputVendor(vendorList);
-						addVendor(vendorList, vendor1);	
+						addVendor(vendorList, vendor1);
 
 					} else if (adminOption == 4) {
 						// view all orders
@@ -413,18 +411,18 @@ public class main {
 							userOption = Helper.readInt("Enter option > ");
 							if (userOption == 1) {
 								// parent
-								
+
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
 								viewAllMenu();
-								
+
 								viewAllMenu();
 							} else if (userOption == 2) {
 								// school
 
-							retrieveAllSchools(schoolList);
-							viewAllSchools(schoolList);
-							viewAllMenu();
+								retrieveAllSchools(schoolList);
+								viewAllSchools(schoolList);
+								viewAllMenu();
 							} else if (userOption == 3) {
 								// vendor
 
@@ -456,7 +454,6 @@ public class main {
 						// delete user accounts
 						int deleteOption = 0;
 						deleteMenu();
-						
 
 						deleteOption = Helper.readInt("Enter option > ");
 						if (deleteOption == 1) {
@@ -488,24 +485,32 @@ public class main {
 							int check = 0;
 							int delID = Helper.readInt("Enter Vendor ID > ");
 
-							char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delVendorCfm == 'Y') {
-								for (int i = 0; i < vendorList.size(); i++) {
-									if (delID == (vendorList.get(i).getId())) {
+							for (int i = 0; i < vendorList.size(); i++) {
+								if (delID == (vendorList.get(i).getId())) {
+									char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+
+									if (delVendorCfm == 'Y' || delVendorCfm == 'y') {
 										vendorList.remove(i);
 										System.out.println("Vendor Deleted From System");
 										check++;
+										adminMenu();
 										break;
+										
+									} else {
+										System.out.println("vendor not deleted");
 									}
+
 								}
 								if (check == 0) {
 									System.out.println("Vendor Not Found");
 								}
+								adminMenu();
 							}
 						} else if (deleteOption == 4) {
 							System.out.println("Return");
+							adminMenu();
 						}
-						adminMenu();
+
 					} else if (adminOption == 9) {
 						main.setHeader("Search Order");
 
