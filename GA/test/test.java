@@ -207,6 +207,31 @@ public class test {
 		assertEquals("Test that ViewAllPayments displays correctly", testOutput, allPayments);
 	}
 	
+	@Test
+	public void testRetrieveAllVendors() {
+
+		// paymentList is null or zero
+		assertNotNull("Check if there is valid Vendor arraylist to view from", vendorList);
+
+		// test if the list of payments retrieved from the paymentList is empty - boundary
+		String allVendors = main.retrieveAllVendors(vendorList);
+		String testOutput = "";
+		assertEquals("Check that viewAllVendors is empty", testOutput, allVendors);
+
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		// - normal
+		main.addVendor(vendorList, vendor1);
+		main.addVendor(vendorList, vendor2);
+		assertEquals("Test that Vendor Arraylist size is 2", 2, paymentList.size());
+
+		// test if the expected output string same as the list of payments retrieved
+		allVendors = main.retrieveAllVendors(vendorList);
+		testOutput = String.format("%-10d %-30s %-10s %-10s\n",1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
+		testOutput += String.format("%-10d %-30s %-10s %-10s\n",1, "MATT Pte Ltd", "1212 3434", "11 Adriel Circle");
+
+		assertEquals("Test that ViewAllVendors displays correctly", testOutput, allVendors);
+	}
+	
 	
 
 	// ------------------------delete-----------------------------

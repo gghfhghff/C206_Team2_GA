@@ -1070,7 +1070,7 @@ public class main {
 
 	}
 
-	private static void addVendor(ArrayList<Vendor> vendorList, Vendor vendor1) {
+	public static void addVendor(ArrayList<Vendor> vendorList, Vendor vendor1) {
 
 		boolean vendFound = false;
 
@@ -1087,24 +1087,24 @@ public class main {
 
 				break;
 
-			}
+			}else if (vendFound == false) {
+
+				if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
+
+					vendorList.add(
+							new Vendor(vendor1.getId(), vendor1.getName(), vendor1.getContactNo(), vendor1.getAddress()));
+
+					System.out.println("Vendor Successfully Added !");
+
+				} else {
+
+					System.out.println("Information Entered Is Incompelte !");
+
+				}
 
 		}
 
-		if (vendFound == false) {
-
-			if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
-
-				vendorList.add(
-						new Vendor(vendor1.getId(), vendor1.getName(), vendor1.getContactNo(), vendor1.getAddress()));
-
-				System.out.println("Vendor Successfully Added !");
-
-			} else {
-
-				System.out.println("Information Entered Is Incompelte !");
-
-			}
+		
 
 		}
 
