@@ -319,7 +319,7 @@ public class main {
 
 				int adminOption = 0;
 
-				while (adminOption != 10) {
+				while (adminOption != 9) {
 					adminOption = Helper.readInt("Enter option > ");
 					if (adminOption == 1) {
 						// add school
@@ -387,10 +387,10 @@ public class main {
 
 					} else if (adminOption == 4) {
 						// view all orders
-						main.setHeader("View all orders");
+						main.setHeader("View all Orders");
 
-						System.out.println(String.format("%-10s %-15s %-15s %-15s", "Order ID", "No. of items",
-								"Total cost", "Vendor Name"));
+						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No. of items",
+								"Total cost", "Vendor Name", "Order Status"));
 
 						for (Order o : orderList) {
 
@@ -398,18 +398,6 @@ public class main {
 						}
 						adminMenu();
 					} else if (adminOption == 5) {
-						// View all orders
-						main.setHeader("View All Orders");
-
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
-								"Total Cost", "Vendor Name", "Order Status"));
-
-						for (Order os : orderList) {
-
-							System.out.println(os.toString());
-						}
-						adminMenu();
-					} else if (adminOption == 6) {
 						// view all users
 						int userOption = 0;
 						viewAllMenu();
@@ -447,14 +435,14 @@ public class main {
 								System.out.println("Invalid Option");
 							}
 						}
-					} else if (adminOption == 7) {
+					} else if (adminOption == 6) {
 						// generate reports
 						main.setHeader("REPORT");
 						System.out.println("Total Number of Users: " + userList.size());
 						System.out.println("Total Number of Schools: " + schoolList.size());
 						System.out.println("Total Number of Vendors: " + vendorList.size());
 						adminMenu();
-					} else if (adminOption == 8) {
+					} else if (adminOption == 7) {
 						// delete user accounts
 						int deleteOption = 0;
 						deleteMenu();
@@ -521,7 +509,7 @@ public class main {
 							adminMenu();
 						}
 
-					} else if (adminOption == 9) {
+					} else if (adminOption == 8) {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
@@ -536,7 +524,7 @@ public class main {
 
 						}
 						adminMenu();
-					} else if (adminOption == 10) {
+					} else if (adminOption == 9) {
 						System.out.println("Returning to Menu...");
 					} else {
 						System.out.println("Invalid option!");
@@ -589,12 +577,11 @@ public class main {
 		System.out.println("2. Edit school");
 		System.out.println("3. Add vendor");
 		System.out.println("4. View all Orders");
-		System.out.println("5. View order status");
-		System.out.println("6. View all users");
-		System.out.println("7. Generate reports");
-		System.out.println("8. Delete user accounts");
-		System.out.println("9. Search Order");
-		System.out.println("10. Return to user selection");
+		System.out.println("5. View all users");
+		System.out.println("6. Generate reports");
+		System.out.println("7. Delete user accounts");
+		System.out.println("8. Search Order");
+		System.out.println("9. Return to user selection");
 	}
 
 	private static void viewAllMenu() {
