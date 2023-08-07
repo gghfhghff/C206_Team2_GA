@@ -74,7 +74,7 @@ public class main {
 					} else if (parentOption == 3) {
 						// TODO
 						Order order1 = inputOrder(orderList);
-						addOrder(orderList, menuList, itemList, paymentList);
+						addOrder(orderList, menuList, itemList, paymentList, order1);
 						
 					} else if (parentOption == 4) {
 						// cancel order
@@ -851,11 +851,9 @@ public class main {
 	private static Order inputOrder(ArrayList<Order> orderList){
 		int orderId = orderList.size() + 1;
 		
-		int noOfItems = Helper.readInt("Enter No. Of Items > ");
-		double totalCost = Helper.readDouble("Enter Total Cost > ");
-		String vendorName = Helper.readString("Enter Vendor Name > ");
-		
-		Order order1 = new Order(orderId,noOfItems, totalCost, vendorName);
+		int qty = Helper.readInt("Enter No. Of Items > ");
+	
+		Order order1 = new Order(orderId, qty);
 		
 		return order1;
 
@@ -863,7 +861,7 @@ public class main {
 
 	}
 
-	public static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList,ArrayList<Item> itemList,ArrayList<Payment> paymentList) {
+	public static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList,ArrayList<Item> itemList,ArrayList<Payment> paymentList, Order order1) {
 
 		main.setHeader("List of Menus");
 
@@ -928,9 +926,9 @@ public class main {
 
 						System.out.println("Item Name: " + itemName);
 						System.out.println("Item Price: " + itemPrice);
-
-						int qty = Helper.readInt("How Many Qty Would You Like To Purchase? > ");
-						double totalPrice = itemPrice * qty;
+						inputOrder(orderList);
+						
+						double totalPrice = itemPrice * order1.getNoOfItems();
 						System.out.println("Total Price = " + totalPrice);
 
 						con = Helper.readChar("Would You Like To Place Another Order? (Y/N) > ");
@@ -953,7 +951,7 @@ public class main {
 							if (choice >= 1 && choice <= paymentList.size()) {
 
 								System.out.println("Order Successfully placed !");
-								orderList.add(new Order(orderList.size() + 1, qty, totalPrice, vendorName));
+								orderList.add(new Order(orderList.size() + 1, order1.getNoOfItems(), totalPrice, vendorName));
 								parentMenu();
 
 							} else {

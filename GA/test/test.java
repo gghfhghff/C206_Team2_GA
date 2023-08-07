@@ -15,8 +15,7 @@ public class test {
 	private Order order2;
 	private School school1;
 	private School school2;
-	private OrderStatus orderStatus1;
-	private OrderStatus orderStatus2;
+
 	private Vendor vendor1;
 	private Vendor vendor2;
 	private Payment payment1;
@@ -28,16 +27,15 @@ public class test {
 	ArrayList<School> schoolList = new ArrayList<School>();
 	ArrayList<Menu> menuList = new ArrayList<Menu>();
 	ArrayList<Order> orderList = new ArrayList<Order>();
-	ArrayList<OrderStatus> orderStatusList = new ArrayList<OrderStatus>();
+	
 	ArrayList<Vendor> vendorList = new ArrayList<Vendor>();
 	ArrayList<Payment> paymentList = new ArrayList<Payment>();
 	ArrayList<Item> itemList = new ArrayList<Item>();
 
 	@Before
 	public void setUp() throws Exception {
-		
-		orderStatus1 = new OrderStatus(001, "Pending");
-		orderStatus2 = new OrderStatus(002, "Completed");
+		// TO DELETE ORDERSTATUS
+
 
 		payment1 = new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
 		payment2 = new Payment("Bobby", "1234 5678 1239 9239", 123, "10/01/2031");
@@ -275,15 +273,15 @@ public class test {
 
 		// delete user from the order list
 		orderList.remove(order1);
-		orderStatusList.remove(orderStatus1);
+
 
 		// Test that the list of the size will decrease by 1 after it has been added
 		assertEquals("Check that the list size is 0 after it has been deleted", 0, orderList.size());
-		assertEquals("Check that the list size is 0 after it has been deleted", 0, orderStatusList.size());
+
 
 		// Test that the new order has been deleted from list
 		assertSame("Check that Order is deleted", orderList.size(), 0);
-		assertSame("Check that Order is deleted", orderStatusList.size(), 0);
+		
 
 	}
 
