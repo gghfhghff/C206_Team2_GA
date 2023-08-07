@@ -485,16 +485,13 @@ public class main {
 										vendorList.remove(i);
 										System.out.println("Vendor Deleted From System");
 										check++;
-										adminMenu();
 										break;
 
 									} else if (delVendorCfm == 'N' || delVendorCfm == 'n') {
 										System.out.println("vendor not deleted");
-										adminMenu();
 										break;
 									} else {
 										System.out.println("Invalid option!");
-										adminMenu();
 										break;
 									}
 
