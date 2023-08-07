@@ -141,6 +141,10 @@ public class main {
 							if (check == 0) {
 								System.out.println("Card Not Found");
 							}
+						} else if (delPayCfm == 'N' || delPayCfm == 'n') {
+							System.out.println("Card Not Deleted");
+						} else {
+							System.out.println("Invalid Option");
 						}
 						parentMenu();
 
