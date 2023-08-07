@@ -16,7 +16,7 @@ public class main {
 //		OrderStatus os1 = new OrderStatus(1, "Pending");
 //		orderStatusList.add(os1);
 
-		Payment p1 = new Payment("Bob", "1234 5678 1239 9239", 999, "29/2/2000");
+		Payment p1 = new Payment("Matt", "1234 5678 1239 9239", 999, "29/2/2000");
 		paymentList.add(p1);
 
 		Vendor v1 = new Vendor(1, "MACDONALds", "1233 5123", "ABC");
