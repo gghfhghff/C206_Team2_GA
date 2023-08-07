@@ -488,7 +488,7 @@ public class main {
 										break;
 
 									} else if (delVendorCfm == 'N' || delVendorCfm == 'n') {
-										System.out.println("vendor not deleted");
+										System.out.println("Vendor Not Deleted");
 										check++;
 										break;
 									} else {
