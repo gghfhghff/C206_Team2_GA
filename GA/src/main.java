@@ -948,6 +948,7 @@ public class main {
 							}
 						} else {
 							System.out.println("Invalid Option");
+							parentMenu();
 						}
 						break; // Exit the loop since the item is found
 					}
