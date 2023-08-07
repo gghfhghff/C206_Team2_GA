@@ -11,14 +11,17 @@ public class Order {
 	private int noOfItems;
 	private double orderTotalCost;
 	private String vendorName;
+	private String orderStatus;
 	
 	public Order(int order_id, int noOfItems, double orderTotalCost, String vendorName) {
 		this.order_id = order_id;
 		this.noOfItems = noOfItems;
 		this.orderTotalCost = orderTotalCost;
 		this.vendorName = vendorName;
+		this.orderStatus = "Pending";
 	}
 	
+
 	public String getVendorName() {
 		return vendorName;
 	}
@@ -29,7 +32,7 @@ public class Order {
 
 	public String toString() {
 		
-		return String.format("%-10d %-15d %-15.2f %-15s", getOrder_id(), getNoOfItems(), getOrderTotalCost(),getVendorName() );
+		return String.format("%-10d %-15d %-15.2f %-15s %s", getOrder_id(), getNoOfItems(), getOrderTotalCost(),getVendorName(),getOrderStatus() );
 
 	}
 
@@ -57,11 +60,12 @@ public class Order {
 		this.orderTotalCost = orderTotalCost;
 	}
 	
-	
-	
-	
-	
-	
-	
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 	
 }
