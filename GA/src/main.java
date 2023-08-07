@@ -69,7 +69,7 @@ public class main {
 						parentMenu();
 
 					} else if (parentOption == 3) {
-						// TODO
+						// place order
 
 						addOrder(orderList, menuList, itemList, paymentList);
 
@@ -946,6 +946,8 @@ public class main {
 								parentMenu();
 
 							}
+						} else {
+							System.out.println("Invalid Option");
 						}
 						break; // Exit the loop since the item is found
 					}
