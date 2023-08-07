@@ -501,6 +501,7 @@ public class main {
 							}
 							if (check == 0) {
 								System.out.println("Vendor Not Found");
+								break;
 							}
 							adminMenu();
 						} else if (deleteOption == 4) {
