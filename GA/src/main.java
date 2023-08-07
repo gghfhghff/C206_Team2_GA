@@ -188,6 +188,10 @@ public class main {
 							if (con == 'N' || con == 'n') {
 								vendorMenu();
 							}
+							else {
+								System.out.println("Invalid Option");
+								vendorMenu();
+							}
 						}
 
 					} else if (vendorOption == 2) {
@@ -256,6 +260,8 @@ public class main {
 								if (check2 == 0) {
 									System.out.println("Menu Not Found");
 								}
+							}else {
+								System.out.println("Invalid Option");
 							}
 						} else if (option == 3) {
 							System.out.println("Goodbye!");
