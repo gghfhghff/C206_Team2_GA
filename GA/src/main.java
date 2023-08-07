@@ -84,7 +84,7 @@ public class main {
 
 						int delOrder = Helper.readInt("Enter Order ID for Cancellation > ");
 						char delOrderCfm = Helper.readChar("Enter Cancellation Confirmation (Y/N) > ");
-						if (delOrderCfm == 'Y') {
+						if (delOrderCfm == 'Y' || delOrderCfm == 'y') {
 							for (int i = 0; i < orderList.size(); i++) {
 								if (delOrder == (orderList.get(i).getOrder_id())) {
 									orderList.remove(i);
@@ -155,7 +155,6 @@ public class main {
 
 					else if (parentOption == 9) {
 						System.out.println("Returning to menu...");
-						startMenu();
 						break;
 
 					} else {
