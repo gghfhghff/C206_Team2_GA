@@ -489,9 +489,11 @@ public class main {
 
 									} else if (delVendorCfm == 'N' || delVendorCfm == 'n') {
 										System.out.println("vendor not deleted");
+										check++;
 										break;
 									} else {
 										System.out.println("Invalid option!");
+										check++;
 										break;
 									}
 
@@ -499,8 +501,9 @@ public class main {
 								if (check == 0) {
 									System.out.println("Vendor Not Found");
 								}
-								adminMenu();
+								
 							}
+							adminMenu();
 						} else if (deleteOption == 4) {
 							System.out.println("Return");
 							adminMenu();
@@ -510,7 +513,7 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
+						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No.of Items",
 								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
 							if (orderID == o.getOrder_id()) {
