@@ -53,8 +53,8 @@ public class test {
 		order1 = new Order(001, 10, 50.0, "JOSH Pte Ltd");
 		order2 = new Order(002, 5, 10.0, "JOSH Pte Ltd");
 
-		parent1 = new User("John Doe", 001, "1234 5678", "Parent");
-		guardian1 = new User("Josh Tan", 002, "8765 4321", "Guardian");
+		parent1 = new User("John Doe", 001, "1234 5678", "Parent","MATTHIS Primary School");
+		guardian1 = new User("Josh Tan", 002, "8765 4321", "Guardian", "JIAN Sparkletots");
 
 	}
 
