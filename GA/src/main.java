@@ -141,7 +141,7 @@ public class main {
 
 						String delCard = Helper.readString("Enter Card Number To Be Deleted > ");
 						char delPayCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-						if (delPayCfm == 'Y') {
+						if (delPayCfm == 'Y' || delPayCfm == 'y') {
 							for (int i = 0; i < paymentList.size(); i++) {
 								if (delCard.equals(paymentList.get(i).getCardNo())) {
 									paymentList.remove(i);
@@ -258,7 +258,7 @@ public class main {
 
 							int delMenu = Helper.readInt("Enter Menu ID To Be Deleted > ");
 							char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delMenuCfm == 'Y') {
+							if (delMenuCfm == 'Y'|| delMenuCfm == 'y') {
 								for (int i = 0; i < menuList.size(); i++) {
 									if (delMenu == (menuList.get(i).getMenu_id())) {
 										menuList.remove(i);
@@ -376,7 +376,7 @@ public class main {
 
 							int delSchool = Helper.readInt("Enter School ID To Be Deleted > ");
 							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delSchoolCfm == 'Y') {
+							if (delSchoolCfm == 'Y'|| delSchoolCfm == 'y') {
 								for (int i = 0; i < schoolList.size(); i++) {
 									if (delSchool == (schoolList.get(i).getSchool_id())) {
 										schoolList.remove(i);
@@ -483,7 +483,7 @@ public class main {
 							int delID = Helper.readInt("Enter School ID > ");
 
 							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delSchoolCfm == 'Y') {
+							if (delSchoolCfm == 'Y'|| delSchoolCfm == 'y') {
 								for (int i = 0; i < schoolList.size(); i++) {
 									if (delID == (schoolList.get(i).getSchool_id())) {
 										schoolList.remove(i);
