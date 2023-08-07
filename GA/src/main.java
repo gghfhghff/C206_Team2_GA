@@ -144,7 +144,7 @@ public class main {
 						} else if (delPayCfm == 'N' || delPayCfm == 'n') {
 							System.out.println("Card Not Deleted");
 						} else {
-							System.out.println("Invalid Option ");
+							System.out.println("Invalid Option");
 						}
 						parentMenu();
 
