@@ -21,11 +21,6 @@ public class Order {
 		this.orderStatus = "Pending";
 	}
 	
-	public Order(int order_id, int noOfItems) {
-		super();
-		this.order_id = order_id;
-		this.noOfItems = noOfItems;
-	}
 
 	public String getVendorName() {
 		return vendorName;

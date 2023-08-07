@@ -25,14 +25,11 @@ public class main {
 		Menu m1 = new Menu(1, "name", "status", "vendor name");
 		menuList.add(m1);
 
-		Item i1 = new Item(1, 1, "name", "desc", 0.0);
+		Item i1 = new Item(1, 1, "name", "desc", 5.0);
 		itemList.add(i1);
 
 		School s1 = new School(1, "name", "address", 123);
 		schoolList.add(s1);
-
-		Order o1 = new Order(1, 10, 0.0, "name");
-		orderList.add(o1);
 
 //		User u1 = new User("name", 1, "contact number", "role");
 //		userList.add(u1);
@@ -73,9 +70,9 @@ public class main {
 
 					} else if (parentOption == 3) {
 						// TODO
-						Order order1 = inputOrder(orderList);
-						addOrder(orderList, menuList, itemList, paymentList, order1);
-						
+
+						addOrder(orderList, menuList, itemList, paymentList);
+
 					} else if (parentOption == 4) {
 						// cancel order
 
@@ -98,7 +95,7 @@ public class main {
 							}
 							if (check == 0) {
 								System.out.println("Order Not Found");
-							} 
+							}
 						}
 						parentMenu();
 
@@ -106,7 +103,8 @@ public class main {
 						// view order
 						main.setHeader("View Order");
 
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID","No.of Items", "Total Cost", "Vendor Name", "Order Status"));
+						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No.of Items",
+								"Total Cost", "Vendor Name", "Order Status"));
 
 						for (Order o : orderList) {
 
@@ -182,12 +180,11 @@ public class main {
 						char con = 'Y';
 
 						while (con == 'Y' || con == 'y') {
-							
+
 							Item item1 = inputItem(itemList, menu1);
-							addMenu(menuList,itemList, menu1,item1);
+							addMenu(menuList, itemList, menu1, item1);
 
 							con = Helper.readChar("Continue Adding Items to " + menu1.getMenu_name() + " (Y/N) > ");
-
 
 							if (con == 'N' || con == 'n') {
 								vendorMenu();
@@ -248,7 +245,7 @@ public class main {
 
 							int delMenu = Helper.readInt("Enter Menu ID To Be Deleted > ");
 							char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delMenuCfm == 'Y'|| delMenuCfm == 'y') {
+							if (delMenuCfm == 'Y' || delMenuCfm == 'y') {
 								for (int i = 0; i < menuList.size(); i++) {
 									if (delMenu == (menuList.get(i).getMenu_id())) {
 										menuList.remove(i);
@@ -297,7 +294,8 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID","No.of Items", "Total Cost", "Vendor Name", "Order Status"));
+						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
+								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
 							if (orderID == o.getOrder_id()) {
 								System.out.println(o.toString());
@@ -366,7 +364,7 @@ public class main {
 
 							int delSchool = Helper.readInt("Enter School ID To Be Deleted > ");
 							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delSchoolCfm == 'Y'|| delSchoolCfm == 'y') {
+							if (delSchoolCfm == 'Y' || delSchoolCfm == 'y') {
 								for (int i = 0; i < schoolList.size(); i++) {
 									if (delSchool == (schoolList.get(i).getSchool_id())) {
 										schoolList.remove(i);
@@ -403,7 +401,8 @@ public class main {
 						// View all orders
 						main.setHeader("View All Orders");
 
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID","No.of Items", "Total Cost", "Vendor Name", "Order Status"));
+						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
+								"Total Cost", "Vendor Name", "Order Status"));
 
 						for (Order os : orderList) {
 
@@ -472,7 +471,7 @@ public class main {
 							int delID = Helper.readInt("Enter School ID > ");
 
 							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delSchoolCfm == 'Y'|| delSchoolCfm == 'y') {
+							if (delSchoolCfm == 'Y' || delSchoolCfm == 'y') {
 								for (int i = 0; i < schoolList.size(); i++) {
 									if (delID == (schoolList.get(i).getSchool_id())) {
 										schoolList.remove(i);
@@ -501,12 +500,12 @@ public class main {
 										check++;
 										adminMenu();
 										break;
-										
-									} else if (delVendorCfm == 'N' || delVendorCfm == 'n'){
+
+									} else if (delVendorCfm == 'N' || delVendorCfm == 'n') {
 										System.out.println("vendor not deleted");
 										adminMenu();
 										break;
-									}else {
+									} else {
 										System.out.println("Invalid option!");
 										adminMenu();
 										break;
@@ -527,7 +526,8 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID","No.of Items", "Total Cost", "Vendor Name", "Order Status"));
+						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
+								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
 							if (orderID == o.getOrder_id()) {
 								System.out.println(o.toString());
@@ -747,22 +747,22 @@ public class main {
 
 		adminMenu();
 	}
-	
+
 	private static Item inputItem(ArrayList<Item> itemList, Menu menu1) {
-		
+
 		int itemId = itemList.size() + 1;
 		String itemName = Helper.readString("Enter Item Name > ");
 		String itemDesc = Helper.readString("Enter Item Description > ");
 		Double itemPrice = Helper.readDouble("Enter Price > ");
-		
-		Item item1 = new Item(menu1.getMenu_id(),itemId, itemName, itemDesc, itemPrice);
-		
+
+		Item item1 = new Item(menu1.getMenu_id(), itemId, itemName, itemDesc, itemPrice);
+
 		return item1;
-		
+
 	}
-	
+
 	private static void addItem(ArrayList<Item> itemList, Item item1, Vendor vendor1) {
-		
+
 		boolean itemFound = false;
 
 		for (int i = 0; i < itemList.size(); i++) {
@@ -783,9 +783,11 @@ public class main {
 
 		if (itemFound == false) {
 
-			if (!item1.getItem_name().isEmpty() && !item1.getItem_description().isEmpty() && item1.getItem_price() != 0) {
+			if (!item1.getItem_name().isEmpty() && !item1.getItem_description().isEmpty()
+					&& item1.getItem_price() != 0) {
 
-				itemList.add(new Item(item1.getMenu_id(), item1.getItem_id(), item1.getItem_name(), item1.getItem_description(), item1.getItem_price()));
+				itemList.add(new Item(item1.getMenu_id(), item1.getItem_id(), item1.getItem_name(),
+						item1.getItem_description(), item1.getItem_price()));
 				System.out.println("Items Successfully Added!");
 
 			} else {
@@ -795,7 +797,7 @@ public class main {
 			}
 
 		}
-		
+
 	}
 
 	private static Menu inputMenu(ArrayList<Menu> menuList) {
@@ -845,75 +847,64 @@ public class main {
 
 		}
 
-		
-	}
-	
-	private static Order inputOrder(ArrayList<Order> orderList){
-		int orderId = orderList.size() + 1;
-		
-		int qty = Helper.readInt("Enter No. Of Items > ");
-	
-		Order order1 = new Order(orderId, qty);
-		
-		return order1;
-
-
-
 	}
 
-	public static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList,ArrayList<Item> itemList,ArrayList<Payment> paymentList, Order order1) {
+	public static void addOrder(ArrayList<Order> orderList, ArrayList<Menu> menuList, ArrayList<Item> itemList,
+			ArrayList<Payment> paymentList) {
 
-		main.setHeader("List of Menus");
+		char con = 'Y';
+		int totalqty = 0;
+		double grandTotal = 0;
 
-		System.out.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name", "Menu status", "Vendor"));
+		while (con == 'Y' || con == 'y') {
+			main.setHeader("List of Menus");
 
-		for (Menu m : menuList) {
+			System.out
+					.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name", "Menu status", "Vendor"));
 
-			System.out.println(m.toString());
+			for (Menu m : menuList) {
 
-		}
-
-		int menuID = Helper.readInt("Enter Menu ID To View > ");
-
-		boolean menuFound = true;
-
-		for (int i = 0; i < menuList.size(); i++) {
-
-			if (menuID != menuList.get(i).getMenu_id()) {
-
-				System.out.println("Invalid Menu ID Entered !");
-				break;
+				System.out.println(m.toString());
 
 			}
 
-		}
+			int menuID = Helper.readInt("Enter Menu ID To View > ");
 
-		if (menuFound == true) {
+			boolean menuFound = true;
 
-			main.setHeader("Menu ID : " + menuID + " Item List");
+			for (int i = 0; i < menuList.size(); i++) {
 
-			String output = String.format("%-10s %-10s %-15s %-10s\n", "Item ID", "Item Name", "Item Description",
-					"Item Price");
-			for (int i = 0; i < itemList.size(); i++) {
+				if (menuID != menuList.get(i).getMenu_id()) {
 
-				if (menuID == itemList.get(i).getMenu_id()) {
-
-					output += String.format("%-10s %-10s %-15s $%-10s", itemList.get(i).getItem_id(),
-							itemList.get(i).getItem_name(), itemList.get(i).getItem_description(),
-							itemList.get(i).getItem_price());
+					System.out.println("Invalid Menu ID Entered !");
+					break;
 
 				}
+
 			}
 
-			System.out.println(output);
+			if (menuFound == true) {
 
-			char con = 'Y';
+				main.setHeader("Menu ID : " + menuID + " Item List");
 
-			while (con == 'Y' || con == 'y') {
+				String output = String.format("%-10s %-10s %-15s %-10s\n", "Item ID", "Item Name", "Item Description",
+						"Item Price");
+				for (int i = 0; i < itemList.size(); i++) {
+
+					if (menuID == itemList.get(i).getMenu_id()) {
+
+						output += String.format("%-10s %-10s %-15s $%-10s", itemList.get(i).getItem_id(),
+								itemList.get(i).getItem_name(), itemList.get(i).getItem_description(),
+								itemList.get(i).getItem_price());
+
+					}
+				}
+
+				System.out.println(output);
 				int itemID = Helper.readInt("Enter Item ID you would like to order > ");
-				
+
 				//
-				
+
 				boolean itemFound = false;
 
 				for (int i = 0; i < itemList.size(); i++) {
@@ -924,11 +915,14 @@ public class main {
 						String itemName = itemList.get(i).getItem_name();
 						double itemPrice = itemList.get(i).getItem_price();
 
+						int qty = Helper.readInt("Enter No. Of Items > ");
+						totalqty += qty;
+
 						System.out.println("Item Name: " + itemName);
 						System.out.println("Item Price: " + itemPrice);
-						inputOrder(orderList);
-						
-						double totalPrice = itemPrice * order1.getNoOfItems();
+
+						double totalPrice = itemPrice * qty;
+						grandTotal += totalPrice;
 						System.out.println("Total Price = " + totalPrice);
 
 						con = Helper.readChar("Would You Like To Place Another Order? (Y/N) > ");
@@ -951,7 +945,7 @@ public class main {
 							if (choice >= 1 && choice <= paymentList.size()) {
 
 								System.out.println("Order Successfully placed !");
-								orderList.add(new Order(orderList.size() + 1, order1.getNoOfItems(), totalPrice, vendorName));
+								orderList.add(new Order(orderList.size() + 1, totalqty, grandTotal, vendorName));
 								parentMenu();
 
 							} else {
@@ -971,7 +965,6 @@ public class main {
 			}
 		}
 	}
-
 
 	private static Payment inputPayment(ArrayList<Payment> paymentList) {
 
@@ -1150,7 +1143,6 @@ public class main {
 		return output;
 	}
 
-
 	public static String retrieveAllPayments(ArrayList<Payment> paymentList) {
 		String output = "";
 
@@ -1219,7 +1211,6 @@ public class main {
 
 	}
 
-
 	public static void viewAllPayment(ArrayList<Payment> paymentList) {
 
 		main.setHeader("View All Payments");
@@ -1239,7 +1230,7 @@ public class main {
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y'|| delUserCfm == 'y') {
+		if (delUserCfm == 'Y' || delUserCfm == 'y') {
 			for (int i = 0; i < userList.size(); i++) {
 				if (delID == (userList.get(i).getId())) {
 					userList.remove(i);
@@ -1262,7 +1253,7 @@ public class main {
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delSchoolCfm == 'Y'|| delSchoolCfm == 'y') {
+		if (delSchoolCfm == 'Y' || delSchoolCfm == 'y') {
 			for (int i = 0; i < schoolList.size(); i++) {
 				if (delID == (schoolList.get(i).getSchool_id())) {
 					schoolList.remove(i);
@@ -1285,7 +1276,7 @@ public class main {
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delMenuCfm == 'Y'|| delMenuCfm == 'y') {
+		if (delMenuCfm == 'Y' || delMenuCfm == 'y') {
 			for (int i = 0; i < menuList.size(); i++) {
 				if (delID == (menuList.get(i).getMenu_id())) {
 					menuList.remove(i);
@@ -1308,7 +1299,7 @@ public class main {
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delOrderCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delOrderCfm == 'Y'|| delOrderCfm == 'y') {
+		if (delOrderCfm == 'Y' || delOrderCfm == 'y') {
 			for (int i = 0; i < orderList.size(); i++) {
 				if (delID == (orderList.get(i).getOrder_id())) {
 					orderList.remove(i);
@@ -1331,7 +1322,7 @@ public class main {
 		String delName = Helper.readString("Enter Parent/Guardian ID > ");
 
 		char delPayCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delPayCfm == 'Y'|| delPayCfm == 'y') {
+		if (delPayCfm == 'Y' || delPayCfm == 'y') {
 			for (int i = 0; i < paymentList.size(); i++) {
 				if (delName.equalsIgnoreCase(paymentList.get(i).getName())) {
 					paymentList.remove(i);
@@ -1354,7 +1345,7 @@ public class main {
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delVendorCfm == 'Y'|| delVendorCfm== 'y') {
+		if (delVendorCfm == 'Y' || delVendorCfm == 'y') {
 			for (int i = 0; i < vendorList.size(); i++) {
 				if (delID == (vendorList.get(i).getId())) {
 					vendorList.remove(i);
