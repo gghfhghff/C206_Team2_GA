@@ -304,7 +304,7 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No.of Items",
+						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
 								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
 							if (orderID == o.getOrder_id()) {
@@ -329,7 +329,7 @@ public class main {
 
 				int adminOption = 0;
 
-				while (adminOption != 9) {
+				while (adminOption != 10) {
 					adminOption = Helper.readInt("Enter option > ");
 					if (adminOption == 1) {
 						// add school
@@ -445,14 +445,46 @@ public class main {
 								System.out.println("Invalid Option");
 							}
 						}
-					} else if (adminOption == 6) {
+					}else if(adminOption == 6) {
+						
+						main.setHeader("SEARCH USER BY SCHOOL");
+						
+						String school = Helper.readString("Enter School to serach user > ");
+						
+						boolean userFound = false;
+						
+						String output = String.format("%-10s %-10s %-10s\n", "User ID", "Name", "Contact Number");
+						
+						for (int i = 0; i < userList.size(); i++) {
+							
+							if(userList.get(i).getSchool().equalsIgnoreCase(school)) {
+								
+								userFound = true;
+								
+								output += String.format("%-10s %-10s %-10s", userList.get(i).getId(), userList.get(i).getName(), userList.get(i).getContactNum());
+								
+							}
+						}
+						
+						
+						if (userFound == false) {
+							
+							System.out.println("User not found!");
+							
+						}
+							
+						System.out.println(output);
+						adminMenu();
+						
+						
+					}else if (adminOption == 7) {
 						// generate reports
 						main.setHeader("REPORT");
 						System.out.println("Total Number of Users: " + userList.size());
 						System.out.println("Total Number of Schools: " + schoolList.size());
 						System.out.println("Total Number of Vendors: " + vendorList.size());
 						adminMenu();
-					} else if (adminOption == 7) {
+					} else if (adminOption == 8) {
 						// delete user accounts
 						int deleteOption = 0;
 						deleteMenu();
@@ -519,7 +551,7 @@ public class main {
 							adminMenu();
 						}
 
-					} else if (adminOption == 8) {
+					} else if (adminOption == 9) {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
@@ -534,7 +566,7 @@ public class main {
 
 						}
 						adminMenu();
-					} else if (adminOption == 9) {
+					} else if (adminOption == 10) {
 						System.out.println("Returning to Menu...");
 					} else {
 						System.out.println("Invalid option!");
@@ -588,10 +620,11 @@ public class main {
 		System.out.println("3. Add vendor");
 		System.out.println("4. View all Orders");
 		System.out.println("5. View all users");
-		System.out.println("6. Generate reports");
-		System.out.println("7. Delete user accounts");
-		System.out.println("8. Search Order");
-		System.out.println("9. Return to user selection");
+		System.out.println("6. Search user by school");
+		System.out.println("7. Generate reports");
+		System.out.println("8. Delete user accounts");
+		System.out.println("9. Search Order");
+		System.out.println("10. Return to user selection");
 	}
 
 	private static void viewAllMenu() {
@@ -638,8 +671,9 @@ public class main {
 		int id = userList.size() + 1;
 		String contactNum = Helper.readString("Enter Your Contact Number > ");
 		String role = Helper.readString("Are You A Parent / Guardian ? > ");
+		String school = Helper.readString("Enter School Name > ");
 
-		User u1 = new User(name, id, contactNum, role);
+		User u1 = new User(name, id, contactNum, role, school);
 
 		return u1;
 	}
@@ -1107,7 +1141,7 @@ public class main {
 	}
 
 	public static String retrieveAllSchools(ArrayList<School> schoolList) {
-		String output = "";
+		String output = "";		
 
 		for (int i = 0; i < schoolList.size(); i++) {
 
@@ -1169,7 +1203,7 @@ public class main {
 	public static void viewAllUsers(ArrayList<User> userList) {
 
 		main.setHeader("View All Parents/Guardians");
-		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role");
+		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role", "School");
 
 		output += retrieveAllUsers(userList);
 

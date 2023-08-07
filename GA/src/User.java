@@ -5,20 +5,32 @@ public class User {
 	private String name;
 	private String contactNum;
 	private String Role;
+	private String school;
 
 	
 	
-	public User(String name, int id, String contactNum, String role) {
+	public User(String name, int id, String contactNum, String role, String school) {
 		this.name = name;
 		this.id = id;
 		this.contactNum = contactNum;
 		Role = role;
+		this.school = school;
 	}
 	
+
 	public String toString() {
-		return String.format("%-10s %-15d %-15s %-15s\n", getName(), getId(), getContactNum(), getRole());
+		return String.format("%-10s %-15d %-15s %-15s %-15s\n", getName(), getId(), getContactNum(), getRole(), getSchool());
 		
 	}
+	
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+
 
 	public String getName() {
 		return name;
