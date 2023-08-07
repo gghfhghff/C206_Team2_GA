@@ -56,8 +56,6 @@ public class test {
 		parent1 = new User("John Doe", 001, "1234 5678", "Parent","MATTHIS Primary School");
 		guardian1 = new User("Josh Tan", 002, "8765 4321", "Guardian", "JIAN Sparkletots");
 		
-		//ASJDNUBASG UDASKIDH
-
 	}
 
 	// ---------------------add-----------------
