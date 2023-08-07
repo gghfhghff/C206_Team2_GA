@@ -497,11 +497,10 @@ public class main {
 										break;
 									}
 
-								}
-								if (check == 0) {
-									System.out.println("Vendor Not Found");
-								}
-								
+								}	
+							}
+							if (check == 0) {
+								System.out.println("Vendor Not Found");
 							}
 							adminMenu();
 						} else if (deleteOption == 4) {
