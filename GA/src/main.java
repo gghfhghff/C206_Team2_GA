@@ -8,7 +8,6 @@ public class main {
 		ArrayList<School> schoolList = new ArrayList<School>();
 		ArrayList<Menu> menuList = new ArrayList<Menu>();
 		ArrayList<Order> orderList = new ArrayList<Order>();
-		ArrayList<OrderStatus> orderStatusList = new ArrayList<OrderStatus>();
 		ArrayList<Vendor> vendorList = new ArrayList<Vendor>();
 		ArrayList<Payment> paymentList = new ArrayList<Payment>();
 		ArrayList<Item> itemList = new ArrayList<Item>();
@@ -74,11 +73,9 @@ public class main {
 
 					} else if (parentOption == 3) {
 						// TODO
-						addOrder(orderList, menuList, itemList, paymentList,
-								 orderStatusList);
-
+						Order order1 = inputOrder(orderList);
+						addOrder(orderList, menuList, itemList, paymentList);
 						
-//						addOrderStatus(orderStatusList,orderList,os1);
 					} else if (parentOption == 4) {
 						// cancel order
 
@@ -101,24 +98,17 @@ public class main {
 							}
 							if (check == 0) {
 								System.out.println("Order Not Found");
-							} else {
-								for (int i = 0; i < orderStatusList.size(); i++) {
-									if (delOrder == (orderStatusList.get(i).getOrderID())) {
-										orderStatusList.remove(i);
-										break;
-									}
-								}
-							}
+							} 
 						}
 						parentMenu();
 
 					} else if (parentOption == 5) {
-						// view status of order
-						main.setHeader("View Order status");
+						// view order
+						main.setHeader("View Order");
 
-						System.out.println(String.format("%-10s %-30s", "Order ID", "Order Status"));
+						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID","No.of Items", "Total Cost", "Vendor Name", "Order Status"));
 
-						for (OrderStatus o : orderStatusList) {
+						for (Order o : orderList) {
 
 							System.out.println(o.toString());
 						}
@@ -307,9 +297,9 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10s %-15s", "Order ID", "Order Status"));
-						for (OrderStatus o : orderStatusList) {
-							if (orderID == o.getOrderID()) {
+						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID","No.of Items", "Total Cost", "Vendor Name", "Order Status"));
+						for (Order o : orderList) {
+							if (orderID == o.getOrder_id()) {
 								System.out.println(o.toString());
 							} else {
 								System.out.println("Order not found!");
@@ -410,12 +400,12 @@ public class main {
 						}
 						adminMenu();
 					} else if (adminOption == 5) {
-						// View all order status
-						main.setHeader("View All Order Statuses");
+						// View all orders
+						main.setHeader("View All Orders");
 
-						System.out.println(String.format("%-10s %-15s", "Order ID", "Status"));
+						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID","No.of Items", "Total Cost", "Vendor Name", "Order Status"));
 
-						for (OrderStatus os : orderStatusList) {
+						for (Order os : orderList) {
 
 							System.out.println(os.toString());
 						}
@@ -537,9 +527,9 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10s %-15s", "Order ID", "Order Status"));
-						for (OrderStatus o : orderStatusList) {
-							if (orderID == o.getOrderID()) {
+						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID","No.of Items", "Total Cost", "Vendor Name", "Order Status"));
+						for (Order o : orderList) {
+							if (orderID == o.getOrder_id()) {
 								System.out.println(o.toString());
 							} else {
 								System.out.println("Order not found!");
@@ -857,9 +847,23 @@ public class main {
 
 		
 	}
+	
+	private static Order inputOrder(ArrayList<Order> orderList){
+		int orderId = orderList.size() + 1;
+		
+		int noOfItems = Helper.readInt("Enter No. Of Items > ");
+		double totalCost = Helper.readDouble("Enter Total Cost > ");
+		String vendorName = Helper.readString("Enter Vendor Name > ");
+		
+		Order order1 = new Order(orderId,noOfItems, totalCost, vendorName);
+		
+		return order1;
 
-	public static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList,ArrayList<Item> itemList,ArrayList<Payment> paymentList,
-			ArrayList<OrderStatus> orderStatusList) {
+
+
+	}
+
+	public static void addOrder(ArrayList<Order> orderList,ArrayList<Menu> menuList,ArrayList<Item> itemList,ArrayList<Payment> paymentList) {
 
 		main.setHeader("List of Menus");
 
@@ -970,11 +974,6 @@ public class main {
 		}
 	}
 
-	private static void addOrderStatus(ArrayList<OrderStatus> orderStatusList,ArrayList<Order> orderList, OrderStatus os1) {
-
-		orderStatusList.add(orderList.size(),os1);
-		
-	}
 
 	private static Payment inputPayment(ArrayList<Payment> paymentList) {
 
@@ -1153,17 +1152,6 @@ public class main {
 		return output;
 	}
 
-	public static String retrieveAllOrderstatus(ArrayList<OrderStatus> orderStatusList) {
-		String output = "";
-
-		for (int i = 0; i < orderStatusList.size(); i++) {
-
-			output += String.format("%-20s\n", orderStatusList.get(i).toString());
-
-		}
-
-		return output;
-	}
 
 	public static String retrieveAllPayments(ArrayList<Payment> paymentList) {
 		String output = "";
@@ -1233,16 +1221,6 @@ public class main {
 
 	}
 
-	public static void viewAllOrderStatus(ArrayList<OrderStatus> orderStatusList) {
-
-		main.setHeader("View All Order Statuses");
-		String output = String.format("%-10s %-15s", "ID", "Status");
-
-		output += retrieveAllOrderstatus(orderStatusList);
-
-		System.out.println(output);
-
-	}
 
 	public static void viewAllPayment(ArrayList<Payment> paymentList) {
 
@@ -1336,29 +1314,6 @@ public class main {
 			for (int i = 0; i < orderList.size(); i++) {
 				if (delID == (orderList.get(i).getOrder_id())) {
 					orderList.remove(i);
-					System.out.println("Order Deleted From System");
-					check++;
-					break;
-				}
-			}
-			if (check == 0) {
-				System.out.println("Order Not Found");
-			}
-		}
-
-	}
-
-	public static void deleteOrderStatus(ArrayList<OrderStatus> orderStatusList) {
-
-		// parent
-		int check = 0;
-		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
-
-		char delOrderStatusCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delOrderStatusCfm == 'Y'|| delOrderStatusCfm == 'y') {
-			for (int i = 0; i < orderStatusList.size(); i++) {
-				if (delID == (orderStatusList.get(i).getOrderID())) {
-					orderStatusList.remove(i);
 					System.out.println("Order Deleted From System");
 					check++;
 					break;
