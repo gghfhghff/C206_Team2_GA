@@ -1203,7 +1203,7 @@ public class main {
 	public static void viewAllUsers(ArrayList<User> userList) {
 
 		main.setHeader("View All Parents/Guardians");
-		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role");
+		String output = String.format("%-10s %-15s %-15s %-15s", "Name", "ID", "Contact No.", "Role", "School");
 
 		output += retrieveAllUsers(userList);
 
