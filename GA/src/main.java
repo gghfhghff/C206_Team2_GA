@@ -431,7 +431,6 @@ public class main {
 
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
-								viewAllMenu();
 
 								viewAllMenu();
 							} else if (userOption == 2) {
@@ -1264,7 +1263,7 @@ public class main {
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y') {
+		if (delUserCfm == 'Y'|| delUserCfm == 'y') {
 			for (int i = 0; i < userList.size(); i++) {
 				if (delID == (userList.get(i).getId())) {
 					userList.remove(i);
@@ -1286,8 +1285,8 @@ public class main {
 		int check = 0;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
-		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y') {
+		char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delSchoolCfm == 'Y'|| delSchoolCfm == 'y') {
 			for (int i = 0; i < schoolList.size(); i++) {
 				if (delID == (schoolList.get(i).getSchool_id())) {
 					schoolList.remove(i);
@@ -1309,8 +1308,8 @@ public class main {
 		int check = 0;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
-		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y') {
+		char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delMenuCfm == 'Y'|| delMenuCfm == 'y') {
 			for (int i = 0; i < menuList.size(); i++) {
 				if (delID == (menuList.get(i).getMenu_id())) {
 					menuList.remove(i);
@@ -1332,8 +1331,8 @@ public class main {
 		int check = 0;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
-		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y') {
+		char delOrderCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delOrderCfm == 'Y'|| delOrderCfm == 'y') {
 			for (int i = 0; i < orderList.size(); i++) {
 				if (delID == (orderList.get(i).getOrder_id())) {
 					orderList.remove(i);
@@ -1355,8 +1354,8 @@ public class main {
 		int check = 0;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
-		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y') {
+		char delOrderStatusCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delOrderStatusCfm == 'Y'|| delOrderStatusCfm == 'y') {
 			for (int i = 0; i < orderStatusList.size(); i++) {
 				if (delID == (orderStatusList.get(i).getOrderID())) {
 					orderStatusList.remove(i);
@@ -1378,8 +1377,8 @@ public class main {
 		int check = 0;
 		String delName = Helper.readString("Enter Parent/Guardian ID > ");
 
-		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y') {
+		char delPayCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delPayCfm == 'Y'|| delPayCfm == 'y') {
 			for (int i = 0; i < paymentList.size(); i++) {
 				if (delName.equalsIgnoreCase(paymentList.get(i).getName())) {
 					paymentList.remove(i);
@@ -1401,8 +1400,8 @@ public class main {
 		int check = 0;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
-		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y') {
+		char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		if (delVendorCfm == 'Y'|| delVendorCfm== 'y') {
 			for (int i = 0; i < vendorList.size(); i++) {
 				if (delID == (vendorList.get(i).getId())) {
 					vendorList.remove(i);
