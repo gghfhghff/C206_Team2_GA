@@ -32,6 +32,9 @@ public class test {
 	ArrayList<Payment> paymentList = new ArrayList<Payment>();
 	ArrayList<Item> itemList = new ArrayList<Item>();
 
+	/**
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 
@@ -56,6 +59,8 @@ public class test {
 		parent1 = new User("John Doe", 001, "1234 5678", "Parent","MATTHIS Primary School");
 		guardian1 = new User("Josh Tan", 002, "8765 4321", "Guardian", "JIAN Sparkletots");
 		
+		
+		//lsoadbas ghm9imbvrd
 	}
 
 	// ---------------------add-----------------
