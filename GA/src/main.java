@@ -69,7 +69,7 @@ public class main {
 						parentMenu();
 
 					} else if (parentOption == 3) {
-						// TODO
+						// place order
 
 						addOrder(orderList, menuList, itemList, paymentList);
 
@@ -119,12 +119,12 @@ public class main {
 						addPayment(paymentList, payment1);
 
 					} else if (parentOption == 7) {
-						// edit payment
+						// delete payment
 
 						int check = 0;
 
 						Helper.line(50, "-");
-						System.out.println("Edit Payment Method");
+						System.out.println("Delete Payment Method");
 						Helper.line(50, "-");
 
 						String delCard = Helper.readString("Enter Card Number To Be Deleted > ");
@@ -141,6 +141,10 @@ public class main {
 							if (check == 0) {
 								System.out.println("Card Not Found");
 							}
+						} else if (delPayCfm == 'N' || delPayCfm == 'n') {
+							System.out.println("Card Not Deleted");
+						} else {
+							System.out.println("Invalid Option");
 						}
 						parentMenu();
 
@@ -176,17 +180,21 @@ public class main {
 						// Add menu
 
 						Menu menu1 = inputMenu(menuList);
-
+						addMenu(menuList,menu1);
+						
 						char con = 'Y';
 
 						while (con == 'Y' || con == 'y') {
 
 							Item item1 = inputItem(itemList, menu1);
-							addMenu(menuList, itemList, menu1, item1);
-
+							addItem(itemList, item1);
 							con = Helper.readChar("Continue Adding Items to " + menu1.getMenu_name() + " (Y/N) > ");
 
 							if (con == 'N' || con == 'n') {
+								vendorMenu();
+							}
+							else {
+								System.out.println("Invalid Option");
 								vendorMenu();
 							}
 						}
@@ -257,6 +265,8 @@ public class main {
 								if (check2 == 0) {
 									System.out.println("Menu Not Found");
 								}
+							}else {
+								System.out.println("Invalid Option");
 							}
 						} else if (option == 3) {
 							System.out.println("Goodbye!");
@@ -488,19 +498,22 @@ public class main {
 										break;
 
 									} else if (delVendorCfm == 'N' || delVendorCfm == 'n') {
-										System.out.println("vendor not deleted");
+										System.out.println("Vendor Not Deleted");
+										check++;
 										break;
 									} else {
 										System.out.println("Invalid option!");
+										check++;
 										break;
 									}
 
-								}
-								if (check == 0) {
-									System.out.println("Vendor Not Found");
-								}
-								adminMenu();
+								}	
 							}
+							if (check == 0) {
+								System.out.println("Vendor Not Found");
+								break;
+							}
+							adminMenu();
 						} else if (deleteOption == 4) {
 							System.out.println("Return");
 							adminMenu();
@@ -510,7 +523,7 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
+						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No.of Items",
 								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
 							if (orderID == o.getOrder_id()) {
@@ -554,7 +567,7 @@ public class main {
 		System.out.println("4. Cancel Order");
 		System.out.println("5. View status of orders ");
 		System.out.println("6. Add payment method");
-		System.out.println("7. Edit payment method");
+		System.out.println("7. Delete payment method");
 		System.out.println("8. View payment method");
 		System.out.println("9. Return to user selection");
 	}
@@ -796,7 +809,7 @@ public class main {
 
 	}
 
-	public static void addMenu(ArrayList<Menu> menuList, ArrayList<Item> itemList, Menu menu1, Item item1) {
+	public static void addMenu(ArrayList<Menu> menuList, Menu menu1) {
 
 		boolean menuFound = false;
 
@@ -937,6 +950,9 @@ public class main {
 								parentMenu();
 
 							}
+						} else {
+							System.out.println("Invalid Option");
+							parentMenu();
 						}
 						break; // Exit the loop since the item is found
 					}
