@@ -72,7 +72,7 @@ public class main {
 						parentMenu();
 
 					} else if (parentOption == 3) {
-						// TODO 12
+						// TODO
 						Order order1 = inputOrder(orderList);
 						addOrder(orderList, menuList, itemList, paymentList);
 						
