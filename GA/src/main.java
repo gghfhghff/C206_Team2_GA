@@ -175,14 +175,14 @@ public class main {
 						// Add menu
 
 						Menu menu1 = inputMenu(menuList);
-
+						addMenu(menuList,menu1);
+						
 						char con = 'Y';
 
 						while (con == 'Y' || con == 'y') {
 
 							Item item1 = inputItem(itemList, menu1);
-							addMenu(menuList, itemList, menu1, item1);
-
+							addItem(itemList, item1);
 							con = Helper.readChar("Continue Adding Items to " + menu1.getMenu_name() + " (Y/N) > ");
 
 							if (con == 'N' || con == 'n') {
@@ -805,7 +805,7 @@ public class main {
 
 	}
 
-	public static void addMenu(ArrayList<Menu> menuList, ArrayList<Item> itemList, Menu menu1, Item item1) {
+	public static void addMenu(ArrayList<Menu> menuList, Menu menu1) {
 
 		boolean menuFound = false;
 
