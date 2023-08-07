@@ -16,20 +16,6 @@ public class main {
 //		OrderStatus os1 = new OrderStatus(1, "Pending");
 //		orderStatusList.add(os1);
 
-		Payment p1 = new Payment("Matt", "1234 5678 1239 9239", 999, "29/2/2000");
-		paymentList.add(p1);
-
-		Vendor v1 = new Vendor(1, "MACDONALds", "1233 5123", "ABC");
-		vendorList.add(v1);
-
-		Menu m1 = new Menu(1, "name", "status", "vendor name");
-		menuList.add(m1);
-
-		Item i1 = new Item(1, 1, "name", "desc", 5.0);
-		itemList.add(i1);
-
-		School s1 = new School(1, "name", "address", 123);
-		schoolList.add(s1);
 
 //		User u1 = new User("name", 1, "contact number", "role");
 //		userList.add(u1);
@@ -176,14 +162,13 @@ public class main {
 						// Add menu
 
 						Menu menu1 = inputMenu(menuList);
+						addMenu(menuList,menu1);
 
 						char con = 'Y';
 
 						while (con == 'Y' || con == 'y') {
-
 							Item item1 = inputItem(itemList, menu1);
-							addMenu(menuList, itemList, menu1, item1);
-
+							addItem(itemList, item1);
 							con = Helper.readChar("Continue Adding Items to " + menu1.getMenu_name() + " (Y/N) > ");
 
 							if (con == 'N' || con == 'n') {
@@ -294,7 +279,7 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
+						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No.of Items",
 								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
 							if (orderID == o.getOrder_id()) {
@@ -513,7 +498,7 @@ public class main {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
-						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
+						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No.of Items",
 								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
 							if (orderID == o.getOrder_id()) {
@@ -747,7 +732,7 @@ public class main {
 
 	}
 
-	private static void addItem(ArrayList<Item> itemList, Item item1, Vendor vendor1) {
+	private static void addItem(ArrayList<Item> itemList, Item item1) {
 
 		boolean itemFound = false;
 
@@ -799,7 +784,7 @@ public class main {
 
 	}
 
-	public static void addMenu(ArrayList<Menu> menuList, ArrayList<Item> itemList, Menu menu1, Item item1) {
+	public static void addMenu(ArrayList<Menu> menuList, Menu menu1) {
 
 		boolean menuFound = false;
 
@@ -879,7 +864,7 @@ public class main {
 
 					if (menuID == itemList.get(i).getMenu_id()) {
 
-						output += String.format("%-10s %-10s %-15s $%-10s", itemList.get(i).getItem_id(),
+						output += String.format("%-10s %-10s %-15s $%-10s\n", itemList.get(i).getItem_id(),
 								itemList.get(i).getItem_name(), itemList.get(i).getItem_description(),
 								itemList.get(i).getItem_price());
 
