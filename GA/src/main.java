@@ -461,7 +461,8 @@ public class main {
 								
 								userFound = true;
 								
-								output += String.format("%-10s %-10s %-10s", userList.get(i).getId(), userList.get(i).getName(), userList.get(i).getContactNum());
+								output += String.format("%-10s %-10s %-10s", userList.get(i).getId(), userList.get(i).getName(), 
+										userList.get(i).getContactNum());
 								
 							}
 						}
