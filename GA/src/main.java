@@ -49,7 +49,7 @@ public class main {
 				parentMenu();
 
 				int parentOption = 0;
-				while (parentOption != 8) {
+				while (parentOption != 9) {
 
 					parentOption = Helper.readInt("Enter Option > ");
 
@@ -432,7 +432,6 @@ public class main {
 
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
-								viewAllMenu();
 
 							} else if (userOption == 2) {
 								// school
