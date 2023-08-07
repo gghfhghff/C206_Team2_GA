@@ -36,9 +36,9 @@ public class test {
 
 	@Before
 	public void setUp() throws Exception {
-		// TO DELETE ORDERSTATUS
-		OrderStatus orderstatus1 = new OrderStatus(001, "Pending");
-		OrderStatus orderstatus2 = new OrderStatus(002, "Completed");
+		
+		orderStatus1 = new OrderStatus(001, "Pending");
+		orderStatus2 = new OrderStatus(002, "Completed");
 
 		payment1 = new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
 		payment2 = new Payment("Bobby", "1234 5678 1239 9239", 123, "10/01/2031");

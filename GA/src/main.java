@@ -432,6 +432,7 @@ public class main {
 
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
+								viewAllMenu();
 
 							} else if (userOption == 2) {
 								// school
