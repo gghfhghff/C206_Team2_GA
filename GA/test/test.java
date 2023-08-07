@@ -35,8 +35,6 @@ public class test {
 
 	@Before
 	public void setUp() throws Exception {
-		// TO DELETE ORDERSTATUS
-
 
 		payment1 = new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
 		payment2 = new Payment("Bobby", "1234 5678 1239 9239", 123, "10/01/2031");
@@ -77,6 +75,80 @@ public class test {
 
 	}
 
+	@Test
+	public void testAddNewSchool() {
+		// School List is not null, able to add new item
+		assertNotNull("Check if there is valid School arraylist to add to", schoolList);
+
+		// Add new School to the school list
+		schoolList.add(school1);
+
+		// Test that the list of the size will increase by 1 after it has been added
+		assertEquals("Check that the list size is 1 after it has been added", 1, schoolList.size());
+		// Test that the new school has been successfully added into the list
+		assertSame("Check that school is added", school1, schoolList.get(0));
+
+	}
+	
+	@Test
+	public void testAddMenu() {
+		// Menu List is not null, able to add new item
+		assertNotNull("Check if there is valid Menu arraylist to add to", menuList);
+
+		// Add new user to the menu list
+		menuList.add(menu1);
+
+		// Test that the list of the size will increase by 1 after it has been added
+		assertEquals("Check that the list size is 1 after it has been added", 1, menuList.size());
+		// Test that the new menu has been successfully added into the list
+		assertSame("Check that Menu is added", menu1, menuList.get(0));
+
+	}
+	
+	@Test
+	public void testAddNewOrder() {
+		// Order List is not null, able to add new item
+		assertNotNull("Check if there is valid Order arraylist to add to", orderList);
+
+		// Add new user to the order list
+		orderList.add(order1);
+
+		// Test that the list of the size will increase by 1 after it has been added
+		assertEquals("Check that the list size is 1 after it has been added", 1, orderList.size());
+		// Test that the new order has been successfully added into the list
+		assertSame("Check that Order is added", order1, orderList.get(0));
+
+	}
+	
+	@Test
+	public void testAddNewPayment() {
+		// Payment List is not null, able to add new item
+		assertNotNull("Check if there is valid Payment arraylist to add to", paymentList);
+
+		// Add new payment to the payment list
+		paymentList.add(payment1);
+
+		// Test that the list of the size will increase by 1 after it has been added
+		assertEquals("Check that the list size is 1 after it has been added", 1, paymentList.size());
+		// Test that the new payment has been successfully added into the list
+		assertSame("Check that Payment is added", payment1, paymentList.get(0));
+
+	}
+	
+	@Test
+	public void testAddNewVendor() {
+		// User List is not null, able to add new item
+		assertNotNull("Check if there is valid User arraylist to add to", vendorList);
+
+		// Add new user to the user list
+		vendorList.add(vendor1);
+
+		// Test that the list of the size will increase by 1 after it has been added
+		assertEquals("Check that the list size is 1 after it has been added", 1, vendorList.size());
+		// Test that the new vendor has been successfully added into the list
+		assertSame("Check that Vendor is added", vendor1, vendorList.get(0));
+
+	}
 //-------------------------view-----------------------
 
 	@Test
@@ -105,7 +177,6 @@ public class test {
 	}
 
 	@Test
-
 	public void testRetrieveAllSchools() {
 
 		// UserList is null or zero
@@ -129,57 +200,7 @@ public class test {
 
 		assertEquals("Test that ViewAllSchools displays correctly", testOutput, allSchools);
 	}
-//	@Test
-//
-//	public void testRetrieveAllMenus() {
-//
-//		// UserList is null or zero
-//		assertNotNull("Check if there is valid User arraylist to view from", menuList);
-//
-//		// test if the list of users retrieved from the userList is empty - boundary
-//		String allMenu = main.retrieveAllMenus(menuList);
-//		String testOutput = "";
-//		assertEquals("Check that viewAllMenus is empty", testOutput, allMenu);
-//
-//		// Given an empty list, after adding 2 items, test if the size of the list is 2
-//		// - normal
-//		main.addMenu(menuList, menu1);
-//		main.addMenu(menuList, menu2);
-//		assertEquals("Test that Menu arraylist size is 2", 2, menuList.size());
-//
-//		// test if the expected output string same as the list of users retrieved
-//		allMenu = main.retrieveAllMenus(menuList);
-//		testOutput = String.format("%-10d %-15s %-15s %-15s\n", 001, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
-//		testOutput += String.format("%-10d %-15s %-15s %-15s\n", 002, "KFC", "Paused", "MATT Pte Ltd");
-//
-//		assertEquals("Test that ViewAllMenus displays correctly", testOutput, allMenu);
-//	}
-//	
-//	@Test
-//
-//	public void testRetrieveAllOrders() {
-//
-//		// UserList is null or zero
-//		assertNotNull("Check if there is valid Order arraylist to view from", orderList);
-//
-//		// test if the list of users retrieved from the userList is empty - boundary
-//		String allOrders = main.retrieveAllOrders(orderList);
-//		String testOutput = "";
-//		assertEquals("Check that viewAllOrders is empty", testOutput, allOrders);
-//
-//		// Given an empty list, after adding 2 items, test if the size of the list is 2
-//		// - normal
-//		main.addOrder(orderList, order1);
-//		main.addOrder(orderList, order2);
-//		assertEquals("Test that Menu arraylist size is 2", 2, menuList.size());
-//
-//		// test if the expected output string same as the list of users retrieved
-//		allOrders = main.retrieveAllMenus(menuList);
-//		testOutput = String.format("%-10d %-15d %-15.2f %-15s\n",001, 10, 50.0, "JOSH Pte Ltd");
-//		testOutput += String.format("%-10d %-15d %-15.2f %-15s\n",002, 5, 10.0, "JOSH Pte Ltd");
-//
-//		assertEquals("Test that ViewAllOrders displays correctly", testOutput, allOrders);
-//	}
+	
 	
 	@Test
 	public void testRetrieveAllPayments() {
