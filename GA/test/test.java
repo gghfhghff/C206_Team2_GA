@@ -80,7 +80,7 @@ public class test {
 		
 
 	}
-
+	
 	@Test
 	public void testAddNewSchool() {
 		// School List is not null, able to add new item

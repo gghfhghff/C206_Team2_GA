@@ -1215,7 +1215,7 @@ public class main {
 	public static void viewAllSchools(ArrayList<School> schoolList) {
 
 		main.setHeader("View All Schools");
-		String output = String.format("%-10s %-15s %-15s %-15s", "ID", "Name", "Address", "No. of orders");
+		String output = String.format("%-10s %-15s %-15s %-15s\n", "ID", "Name", "Address", "No. of orders");
 
 		output += retrieveAllSchools(schoolList);
 
