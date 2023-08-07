@@ -119,12 +119,12 @@ public class main {
 						addPayment(paymentList, payment1);
 
 					} else if (parentOption == 7) {
-						// edit payment
+						// delete payment
 
 						int check = 0;
 
 						Helper.line(50, "-");
-						System.out.println("Edit Payment Method");
+						System.out.println("Delete Payment Method");
 						Helper.line(50, "-");
 
 						String delCard = Helper.readString("Enter Card Number To Be Deleted > ");
@@ -567,7 +567,7 @@ public class main {
 		System.out.println("4. Cancel Order");
 		System.out.println("5. View status of orders ");
 		System.out.println("6. Add payment method");
-		System.out.println("7. Edit payment method");
+		System.out.println("7. Delete payment method");
 		System.out.println("8. View payment method");
 		System.out.println("9. Return to user selection");
 	}
