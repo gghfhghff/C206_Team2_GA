@@ -431,6 +431,7 @@ public class main {
 
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
+								viewAllMenu();
 
 								viewAllMenu();
 							} else if (userOption == 2) {
