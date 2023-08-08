@@ -206,6 +206,7 @@ public class test {
 		testOutput += String.format("%-10s %-15d %-15s %-15s %-15s\n", "Josh Tan", 002, "8765 4321", "Guardian", "JIAN Sparkletots");
 
 		assertEquals("Test that ViewAllUsers displays correctly", testOutput, allUsers);
+
 	}
 
 	@Test
