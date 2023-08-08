@@ -2,6 +2,48 @@ import java.util.ArrayList;
 
 public class main {
 
+	private static final int ADMIN_DELETE_SCHOOL = 2;
+	private static final int ADMIN_SEARCH_ORDER = 9;
+	private static final int DELETE_VENDOR = 3;
+	private static final int DELETE_PARENT = 1;
+	private static final int DELETE_USERS = 8;
+	private static final int GENERATE_REPORTS = 7;
+	private static final int SEARCH_USER_BY_SCHOOL = 6;
+	private static final int BACK_TO_ADMIN_MENU = 4;
+	private static final int VIEW_VENDORS = 3;
+	private static final int VIEW_SCHOOLS = 2;
+	private static final int VIEW_PARENTS = 1;
+	private static final int VIEW_USERS = 5;
+	private static final int VIEW_ALL_ORDERS = 4;
+	private static final int ADD_VENDOR = 3;
+	private static final int DELETE_SCHOOL = 2;
+	private static final int EDIT_SCHOOL_ID = 1;
+	private static final int EDIT_SCHOOL = 2;
+	private static final int ADD_SCHOOL = 1;
+	private static final int ADMIN_TO_USERS = 10;
+	private static final int VENDOR_USERS = 5;
+	private static final int SEARCH_ORDER = 4;
+	private static final int MANAGE_DETAILS = 3;
+	private static final int EDIT_TO_VENDOR = 3;
+	private static final int DELETE_MENU = 2;
+	private static final int MENU_TO_EDIT = 1;
+	private static final int EDIT_MENU = 2;
+	private static final int ADD_MENU = 1;
+	private static final int VENDOR_TO_USERS = 5;
+	private static final int PARENT_TO_USERS = 9;
+	private static final int VIEW_PAYMENT_METHOD = 8;
+	private static final int DELETE_PAYMENT = 7;
+	private static final int ADD_PAYMENT = 6;
+	private static final int VIEW_ORDERS = 5;
+	private static final int CANCEL_ORDER = 4;
+	private static final int PLACE_ORDER = 3;
+	private static final int VIEW_MENU = 2;
+	private static final int ADD_USER = 1;
+	private static final int CHOOSE_ADMIN = 3;
+	private static final int CHOOSE_VENDOR = 2;
+	private static final int CHOOSE_PARENT = 1;
+	private static final int OPTION_QUIT = 4;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<User> userList = new ArrayList<User>();
@@ -36,12 +78,12 @@ public class main {
 
 		int option = 0;
 
-		while (option != 4) {
+		while (option != OPTION_QUIT) {
 			startMenu();
 
 			option = Helper.readInt("Enter an option > ");
 
-			if (option == 1) {
+			if (option == CHOOSE_PARENT) {
 				parentMenu();
 
 				int parentOption = 0;
@@ -49,12 +91,12 @@ public class main {
 
 					parentOption = Helper.readInt("Enter Option > ");
 
-					if (parentOption == 1) {
+					if (parentOption == ADD_USER) {
 
 						User u1 = inputUser(userList);
 						addUser(userList, u1);
 
-					} else if (parentOption == 2) {
+					} else if (parentOption == VIEW_MENU) {
 						// view
 						main.setHeader("View Menu");
 
@@ -68,12 +110,12 @@ public class main {
 						}
 						parentMenu();
 
-					} else if (parentOption == 3) {
+					} else if (parentOption == PLACE_ORDER) {
 						// place order
 
 						addOrder(orderList, menuList, itemList, paymentList);
 
-					} else if (parentOption == 4) {
+					} else if (parentOption == CANCEL_ORDER) {
 						// cancel order
 
 						int check = 0;
@@ -86,7 +128,9 @@ public class main {
 						char delOrderCfm = Helper.readChar("Enter Cancellation Confirmation (Y/N) > ");
 						if (delOrderCfm == 'Y' || delOrderCfm == 'y') {
 							for (int i = 0; i < orderList.size(); i++) {
-								if (delOrder == (orderList.get(i).getOrder_id())) {
+								int order_id = orderList.get(i).getOrder_id();
+								
+								if (delOrder == order_id) {
 									orderList.remove(i);
 									System.out.println("Order Cancelled");
 									check++;
@@ -99,7 +143,7 @@ public class main {
 						}
 						parentMenu();
 
-					} else if (parentOption == 5) {
+					} else if (parentOption == VIEW_ORDERS) {
 						// view order
 						main.setHeader("View Order");
 
@@ -112,13 +156,13 @@ public class main {
 						}
 						parentMenu();
 
-					} else if (parentOption == 6) {
+					} else if (parentOption == ADD_PAYMENT) {
 						// add payment
 
 						Payment payment1 = inputPayment(paymentList);
 						addPayment(paymentList, payment1);
 
-					} else if (parentOption == 7) {
+					} else if (parentOption == DELETE_PAYMENT) {
 						// delete payment
 
 						int check = 0;
@@ -131,7 +175,9 @@ public class main {
 						char delPayCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
 						if (delPayCfm == 'Y' || delPayCfm == 'y') {
 							for (int i = 0; i < paymentList.size(); i++) {
-								if (delCard.equals(paymentList.get(i).getCardNo())) {
+								String cardNo = paymentList.get(i).getCardNo();
+								
+								if (delCard.equals(cardNo)) {
 									paymentList.remove(i);
 									System.out.println("Card Deleted From System");
 									check++;
@@ -148,7 +194,7 @@ public class main {
 						}
 						parentMenu();
 
-					} else if (parentOption == 8) {
+					} else if (parentOption == VIEW_PAYMENT_METHOD) {
 						// view payment
 
 						retrieveAllPayments(paymentList);
@@ -156,7 +202,7 @@ public class main {
 						parentMenu();
 					}
 
-					else if (parentOption == 9) {
+					else if (parentOption == PARENT_TO_USERS) {
 						System.out.println("Returning to menu...");
 						break;
 
@@ -166,16 +212,16 @@ public class main {
 					}
 				}
 
-			} else if (option == 2) {
+			} else if (option == CHOOSE_VENDOR) {
 				vendorMenu();
 
 				int vendorOption = 0;
 
-				while (vendorOption != 5) {
+				while (vendorOption != VENDOR_TO_USERS) {
 
 					vendorOption = Helper.readInt("Enter option > ");
 
-					if (vendorOption == 1) {
+					if (vendorOption == ADD_MENU) {
 						// Add menu
 
 						Menu menu1 = inputMenu(menuList);
@@ -187,7 +233,9 @@ public class main {
 
 							Item item1 = inputItem(itemList, menu1);
 							addItem(itemList, item1);
-							con = Helper.readChar("Continue Adding Items to " + menu1.getMenu_name() + " (Y/N) > ");
+							String menu_name = menu1.getMenu_name();
+							
+							con = Helper.readChar("Continue Adding Items to " + menu_name + " (Y/N) > ");
 
 							if (con == 'N' || con == 'n') {
 								vendorMenu();
@@ -198,7 +246,7 @@ public class main {
 							}
 						}
 
-					} else if (vendorOption == 2) {
+					} else if (vendorOption == EDIT_MENU) {
 						// edit menu
 						editMenuMenu();
 						int checkItem = 0;
@@ -206,26 +254,35 @@ public class main {
 
 						option = Helper.readInt("Enter an option > ");
 
-						if (option == 1) {
+						if (option == MENU_TO_EDIT) {
 
 							int editMenu = Helper.readInt("Enter Menu ID To Be Edited > ");
 
 							for (int i = 0; i < menuList.size(); i++) {
-								if (editMenu == (menuList.get(i).getMenu_id())) {
+								int menu_id = menuList.get(i).getMenu_id();
+								
+								if (editMenu == menu_id) {
 									int editItem = Helper.readInt("Enter Item ID To Be Edited > ");
 									Helper.line(50, "-");
 									checkMenu++;
 
 									for (int m = 0; m < itemList.size(); m++) {
-										if (editItem == (itemList.get(m).getItem_id())) {
+										int item_id = itemList.get(m).getItem_id();
+										
+										if (editItem == item_id) {
+											String item_name = itemList.get(m).getItem_name();
+											String item_description = itemList.get(m).getItem_description();
+											double item_price = itemList.get(m).getItem_price();
+											
 											System.out.println(String.format(
 													"Item ID: %d \nItem Name: %s \nItem Description: %s \nItem Price: %.2f",
-													itemList.get(m).getItem_id(), itemList.get(m).getItem_name(),
-													itemList.get(m).getItem_description(),
-													itemList.get(m).getItem_price()));
+													item_id, item_name,
+													item_description,
+													item_price));
 											String newName = Helper.readString("Enter Item's Updated Name > ");
 											String newDesc = Helper.readString("Enter Item's Updated Description > ");
 											double newPrice = Helper.readDouble("Enter Item's Updated Price > ");
+											
 											itemList.get(m).setItem_name(newName);
 											itemList.get(m).setItem_description(newDesc);
 											itemList.get(m).setItem_price(newPrice);
@@ -243,7 +300,7 @@ public class main {
 							if (checkMenu == 0) {
 								System.out.println("Menu Not Found");
 							}
-						} else if (option == 2) {
+						} else if (option == DELETE_MENU) {
 							int check2 = 0;
 
 							Helper.line(50, "-");
@@ -254,7 +311,9 @@ public class main {
 							char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
 							if (delMenuCfm == 'Y' || delMenuCfm == 'y') {
 								for (int i = 0; i < menuList.size(); i++) {
-									if (delMenu == (menuList.get(i).getMenu_id())) {
+									int menu_id = menuList.get(i).getMenu_id();
+									
+									if (delMenu == menu_id) {
 										menuList.remove(i);
 										System.out.println("Menu Deleted From System");
 										check2++;
@@ -267,25 +326,31 @@ public class main {
 							}else {
 								System.out.println("Invalid Option");
 							}
-						} else if (option == 3) {
+						} else if (option == EDIT_TO_VENDOR) {
 							System.out.println("Goodbye!");
 						} else {
 							System.out.println("Invalid Option");
 						}
 						vendorMenu();
 
-					} else if (vendorOption == 3) {
+					} else if (vendorOption == MANAGE_DETAILS) {
 						// manage details
 						int check = 0;
 						main.setHeader("Edit Vendor Details");
 
 						int vendorId = Helper.readInt("Enter Vendor ID > ");
 						for (int i = 0; i < vendorList.size(); i++) {
-							if (vendorId == (vendorList.get(i).getId())) {
+							int id = vendorList.get(i).getId();
+							
+							if (vendorId == id) {
+								String vendor_name = vendorList.get(i).getName();
+								String vendor_contact = vendorList.get(i).getContactNo();
+								String vendor_address = vendorList.get(i).getAddress();
+								
 								System.out.println(String.format(
 										"Vendor ID: %d \nVendor Name: %s \nVendor Contact Number: %s \nVendor Address: %s",
-										vendorList.get(i).getId(), vendorList.get(i).getName(),
-										vendorList.get(i).getContactNo(), vendorList.get(i).getAddress()));
+										id, vendor_name,
+										vendor_contact, vendor_address));
 								String newNum = Helper.readString("Enter Vendor's Updated Contact Number > ");
 								String newAddress = Helper.readString("Enter Vendor's Updated Address > ");
 								vendorList.get(i).setContactNo(newNum);
@@ -299,14 +364,16 @@ public class main {
 							System.out.println("Vendor Not Found");
 						}
 						vendorMenu();
-					} else if (vendorOption == 4) {
+					} else if (vendorOption == SEARCH_ORDER) {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
 						System.out.println(String.format("%-10d %-15d %-15.2f %-15s %s", "Order ID", "No.of Items",
 								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
-							if (orderID == o.getOrder_id()) {
+							int order_id = o.getOrder_id();
+							
+							if (orderID == order_id) {
 								System.out.println(o.toString());
 							} else {
 								System.out.println("Order not found!");
@@ -315,7 +382,7 @@ public class main {
 						}
 						vendorMenu();
 
-					} else if (vendorOption == 5) {
+					} else if (vendorOption == VENDOR_USERS) {
 						System.out.println("Returning to Menu...");
 					} else {
 						System.out.println("Invalid option!");
@@ -323,34 +390,42 @@ public class main {
 					}
 
 				}
-			} else if (option == 3) {
+			} else if (option == CHOOSE_ADMIN) {
 				adminMenu();
 
 				int adminOption = 0;
 
-				while (adminOption != 10) {
+				while (adminOption != ADMIN_TO_USERS) {
 					adminOption = Helper.readInt("Enter option > ");
-					if (adminOption == 1) {
+					if (adminOption == ADD_SCHOOL) {
 						// add school
 
 						School school1 = inputSchool(schoolList);
 						addSchool(schoolList, school1);
 
-					} else if (adminOption == 2) {
+					} else if (adminOption == EDIT_SCHOOL) {
 						// edit school
 						editSchoolMenu();
 						int check = 0;
 
 						option = Helper.readInt("Enter an option > ");
 
-						if (option == 1) {
+						if (option == EDIT_SCHOOL_ID) {
 							int schoolId = Helper.readInt("Enter School ID > ");
 							for (int i = 0; i < schoolList.size(); i++) {
-								if (schoolId == (schoolList.get(i).getSchool_id())) {
+								
+								int school_id = schoolList.get(i).getSchool_id();
+								
+								
+								if (schoolId == school_id) {
+									String school_name = schoolList.get(i).getName();
+									String school_address = schoolList.get(i).getAddress();
+									int noOfOrders = schoolList.get(i).getNoOfOrders();
+									
 									System.out.println(String.format(
 											"School ID: %d \nSchool Name: %s \nSchool Address: %s \nSchool No. of Orders: %d",
-											schoolList.get(i).getSchool_id(), schoolList.get(i).getName(),
-											schoolList.get(i).getAddress(), schoolList.get(i).getNoOfOrders()));
+											school_id, school_name,
+											school_address, noOfOrders));
 									String newAddress = Helper.readString("Enter School's Updated Address > ");
 									schoolList.get(i).setAddress(newAddress);
 									check++;
@@ -364,7 +439,7 @@ public class main {
 							}
 						}
 
-						else if (option == 2) {
+						else if (option == DELETE_SCHOOL) {
 							int check2 = 0;
 
 							Helper.line(50, "-");
@@ -375,7 +450,9 @@ public class main {
 							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
 							if (delSchoolCfm == 'Y' || delSchoolCfm == 'y') {
 								for (int i = 0; i < schoolList.size(); i++) {
-									if (delSchool == (schoolList.get(i).getSchool_id())) {
+									int school_id = schoolList.get(i).getSchool_id();
+									
+									if (delSchool == school_id) {
 										schoolList.remove(i);
 										System.out.println("School Deleted From System");
 										check2++;
@@ -389,12 +466,12 @@ public class main {
 						}
 						adminMenu();
 
-					} else if (adminOption == 3) {
+					} else if (adminOption == ADD_VENDOR) {
 
 						Vendor vendor1 = inputVendor(vendorList);
 						addVendor(vendorList, vendor1);
 
-					} else if (adminOption == 4) {
+					} else if (adminOption == VIEW_ALL_ORDERS) {
 						// view all orders
 						main.setHeader("View all Orders");
 
@@ -406,26 +483,26 @@ public class main {
 							System.out.println(o.toString());
 						}
 						adminMenu();
-					} else if (adminOption == 5) {
+					} else if (adminOption == VIEW_USERS) {
 						// view all users
 						int userOption = 0;
 						viewAllMenu();
 						while (userOption != 4) {
 							userOption = Helper.readInt("Enter option > ");
-							if (userOption == 1) {
+							if (userOption == VIEW_PARENTS) {
 								// parent
 
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
 
 								viewAllMenu();
-							} else if (userOption == 2) {
+							} else if (userOption == VIEW_SCHOOLS) {
 								// school
 
 								retrieveAllSchools(schoolList);
 								viewAllSchools(schoolList);
 								viewAllMenu();
-							} else if (userOption == 3) {
+							} else if (userOption == VIEW_VENDORS) {
 								// vendor
 
 								main.setHeader("View All Vendors");
@@ -438,14 +515,14 @@ public class main {
 									System.out.println(v.toString());
 								}
 								viewAllMenu();
-							} else if (userOption == 4) {
+							} else if (userOption == BACK_TO_ADMIN_MENU) {
 								System.out.println("Goodbye");
 								adminMenu();
 							} else {
 								System.out.println("Invalid Option");
 							}
 						}
-					}else if(adminOption == 6) {
+					}else if(adminOption == SEARCH_USER_BY_SCHOOL) {
 						
 						main.setHeader("SEARCH USER BY SCHOOL");
 						
@@ -457,12 +534,18 @@ public class main {
 						
 						for (int i = 0; i < userList.size(); i++) {
 							
-							if(userList.get(i).getSchool().equalsIgnoreCase(school)) {
+							String search_school = userList.get(i).getSchool();
+							
+							if(search_school.equalsIgnoreCase(school)) {
 								
 								userFound = true;
 								
-								output += String.format("%-10s %-10s %-10s", userList.get(i).getId(), userList.get(i).getName(), 
-										userList.get(i).getContactNum());
+								int user_id = userList.get(i).getId();
+								String user_name = userList.get(i).getName();
+								String user_contact = userList.get(i).getContactNum();
+								
+								output += String.format("%-10s %-10s %-10s", user_id, user_name, 
+										user_contact);
 								
 							}
 						}
@@ -478,24 +561,24 @@ public class main {
 						adminMenu();
 						
 						
-					}else if (adminOption == 7) {
+					}else if (adminOption == GENERATE_REPORTS) {
 						// generate reports
 						main.setHeader("REPORT");
 						System.out.println("Total Number of Users: " + userList.size());
 						System.out.println("Total Number of Schools: " + schoolList.size());
 						System.out.println("Total Number of Vendors: " + vendorList.size());
 						adminMenu();
-					} else if (adminOption == 8) {
+					} else if (adminOption == DELETE_USERS) {
 						// delete user accounts
 						int deleteOption = 0;
 						deleteMenu();
 
 						deleteOption = Helper.readInt("Enter option > ");
-						if (deleteOption == 1) {
+						if (deleteOption == DELETE_PARENT) {
 							// parent
 							deleteUser(userList);
 							adminMenu();
-						} else if (deleteOption == 2) {
+						} else if (deleteOption == ADMIN_DELETE_SCHOOL) {
 							// school
 							int check = 0;
 							int delID = Helper.readInt("Enter School ID > ");
@@ -503,7 +586,9 @@ public class main {
 							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
 							if (delSchoolCfm == 'Y' || delSchoolCfm == 'y') {
 								for (int i = 0; i < schoolList.size(); i++) {
-									if (delID == (schoolList.get(i).getSchool_id())) {
+									int school_id = schoolList.get(i).getSchool_id();
+									
+									if (delID == school_id) {
 										schoolList.remove(i);
 										System.out.println("School Deleted From System");
 										check++;
@@ -515,13 +600,15 @@ public class main {
 								}
 							}
 							adminMenu();
-						} else if (deleteOption == 3) {
+						} else if (deleteOption == DELETE_VENDOR) {
 							// vendor
 							int check = 0;
 							int delID = Helper.readInt("Enter Vendor ID > ");
 
 							for (int i = 0; i < vendorList.size(); i++) {
-								if (delID == (vendorList.get(i).getId())) {
+								int vendor_id = vendorList.get(i).getId();
+								
+								if (delID == vendor_id) {
 									char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
 
 									if (delVendorCfm == 'Y' || delVendorCfm == 'y') {
@@ -552,7 +639,7 @@ public class main {
 							adminMenu();
 						}
 
-					} else if (adminOption == 9) {
+					} else if (adminOption == ADMIN_SEARCH_ORDER) {
 						main.setHeader("Search Order");
 
 						int orderID = Helper.readInt("Enter order ID> ");
@@ -567,14 +654,14 @@ public class main {
 
 						}
 						adminMenu();
-					} else if (adminOption == 10) {
+					} else if (adminOption == ADMIN_TO_USERS) {
 						System.out.println("Returning to Menu...");
 					} else {
 						System.out.println("Invalid option!");
 						adminMenu();
 					}
 				}
-			} else if (option == 4) {
+			} else if (option == OPTION_QUIT) {
 				System.out.println("Goodbye!");
 
 			} else {
