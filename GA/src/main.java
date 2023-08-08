@@ -118,29 +118,7 @@ public class main {
 					} else if (parentOption == CANCEL_ORDER) {
 						// cancel order
 
-						int check = 0;
-
-						Helper.line(50, "-");
-						System.out.println("Cancel Order");
-						Helper.line(50, "-");
-
-						int delOrder = Helper.readInt("Enter Order ID for Cancellation > ");
-						char delOrderCfm = Helper.readChar("Enter Cancellation Confirmation (Y/N) > ");
-						if (delOrderCfm == 'Y' || delOrderCfm == 'y') {
-							for (int i = 0; i < orderList.size(); i++) {
-								int order_id = orderList.get(i).getOrder_id();
-								
-								if (delOrder == order_id) {
-									orderList.remove(i);
-									System.out.println("Order Cancelled");
-									check++;
-									break;
-								}
-							}
-							if (check == 0) {
-								System.out.println("Order Not Found");
-							}
-						}
+						deleteOrder(orderList);
 						parentMenu();
 
 					} else if (parentOption == VIEW_ORDERS) {
@@ -164,34 +142,7 @@ public class main {
 
 					} else if (parentOption == DELETE_PAYMENT) {
 						// delete payment
-
-						int check = 0;
-
-						Helper.line(50, "-");
-						System.out.println("Delete Payment Method");
-						Helper.line(50, "-");
-
-						String delCard = Helper.readString("Enter Card Number To Be Deleted > ");
-						char delPayCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-						if (delPayCfm == 'Y' || delPayCfm == 'y') {
-							for (int i = 0; i < paymentList.size(); i++) {
-								String cardNo = paymentList.get(i).getCardNo();
-								
-								if (delCard.equals(cardNo)) {
-									paymentList.remove(i);
-									System.out.println("Card Deleted From System");
-									check++;
-									break;
-								}
-							}
-							if (check == 0) {
-								System.out.println("Card Not Found");
-							}
-						} else if (delPayCfm == 'N' || delPayCfm == 'n') {
-							System.out.println("Card Not Deleted");
-						} else {
-							System.out.println("Invalid Option");
-						}
+						deletePayment(paymentList);
 						parentMenu();
 
 					} else if (parentOption == VIEW_PAYMENT_METHOD) {
@@ -301,31 +252,7 @@ public class main {
 								System.out.println("Menu Not Found");
 							}
 						} else if (option == DELETE_MENU) {
-							int check2 = 0;
-
-							Helper.line(50, "-");
-							System.out.println("Delete Menu");
-							Helper.line(50, "-");
-
-							int delMenu = Helper.readInt("Enter Menu ID To Be Deleted > ");
-							char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delMenuCfm == 'Y' || delMenuCfm == 'y') {
-								for (int i = 0; i < menuList.size(); i++) {
-									int menu_id = menuList.get(i).getMenu_id();
-									
-									if (delMenu == menu_id) {
-										menuList.remove(i);
-										System.out.println("Menu Deleted From System");
-										check2++;
-										break;
-									}
-								}
-								if (check2 == 0) {
-									System.out.println("Menu Not Found");
-								}
-							}else {
-								System.out.println("Invalid Option");
-							}
+							deleteMenu(menuList);
 						} else if (option == EDIT_TO_VENDOR) {
 							System.out.println("Goodbye!");
 						} else {
@@ -440,29 +367,7 @@ public class main {
 						}
 
 						else if (option == DELETE_SCHOOL) {
-							int check2 = 0;
-
-							Helper.line(50, "-");
-							System.out.println("Delete School");
-							Helper.line(50, "-");
-
-							int delSchool = Helper.readInt("Enter School ID To Be Deleted > ");
-							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delSchoolCfm == 'Y' || delSchoolCfm == 'y') {
-								for (int i = 0; i < schoolList.size(); i++) {
-									int school_id = schoolList.get(i).getSchool_id();
-									
-									if (delSchool == school_id) {
-										schoolList.remove(i);
-										System.out.println("School Deleted From System");
-										check2++;
-										break;
-									}
-								}
-								if (check2 == 0) {
-									System.out.println("School Not Found");
-								}
-							}
+							deleteSchool(schoolList);
 						}
 						adminMenu();
 
@@ -579,60 +484,11 @@ public class main {
 							deleteUser(userList);
 							adminMenu();
 						} else if (deleteOption == ADMIN_DELETE_SCHOOL) {
-							// school
-							int check = 0;
-							int delID = Helper.readInt("Enter School ID > ");
-
-							char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-							if (delSchoolCfm == 'Y' || delSchoolCfm == 'y') {
-								for (int i = 0; i < schoolList.size(); i++) {
-									int school_id = schoolList.get(i).getSchool_id();
-									
-									if (delID == school_id) {
-										schoolList.remove(i);
-										System.out.println("School Deleted From System");
-										check++;
-										break;
-									}
-								}
-								if (check == 0) {
-									System.out.println("School Not Found");
-								}
-							}
+							deleteSchool(schoolList);
 							adminMenu();
 						} else if (deleteOption == DELETE_VENDOR) {
 							// vendor
-							int check = 0;
-							int delID = Helper.readInt("Enter Vendor ID > ");
-
-							for (int i = 0; i < vendorList.size(); i++) {
-								int vendor_id = vendorList.get(i).getId();
-								
-								if (delID == vendor_id) {
-									char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-
-									if (delVendorCfm == 'Y' || delVendorCfm == 'y') {
-										vendorList.remove(i);
-										System.out.println("Vendor Deleted From System");
-										check++;
-										break;
-
-									} else if (delVendorCfm == 'N' || delVendorCfm == 'n') {
-										System.out.println("Vendor Not Deleted");
-										check++;
-										break;
-									} else {
-										System.out.println("Invalid option!");
-										check++;
-										break;
-									}
-
-								}	
-							}
-							if (check == 0) {
-								System.out.println("Vendor Not Found");
-								break;
-							}
+							deleteVendor(vendorList);
 							adminMenu();
 						} else if (deleteOption == 4) {
 							System.out.println("Return");
