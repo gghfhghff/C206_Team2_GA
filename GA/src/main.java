@@ -1205,33 +1205,65 @@ public class main {
 	}
 
 	// ==================================delete users=============================
-	public static boolean deleteUser(ArrayList<User> userList) {
-
-		// parent
-		int check = 0;
+//	public static boolean deleteUser(ArrayList<User> userList) {
+//
+//		// parent
+//		int check = 0;
+//		boolean isDeleted = false;
+//		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
+//
+//		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+//		if (delUserCfm == 'Y' || delUserCfm == 'y') {
+//			for (int i = 0; i < userList.size(); i++) {
+//				if (delID == (userList.get(i).getId())) {
+//					userList.remove(i);
+//					System.out.println("User Deleted From System");
+//					isDeleted = true;
+//					check++;
+//					break;
+//				}
+//			}
+//			if (check == 0) {
+//				System.out.println("User Not Found");
+//			}
+//		}
+//		
+//		return isDeleted;
+//
+//	}
+	//------------
+	public static boolean doDeleteUser(ArrayList<User> userList, String tag) {
 		boolean isDeleted = false;
-		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
-		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delUserCfm == 'Y' || delUserCfm == 'y') {
-			for (int i = 0; i < userList.size(); i++) {
-				if (delID == (userList.get(i).getId())) {
-					userList.remove(i);
-					System.out.println("User Deleted From System");
-					isDeleted = true;
-					check++;
-					break;
-				}
-			}
-			if (check == 0) {
-				System.out.println("User Not Found");
+		if (tag.isEmpty()) {
+			return false;
+		}
+
+		for (int i = 0; i < userList.size(); i++) {
+
+			int id = userList.get(i).getId();
+
+			if (Integer.toString(id) == tag) {
+				isDeleted = true;
+
 			}
 		}
-		
 		return isDeleted;
 
 	}
 
+	public static void deleteUser(ArrayList<User> userList) {
+		main.viewAllUsers(userList);
+		String id = Helper.readString("Enter id > ");
+		Boolean isDeleted = doDeleteUser(userList, id);
+
+		if (isDeleted == false) {
+			System.out.println("Invalid id");
+		} else {
+			System.out.println("User Account " + id + " deleted");
+		}
+	}
+	//-----------
 	public static boolean deleteSchool(ArrayList<School> schoolList) {
 
 		// parent
