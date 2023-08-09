@@ -1058,8 +1058,8 @@ public class main {
 
 			if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
 
-				vendorList.add(
-						new Vendor(vendor1.getId(), vendor1.getName(), vendor1.getContactNo(), vendor1.getAddress()));
+				vendorList.add(vendor1);
+						
 
 				System.out.println("Vendor Successfully Added !");
 
@@ -1272,7 +1272,6 @@ public class main {
 				if (delID == (menuList.get(i).getMenu_id())) {
 					menuList.remove(i);
 					System.out.println("Menu Deleted From System");
-					check++;
 					isDeleted = true;
 					break;
 				}

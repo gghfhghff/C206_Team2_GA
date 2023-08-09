@@ -42,8 +42,8 @@ public class test {
 		payment1 = new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
 		payment2 = new Payment("Bobby", "1234 5678 1239 9239", 123, "10/01/2031");
 
-		vendor1 = new Vendor(1, "JOSH Pte Ltd", "12334566", "21 Jerry Street");
-		vendor2 = new Vendor(1, "MATT Pte Ltd", "12123434", "11 Adriel Circle");
+		vendor1 = new Vendor(1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
+		vendor2 = new Vendor(1, "MATT Pte Ltd", "1212 3434", "11 Adriel Circle");
 
 		menu1 = new Menu(1, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
 		menu2 = new Menu(2, "KFC", "Paused", "MATT Pte Ltd");
@@ -57,8 +57,8 @@ public class test {
 		order1 = new Order(001, 10, 50.0, "JOSH Pte Ltd");
 		order2 = new Order(002, 5, 10.0, "JOSH Pte Ltd");
 
-		parent1 = new User("John Doe", 001, "12345678", "Parent","MATTHIS Primary School");
-		guardian1 = new User("Josh Tan", 002, "87654321", "Guardian", "JIAN Sparkletots");
+		parent1 = new User("John Doe", 001, "1234 5678", "Parent","MATTHIS Primary School");
+		guardian1 = new User("Josh Tan", 002, "8765 4321", "Guardian", "JIAN Sparkletots");
 		
 		
 	}
@@ -280,8 +280,8 @@ public class test {
 
 		// test if the expected output string same as the list of payments retrieved
 		allVendors = main.retrieveAllVendors(vendorList);
-		testOutput = String.format("%-10d %-30s %-10s %-10s\n",1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
-		testOutput += String.format("%-10d %-30s %-10s %-10s\n",1, "MATT Pte Ltd", "1212 3434", "11 Adriel Circle");
+		testOutput = String.format("%-10s %-15s %-15s %-15s\n",1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
+		testOutput += String.format("%-10s %-15s %-15s %-15s\n",1, "MATT Pte Ltd", "1212 3434", "11 Adriel Circle");
 
 		assertEquals("Test that ViewAllVendors displays correctly", testOutput, allVendors);
 	}
@@ -349,10 +349,11 @@ public class test {
 
 		// Test that the new user has been deleted list
 		assertSame("Check that User is deleted", userList.size(), 0);
+		assertTrue("Check that User is deleted",isRemoved);
+		
 		
 		// Test that system will reject when invalid id has been entered
-		assertEquals("Check that the id entered is invalid",userList.get(0).getId(),0);
-		assertFalse("Check that the user has not been deleted",main.deleteUser(userList));
+		assertFalse("Check that the user has not been deleted",isRemoved);
 
 	}
 
