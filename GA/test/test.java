@@ -42,8 +42,8 @@ public class test {
 		payment1 = new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
 		payment2 = new Payment("Bobby", "1234 5678 1239 9239", 123, "10/01/2031");
 
-		vendor1 = new Vendor(1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
-		vendor2 = new Vendor(1, "MATT Pte Ltd", "1212 3434", "11 Adriel Circle");
+		vendor1 = new Vendor(1, "JOSH Pte Ltd", "12334566", "21 Jerry Street");
+		vendor2 = new Vendor(1, "MATT Pte Ltd", "12123434", "11 Adriel Circle");
 
 		menu1 = new Menu(1, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
 		menu2 = new Menu(2, "KFC", "Paused", "MATT Pte Ltd");
@@ -57,8 +57,8 @@ public class test {
 		order1 = new Order(001, 10, 50.0, "JOSH Pte Ltd");
 		order2 = new Order(002, 5, 10.0, "JOSH Pte Ltd");
 
-		parent1 = new User("John Doe", 001, "1234 5678", "Parent","MATTHIS Primary School");
-		guardian1 = new User("Josh Tan", 002, "8765 4321", "Guardian", "JIAN Sparkletots");
+		parent1 = new User("John Doe", 001, "12345678", "Parent","MATTHIS Primary School");
+		guardian1 = new User("Josh Tan", 002, "87654321", "Guardian", "JIAN Sparkletots");
 		
 		
 	}
@@ -74,14 +74,16 @@ public class test {
 
 		// Test that the list of the size will increase by 1 after it has been added - boundary
 		assertEquals("Check that the list size is 1 after it has been added", 1, userList.size());
-		
-		// Test that the new user has been successfully added into the list
 		assertSame("Check that User is added", parent1, userList.get(0));
-		
-		
+
+		// Add another item. test The size of the list is 2? -normal
+		// The item just added is as same as the second item of the list
+		main.addUser(userList, guardian1);
+		assertEquals("Check that User arraylist size is 2", 2, userList.size());
+		assertSame("Check that User is added", guardian1, userList.get(1));
 
 	}
-
+	
 	@Test
 	public void testAddNewSchool() {
 		// School List is not null, able to add new item
@@ -92,8 +94,13 @@ public class test {
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, schoolList.size());
-		// Test that the new school has been successfully added into the list
-		assertSame("Check that school is added", school1, schoolList.get(0));
+		assertSame("Check that School is added", school1, schoolList.get(0));
+
+		// Add another item. test The size of the list is 2? -normal
+		// The item just added is as same as the second item of the list
+		main.addSchool(schoolList, school2);
+		assertEquals("Check that School arraylist size is 2", 2, schoolList.size());
+		assertSame("Check that School is added", school2, schoolList.get(1));
 
 	}
 	
@@ -107,9 +114,13 @@ public class test {
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, menuList.size());
-		// Test that the new menu has been successfully added into the list
 		assertSame("Check that Menu is added", menu1, menuList.get(0));
 
+		// Add another item. test The size of the list is 2? -normal
+		// The item just added is as same as the second item of the list
+		main.addMenu(menuList, menu2);
+		assertEquals("Check that Menu arraylist size is 2", 2, menuList.size());
+		assertSame("Check that Menu is added", menu2, menuList.get(1));
 	}
 	
 	@Test
@@ -122,8 +133,13 @@ public class test {
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, orderList.size());
-		// Test that the new order has been successfully added into the list
 		assertSame("Check that Order is added", order1, orderList.get(0));
+
+		// Add another item. test The size of the list is 2? -normal
+		// The item just added is as same as the second item of the list
+		orderList.add(order2);
+		assertEquals("Check that Order arraylist size is 2", 2, orderList.size());
+		assertSame("Check that Order is added",order2, orderList.get(1));
 
 	}
 	
@@ -137,8 +153,13 @@ public class test {
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, paymentList.size());
-		// Test that the new payment has been successfully added into the list
 		assertSame("Check that Payment is added", payment1, paymentList.get(0));
+	
+		// Add another item. test The size of the list is 2? -normal
+		// The item just added is as same as the second item of the list
+		main.addPayment(paymentList, payment2);
+		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
+		assertSame("Check that Payment is added", payment2, paymentList.get(1));
 
 	}
 	
@@ -152,8 +173,13 @@ public class test {
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, vendorList.size());
-		// Test that the new vendor has been successfully added into the list
 		assertSame("Check that Vendor is added", vendor1, vendorList.get(0));
+		
+		// Add another item. test The size of the list is 2? -normal
+		// The item just added is as same as the second item of the list
+		main.addVendor(vendorList, vendor2);
+		assertEquals("Check that Vendor arraylist size is 2", 2, vendorList.size());
+		assertSame("Check that Vendor is added", vendor2, vendorList.get(1));
 
 	}
 //-------------------------view-----------------------
@@ -181,6 +207,7 @@ public class test {
 		testOutput += String.format("%-10s %-15d %-15s %-15s %-15s\n", "Josh Tan", 002, "8765 4321", "Guardian", "JIAN Sparkletots");
 
 		assertEquals("Test that ViewAllUsers displays correctly", testOutput, allUsers);
+
 	}
 
 	@Test
