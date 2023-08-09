@@ -343,12 +343,16 @@ public class test {
 
 		// delete user to the user list
 		userList.remove(parent1);
-
+		Boolean isRemoved = main.deleteUser(userList);
 		// Test that the list of the size will decrease by 1 after it has been added
 		assertEquals("Check that the list size is 0 after it has been deleted", 0, userList.size());
 
 		// Test that the new user has been deleted list
 		assertSame("Check that User is deleted", userList.size(), 0);
+		
+		// Test that system will reject when invalid id has been entered
+		assertEquals("Check that the id entered is invalid",userList.get(0).getId(),0);
+		assertFalse("Check that the user has not been deleted",main.deleteUser(userList));
 
 	}
 

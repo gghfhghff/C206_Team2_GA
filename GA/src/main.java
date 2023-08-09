@@ -1205,10 +1205,11 @@ public class main {
 	}
 
 	// ==================================delete users=============================
-	public static void deleteUser(ArrayList<User> userList) {
+	public static boolean deleteUser(ArrayList<User> userList) {
 
 		// parent
 		int check = 0;
+		boolean isDeleted = false;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
@@ -1217,6 +1218,7 @@ public class main {
 				if (delID == (userList.get(i).getId())) {
 					userList.remove(i);
 					System.out.println("User Deleted From System");
+					isDeleted = true;
 					check++;
 					break;
 				}
@@ -1225,13 +1227,16 @@ public class main {
 				System.out.println("User Not Found");
 			}
 		}
+		
+		return isDeleted;
 
 	}
 
-	public static void deleteSchool(ArrayList<School> schoolList) {
+	public static boolean deleteSchool(ArrayList<School> schoolList) {
 
 		// parent
 		int check = 0;
+		boolean isDeleted = false;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
@@ -1240,6 +1245,7 @@ public class main {
 				if (delID == (schoolList.get(i).getSchool_id())) {
 					schoolList.remove(i);
 					System.out.println("SChool Deleted From System");
+					isDeleted = true;
 					check++;
 					break;
 				}
@@ -1248,13 +1254,16 @@ public class main {
 				System.out.println("School Not Found");
 			}
 		}
+		
+		return isDeleted;
 
 	}
 
-	public static void deleteMenu(ArrayList<Menu> menuList) {
+	public static boolean deleteMenu(ArrayList<Menu> menuList) {
 
 		// parent
 		int check = 0;
+		boolean isDeleted = false;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
@@ -1264,6 +1273,7 @@ public class main {
 					menuList.remove(i);
 					System.out.println("Menu Deleted From System");
 					check++;
+					isDeleted = true;
 					break;
 				}
 			}
@@ -1271,13 +1281,16 @@ public class main {
 				System.out.println("Menu Not Found");
 			}
 		}
+		
+		return isDeleted;
 
 	}
 
-	public static void deleteOrder(ArrayList<Order> orderList) {
+	public static boolean deleteOrder(ArrayList<Order> orderList) {
 
 		// parent
 		int check = 0;
+		boolean isDeleted = false;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delOrderCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
@@ -1287,6 +1300,7 @@ public class main {
 					orderList.remove(i);
 					System.out.println("Order Deleted From System");
 					check++;
+					isDeleted = true;
 					break;
 				}
 			}
@@ -1295,14 +1309,15 @@ public class main {
 			}
 		}
 
+		return isDeleted;
 	}
 
-	public static void deletePayment(ArrayList<Payment> paymentList) {
+	public static boolean deletePayment(ArrayList<Payment> paymentList) {
 
 		// parent
 		int check = 0;
+		boolean isDeleted = false;
 		String delName = Helper.readString("Enter Parent/Guardian ID > ");
-
 		char delPayCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
 		if (delPayCfm == 'Y' || delPayCfm == 'y') {
 			for (int i = 0; i < paymentList.size(); i++) {
@@ -1310,6 +1325,7 @@ public class main {
 					paymentList.remove(i);
 					System.out.println("Payment Deleted From System");
 					check++;
+					isDeleted = true;
 					break;
 				}
 			}
@@ -1317,13 +1333,16 @@ public class main {
 				System.out.println("Payment Not Found");
 			}
 		}
+		
+		return isDeleted;
 
 	}
 
-	public static void deleteVendor(ArrayList<Vendor> vendorList) {
+	public static boolean deleteVendor(ArrayList<Vendor> vendorList) {
 
 		// parent
 		int check = 0;
+		boolean isDeleted = false;
 		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
 
 		char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
@@ -1333,6 +1352,7 @@ public class main {
 					vendorList.remove(i);
 					System.out.println("Vendor Deleted From System");
 					check++;
+					isDeleted = true;
 					break;
 				}
 			}
@@ -1340,7 +1360,8 @@ public class main {
 				System.out.println("Vendor Not Found");
 			}
 		}
+		
+		return isDeleted;
 
 	}
-//sahdouabsg ,kd
 }
