@@ -10,8 +10,8 @@ public class main {
 	private static final int GENERATE_REPORTS = 7;
 	private static final int SEARCH_USER_BY_SCHOOL = 6;
 	private static final int BACK_TO_ADMIN_MENU = 4;
-	private static final int VIEW_VENDORS = 3;
-	private static final int VIEW_SCHOOLS = 2;
+	private static final int VIEW_VENDORS = 2;
+	private static final int VIEW_SCHOOLS = 3;
 	private static final int VIEW_PARENTS = 1;
 	private static final int VIEW_USERS = 5;
 	private static final int VIEW_ALL_ORDERS = 4;
@@ -400,31 +400,17 @@ public class main {
 
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
-
-//<<<<<<< HEAD
-							} else if (userOption == 2) {
-//=======
+								viewAllMenu();
+							} else if (userOption == VIEW_VENDORS) {
+								retrieveAllVendors(vendorList);
+								viewAllVendor(vendorList);
 								viewAllMenu();
 							} else if (userOption == VIEW_SCHOOLS) {
-//>>>>>>> branch 'master' of https://github.com/gghfhghff/C206_Team2_GA.git
-								// school
 
 								retrieveAllSchools(schoolList);
 								viewAllSchools(schoolList);
 								viewAllMenu();
-							} else if (userOption == VIEW_VENDORS) {
-								// vendor
-
-								main.setHeader("View All Vendors");
-
-								System.out.println(String.format("%-10s %-15s %-15s %-15s", "ID", "Name", "Contact No.",
-										"Address"));
-
-								for (Vendor v : vendorList) {
-
-									System.out.println(v.toString());
-								}
-								viewAllMenu();
+							
 							} else if (userOption == BACK_TO_ADMIN_MENU) {
 								System.out.println("Goodbye");
 								adminMenu();
@@ -484,7 +470,8 @@ public class main {
 						deleteMenu();
 
 						deleteOption = Helper.readInt("Enter option > ");
-						if (deleteOption == DELETE_PARENT) {
+						if (deleteOption == DELETE_PARENT) {     
+							// TODO ABCDEDFFFED
 							// parent
 							deleteUser(userList);
 							adminMenu();
@@ -1148,7 +1135,18 @@ public class main {
 
 		return output;
 	}
+	
+	public static void viewAllVendor(ArrayList<Vendor> vendorList) {
 
+		main.setHeader("View All Vendors");
+		String output = String.format("%-10s %-15s %-15s %-15s\n", "ID", "Name", "Contact No.", "Address");
+
+		output += retrieveAllVendors(vendorList);
+
+		System.out.println(output);
+
+	}
+	
 	public static void viewAllUsers(ArrayList<User> userList) {
 
 		main.setHeader("View All Parents/Guardians");
@@ -1205,37 +1203,13 @@ public class main {
 	}
 
 	// ==================================delete users=============================
-//	public static boolean deleteUser(ArrayList<User> userList) {
-//
-//		// parent
-//		int check = 0;
-//		boolean isDeleted = false;
-//		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
-//
-//		char delUserCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-//		if (delUserCfm == 'Y' || delUserCfm == 'y') {
-//			for (int i = 0; i < userList.size(); i++) {
-//				if (delID == (userList.get(i).getId())) {
-//					userList.remove(i);
-//					System.out.println("User Deleted From System");
-//					isDeleted = true;
-//					check++;
-//					break;
-//				}
-//			}
-//			if (check == 0) {
-//				System.out.println("User Not Found");
-//			}
-//		}
-//		
-//		return isDeleted;
-//
-//	}
-	//------------
-	public static boolean doDeleteUser(ArrayList<User> userList, String tag) {
+
+	
+	//TODO ASJDADJDS
+	public static boolean doDeleteUser(ArrayList<User> userList, int inputId) {
 		boolean isDeleted = false;
 
-		if (tag.isEmpty()) {
+		if (inputId == 0) {
 			return false;
 		}
 
@@ -1243,7 +1217,8 @@ public class main {
 
 			int id = userList.get(i).getId();
 
-			if (Integer.toString(id) == tag) {
+			if (id == inputId) {
+				userList.remove(i);
 				isDeleted = true;
 
 			}
@@ -1254,145 +1229,223 @@ public class main {
 
 	public static void deleteUser(ArrayList<User> userList) {
 		main.viewAllUsers(userList);
-		String id = Helper.readString("Enter id > ");
-		Boolean isDeleted = doDeleteUser(userList, id);
-
-		if (isDeleted == false) {
-			System.out.println("Invalid id");
-		} else {
-			System.out.println("User Account " + id + " deleted");
-		}
-	}
-	//-----------
-	public static boolean deleteSchool(ArrayList<School> schoolList) {
-
-		// parent
-		int check = 0;
-		boolean isDeleted = false;
-		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
-
-		char delSchoolCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delSchoolCfm == 'Y' || delSchoolCfm == 'y') {
-			for (int i = 0; i < schoolList.size(); i++) {
-				if (delID == (schoolList.get(i).getSchool_id())) {
-					schoolList.remove(i);
-					System.out.println("SChool Deleted From System");
-					isDeleted = true;
-					check++;
-					break;
-				}
-			}
-			if (check == 0) {
-				System.out.println("School Not Found");
-			}
-		}
+		int id = Helper.readInt("Enter id > ");
 		
-		return isDeleted;
-
-	}
-
-	public static boolean deleteMenu(ArrayList<Menu> menuList) {
-
-		// parent
-		int check = 0;
-		boolean isDeleted = false;
-		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
-
-		char delMenuCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delMenuCfm == 'Y' || delMenuCfm == 'y') {
-			for (int i = 0; i < menuList.size(); i++) {
-				if (delID == (menuList.get(i).getMenu_id())) {
-					menuList.remove(i);
-					System.out.println("Menu Deleted From System");
-					isDeleted = true;
-					break;
-				}
-			}
-			if (check == 0) {
-				System.out.println("Menu Not Found");
-			}
-		}
+		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
 		
+		if(yn == 'Y' || yn == 'y') {
+			
+			Boolean isDeleted = doDeleteUser(userList, id);
+			
+			if (isDeleted == false) {
+				System.out.println("Invalid id");
+			} else {
+				System.out.println("User ID : " + id + " deleted");
+			}
+		}
+	
+	}
+	
+	public static boolean doDeleteSchool(ArrayList<School> schoolList, int inputId) {
+		boolean isDeleted = false;
+
+		if (inputId == 0) {
+			return false;
+		}
+
+		for (int i = 0; i < schoolList.size(); i++) {
+
+			int id = schoolList.get(i).getSchool_id();
+
+			if (id == inputId) {
+				schoolList.remove(i);
+				isDeleted = true;
+
+			}
+		}
 		return isDeleted;
 
 	}
-
-	public static boolean deleteOrder(ArrayList<Order> orderList) {
-
-		// parent
-		int check = 0;
-		boolean isDeleted = false;
-		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
-
-		char delOrderCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delOrderCfm == 'Y' || delOrderCfm == 'y') {
-			for (int i = 0; i < orderList.size(); i++) {
-				if (delID == (orderList.get(i).getOrder_id())) {
-					orderList.remove(i);
-					System.out.println("Order Deleted From System");
-					check++;
-					isDeleted = true;
-					break;
-				}
-			}
-			if (check == 0) {
-				System.out.println("Order Not Found");
-			}
-		}
-
-		return isDeleted;
-	}
-
-	public static boolean deletePayment(ArrayList<Payment> paymentList) {
+	public static void deleteSchool(ArrayList<School> schoolList) {
 
 		// parent
-		int check = 0;
-		boolean isDeleted = false;
-		String delName = Helper.readString("Enter Parent/Guardian ID > ");
-		char delPayCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delPayCfm == 'Y' || delPayCfm == 'y') {
-			for (int i = 0; i < paymentList.size(); i++) {
-				if (delName.equalsIgnoreCase(paymentList.get(i).getName())) {
-					paymentList.remove(i);
-					System.out.println("Payment Deleted From System");
-					check++;
-					isDeleted = true;
-					break;
-				}
-			}
-			if (check == 0) {
-				System.out.println("Payment Not Found");
-			}
-		}
+		main.viewAllSchools(schoolList);
+		int id = Helper.readInt("Enter id > ");
 		
+		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		
+		if(yn == 'Y' || yn == 'y') {
+			
+			Boolean isDeleted = doDeleteSchool(schoolList, id);
+			
+			if (isDeleted == false) {
+				System.out.println("Invalid id");
+			} else {
+				System.out.println("School ID : " + id + " deleted");
+			}
+		}
+	}
+	
+	public static boolean doDeleteMenu(ArrayList<Menu> menuList, int inputId) {
+		boolean isDeleted = false;
+
+		if (inputId == 0) {
+			return false;
+		}
+
+		for (int i = 0; i < menuList.size(); i++) {
+
+			int id = menuList.get(i).getMenu_id();
+
+			if (id == inputId) {
+				menuList.remove(i);
+				isDeleted = true;
+
+			}
+		}
 		return isDeleted;
 
 	}
 
-	public static boolean deleteVendor(ArrayList<Vendor> vendorList) {
+	public static void deleteMenu(ArrayList<Menu> menuList) {
 
-		// parent
-		int check = 0;
-		boolean isDeleted = false;
-		int delID = Helper.readInt("Enter Parent/Guardian ID > ");
-
-		char delVendorCfm = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		if (delVendorCfm == 'Y' || delVendorCfm == 'y') {
-			for (int i = 0; i < vendorList.size(); i++) {
-				if (delID == (vendorList.get(i).getId())) {
-					vendorList.remove(i);
-					System.out.println("Vendor Deleted From System");
-					check++;
-					isDeleted = true;
-					break;
-				}
-			}
-			if (check == 0) {
-				System.out.println("Vendor Not Found");
+		main.viewAllMenu();
+		int id = Helper.readInt("Enter id > ");
+		
+		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		
+		if(yn == 'Y' || yn == 'y') {
+			
+			Boolean isDeleted = doDeleteMenu(menuList, id);
+			
+			if (isDeleted == false) {
+				System.out.println("Invalid id");
+			} else {
+				System.out.println("Menu ID : " + id + " deleted");
 			}
 		}
-		
+	}
+	
+	public static boolean doDeleteOrder(ArrayList<Order> orderList, int inputId) {
+		boolean isDeleted = false;
+
+		if (inputId == 0) {
+			return false;
+		}
+
+		for (int i = 0; i < orderList.size(); i++) {
+
+			int id = orderList.get(i).getOrder_id();
+
+			if (id == inputId) {
+				orderList.remove(i);
+				isDeleted = true;
+
+			}
+		}
 		return isDeleted;
 
+	}
+
+
+	public static void deleteOrder(ArrayList<Order> orderList) {
+
+		// parent
+		main.viewAllOrders(orderList);
+		int id = Helper.readInt("Enter id > ");
+		
+		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		
+		if(yn == 'Y' || yn == 'y') {
+			
+			Boolean isDeleted = doDeleteOrder(orderList, id);
+			
+			if (isDeleted == false) {
+				System.out.println("Invalid id");
+			} else {
+				System.out.println("Order ID : " + id + " deleted");
+			}
+		}
+	}
+	
+	public static boolean doDeletePayment(ArrayList<Payment> paymentList, String name) {
+		boolean isDeleted = false;
+
+		if (name.isEmpty()) {
+			return false;
+		}
+
+		for (int i = 0; i < paymentList.size(); i++) {
+
+			String name2 = paymentList.get(i).getName();
+
+			if (name == name2) {
+				paymentList.remove(i);
+				isDeleted = true;
+
+			}
+		}
+		return isDeleted;
+
+	}
+
+	public static void deletePayment(ArrayList<Payment> paymentList) {
+
+		// parent
+		main.viewAllPayment(paymentList);
+		String name = Helper.readString("Enter Name > ");
+		
+		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		
+		if(yn == 'Y' || yn == 'y') {
+			
+			Boolean isDeleted = doDeletePayment(paymentList, name);
+			
+			if (isDeleted == false) {
+				System.out.println("Invalid name");
+			} else {
+				System.out.println("Payment method belonging to : " + name + " deleted");
+			}
+		}
+
+	}
+
+	public static boolean doDeleteVendor(ArrayList<Vendor> vendorList, int inputId) {
+		boolean isDeleted = false;
+
+		if (inputId == 0) {
+			return false;
+		}
+
+		for (int i = 0; i < vendorList.size(); i++) {
+
+			int id = vendorList.get(i).getId();
+
+			if (id == inputId) {
+				vendorList.remove(i);
+				isDeleted = true;
+
+			}
+		}
+		return isDeleted;
+
+	}
+	public static void deleteVendor(ArrayList<Vendor> vendorList) {
+
+		main.viewAllVendor(vendorList);
+		int id = Helper.readInt("Enter id > ");
+		
+		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
+		
+		if(yn == 'Y' || yn == 'y') {
+			
+			Boolean isDeleted = doDeleteVendor(vendorList, id);
+			
+			if (isDeleted == false) {
+				System.out.println("Invalid id");
+			} else {
+				System.out.println("Vendor ID : " + id + " deleted");
+			}
+		}
 	}
 }
