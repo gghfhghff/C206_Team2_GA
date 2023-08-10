@@ -1020,7 +1020,6 @@ public class main {
 					&& vendorList.get(i).getContactNo().equalsIgnoreCase(vendor1.getContactNo())) {
 
 				vendFound = true;
-
 				System.out.println("School Already Exists !");
 
 				break;
