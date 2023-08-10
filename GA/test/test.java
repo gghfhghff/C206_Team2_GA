@@ -95,6 +95,7 @@ public class test {
 		// test duplicate
 		School school3 = new School(001, "MATTHIS Primary School", "10 Matthis Avenue", 10);
 	
+		
 
 		assertFalse("ChECK DUPLCIATE", schoolList.contains(school3));
 		assertFalse("dont add",main.addSchool(schoolList, school3) );
