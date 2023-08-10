@@ -136,7 +136,7 @@ public class main {
 						retrieveAllPayments(paymentList);
 						viewAllPayment(paymentList);
 						parentMenu();
-					
+
 					}
 
 					else if (parentOption == PARENT_TO_USERS) {
@@ -162,8 +162,8 @@ public class main {
 						// Add menu
 
 						Menu menu1 = inputMenu(menuList);
-						addMenu(menuList,menu1);
-						
+						addMenu(menuList, menu1);
+
 						char con = 'Y';
 
 						while (con == 'Y' || con == 'y') {
@@ -171,13 +171,12 @@ public class main {
 							Item item1 = inputItem(itemList, menu1);
 							addItem(itemList, item1);
 							String menu_name = menu1.getMenu_name();
-							
+
 							con = Helper.readChar("Continue Adding Items to " + menu_name + " (Y/N) > ");
 
 							if (con == 'N' || con == 'n') {
 								vendorMenu();
-							}
-							else {
+							} else {
 								System.out.println("Invalid Option");
 								vendorMenu();
 							}
@@ -197,7 +196,7 @@ public class main {
 
 							for (int i = 0; i < menuList.size(); i++) {
 								int menu_id = menuList.get(i).getMenu_id();
-								
+
 								if (editMenu == menu_id) {
 									int editItem = Helper.readInt("Enter Item ID To Be Edited > ");
 									Helper.line(50, "-");
@@ -205,21 +204,19 @@ public class main {
 
 									for (int m = 0; m < itemList.size(); m++) {
 										int item_id = itemList.get(m).getItem_id();
-										
+
 										if (editItem == item_id) {
 											String item_name = itemList.get(m).getItem_name();
 											String item_description = itemList.get(m).getItem_description();
 											double item_price = itemList.get(m).getItem_price();
-											
+
 											System.out.println(String.format(
 													"Item ID: %d \nItem Name: %s \nItem Description: %s \nItem Price: %.2f",
-													item_id, item_name,
-													item_description,
-													item_price));
+													item_id, item_name, item_description, item_price));
 											String newName = Helper.readString("Enter Item's Updated Name > ");
 											String newDesc = Helper.readString("Enter Item's Updated Description > ");
 											double newPrice = Helper.readDouble("Enter Item's Updated Price > ");
-											
+
 											itemList.get(m).setItem_name(newName);
 											itemList.get(m).setItem_description(newDesc);
 											itemList.get(m).setItem_price(newPrice);
@@ -254,16 +251,15 @@ public class main {
 						int vendorId = Helper.readInt("Enter Vendor ID > ");
 						for (int i = 0; i < vendorList.size(); i++) {
 							int id = vendorList.get(i).getId();
-							
+
 							if (vendorId == id) {
 								String vendor_name = vendorList.get(i).getName();
 								String vendor_contact = vendorList.get(i).getContactNo();
 								String vendor_address = vendorList.get(i).getAddress();
-								
+
 								System.out.println(String.format(
 										"Vendor ID: %d \nVendor Name: %s \nVendor Contact Number: %s \nVendor Address: %s",
-										id, vendor_name,
-										vendor_contact, vendor_address));
+										id, vendor_name, vendor_contact, vendor_address));
 								String newNum = Helper.readString("Enter Vendor's Updated Contact Number > ");
 								String newAddress = Helper.readString("Enter Vendor's Updated Address > ");
 								vendorList.get(i).setContactNo(newNum);
@@ -285,7 +281,7 @@ public class main {
 								"Total Cost", "Vendor Name", "Order Status"));
 						for (Order o : orderList) {
 							int order_id = o.getOrder_id();
-							
+
 							if (orderID == order_id) {
 								System.out.println(o.toString());
 							} else {
@@ -326,19 +322,17 @@ public class main {
 						if (option == EDIT_SCHOOL_ID) {
 							int schoolId = Helper.readInt("Enter School ID > ");
 							for (int i = 0; i < schoolList.size(); i++) {
-								
+
 								int school_id = schoolList.get(i).getSchool_id();
-								
-								
+
 								if (schoolId == school_id) {
 									String school_name = schoolList.get(i).getName();
 									String school_address = schoolList.get(i).getAddress();
 									int noOfOrders = schoolList.get(i).getNoOfOrders();
-									
+
 									System.out.println(String.format(
 											"School ID: %d \nSchool Name: %s \nSchool Address: %s \nSchool No. of Orders: %d",
-											school_id, school_name,
-											school_address, noOfOrders));
+											school_id, school_name, school_address, noOfOrders));
 									String newAddress = Helper.readString("Enter School's Updated Address > ");
 									schoolList.get(i).setAddress(newAddress);
 									check++;
@@ -364,15 +358,8 @@ public class main {
 
 					} else if (adminOption == VIEW_ALL_ORDERS) {
 						// view all orders
-						main.setHeader("View all Orders");
-
-						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No. of items",
-								"Total cost", "Vendor Name", "Order Status"));
-
-						for (Order o : orderList) {
-
-							System.out.println(o.toString());
-						}
+						retrieveAllOrders(orderList);
+						viewAllOrders(orderList);
 						adminMenu();
 					} else if (adminOption == VIEW_USERS) {
 						// view all users
@@ -395,7 +382,7 @@ public class main {
 								retrieveAllSchools(schoolList);
 								viewAllSchools(schoolList);
 								viewAllMenu();
-							
+
 							} else if (userOption == BACK_TO_ADMIN_MENU) {
 								System.out.println("Goodbye");
 								adminMenu();
@@ -403,46 +390,43 @@ public class main {
 								System.out.println("Invalid Option");
 							}
 						}
-					}else if(adminOption == SEARCH_USER_BY_SCHOOL) {
-						
+					} else if (adminOption == SEARCH_USER_BY_SCHOOL) {
+
 						main.setHeader("SEARCH USER BY SCHOOL");
-						
+
 						String school = Helper.readString("Enter School to serach user > ");
-						
+
 						boolean userFound = false;
-						
+
 						String output = String.format("%-10s %-10s %-10s\n", "User ID", "Name", "Contact Number");
-						
+
 						for (int i = 0; i < userList.size(); i++) {
-							
+
 							String search_school = userList.get(i).getSchool();
-							
-							if(search_school.equalsIgnoreCase(school)) {
-								
+
+							if (search_school.equalsIgnoreCase(school)) {
+
 								userFound = true;
-								
+
 								int user_id = userList.get(i).getId();
 								String user_name = userList.get(i).getName();
 								String user_contact = userList.get(i).getContactNum();
-								
-								output += String.format("%-10s %-10s %-10s", user_id, user_name, 
-										user_contact);
-								
+
+								output += String.format("%-10s %-10s %-10s", user_id, user_name, user_contact);
+
 							}
 						}
-						
-						
+
 						if (userFound == false) {
-							
+
 							System.out.println("User not found!");
-							
+
 						}
-							
+
 						System.out.println(output);
 						adminMenu();
-						
-						
-					}else if (adminOption == GENERATE_REPORTS) {
+
+					} else if (adminOption == GENERATE_REPORTS) {
 						// generate reports
 						main.setHeader("REPORT");
 						System.out.println("Total Number of Users: " + userList.size());
@@ -455,7 +439,7 @@ public class main {
 						deleteMenu();
 
 						deleteOption = Helper.readInt("Enter option > ");
-						if (deleteOption == DELETE_PARENT) {     
+						if (deleteOption == DELETE_PARENT) {
 							// TODO ABCDEDFFFED
 							// parent
 							deleteUser(userList);
@@ -723,7 +707,7 @@ public class main {
 					&& itemList.get(i).getItem_price() == item1.getItem_price()) {
 
 				System.out.println("Item Already Exists In Menu !");
-				
+
 				itemFound = true;
 
 				break;
@@ -1031,7 +1015,6 @@ public class main {
 			if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
 
 				vendorList.add(vendor1);
-						
 
 				System.out.println("Vendor Successfully Added !");
 
@@ -1062,7 +1045,7 @@ public class main {
 	}
 
 	public static String retrieveAllSchools(ArrayList<School> schoolList) {
-		String output = "";		
+		String output = "";
 
 		for (int i = 0; i < schoolList.size(); i++) {
 
@@ -1120,7 +1103,7 @@ public class main {
 
 		return output;
 	}
-	
+
 	public static void viewAllVendor(ArrayList<Vendor> vendorList) {
 
 		main.setHeader("View All Vendors");
@@ -1131,7 +1114,7 @@ public class main {
 		System.out.println(output);
 
 	}
-	
+
 	public static void viewAllUsers(ArrayList<User> userList) {
 
 		main.setHeader("View All Parents/Guardians");
@@ -1189,8 +1172,7 @@ public class main {
 
 	// ==================================delete users=============================
 
-	
-	//TODO ASJDADJDS
+	// TODO ASJDADJDS
 	public static boolean doDeleteUser(ArrayList<User> userList, int inputId) {
 		boolean isDeleted = false;
 
@@ -1215,22 +1197,22 @@ public class main {
 	public static void deleteUser(ArrayList<User> userList) {
 		main.viewAllUsers(userList);
 		int id = Helper.readInt("Enter id > ");
-		
+
 		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		
-		if(yn == 'Y' || yn == 'y') {
-			
+
+		if (yn == 'Y' || yn == 'y') {
+
 			Boolean isDeleted = doDeleteUser(userList, id);
-			
+
 			if (isDeleted == false) {
 				System.out.println("Invalid id");
 			} else {
 				System.out.println("User ID : " + id + " deleted");
 			}
 		}
-	
+
 	}
-	
+
 	public static boolean doDeleteSchool(ArrayList<School> schoolList, int inputId) {
 		boolean isDeleted = false;
 
@@ -1251,18 +1233,19 @@ public class main {
 		return isDeleted;
 
 	}
+
 	public static void deleteSchool(ArrayList<School> schoolList) {
 
 		// parent
 		main.viewAllSchools(schoolList);
 		int id = Helper.readInt("Enter id > ");
-		
+
 		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		
-		if(yn == 'Y' || yn == 'y') {
-			
+
+		if (yn == 'Y' || yn == 'y') {
+
 			Boolean isDeleted = doDeleteSchool(schoolList, id);
-			
+
 			if (isDeleted == false) {
 				System.out.println("Invalid id");
 			} else {
@@ -1270,7 +1253,7 @@ public class main {
 			}
 		}
 	}
-	
+
 	public static boolean doDeleteMenu(ArrayList<Menu> menuList, int inputId) {
 		boolean isDeleted = false;
 
@@ -1296,13 +1279,13 @@ public class main {
 
 		main.viewAllMenu();
 		int id = Helper.readInt("Enter id > ");
-		
+
 		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		
-		if(yn == 'Y' || yn == 'y') {
-			
+
+		if (yn == 'Y' || yn == 'y') {
+
 			Boolean isDeleted = doDeleteMenu(menuList, id);
-			
+
 			if (isDeleted == false) {
 				System.out.println("Invalid id");
 			} else {
@@ -1310,7 +1293,7 @@ public class main {
 			}
 		}
 	}
-	
+
 	public static boolean doDeleteOrder(ArrayList<Order> orderList, int inputId) {
 		boolean isDeleted = false;
 
@@ -1332,19 +1315,18 @@ public class main {
 
 	}
 
-
 	public static void deleteOrder(ArrayList<Order> orderList) {
 
 		// parent
 		main.viewAllOrders(orderList);
 		int id = Helper.readInt("Enter id > ");
-		
+
 		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		
-		if(yn == 'Y' || yn == 'y') {
-			
+
+		if (yn == 'Y' || yn == 'y') {
+
 			Boolean isDeleted = doDeleteOrder(orderList, id);
-			
+
 			if (isDeleted == false) {
 				System.out.println("Invalid id");
 			} else {
@@ -1352,7 +1334,7 @@ public class main {
 			}
 		}
 	}
-	
+
 	public static boolean doDeletePayment(ArrayList<Payment> paymentList, String name) {
 		boolean isDeleted = false;
 
@@ -1379,13 +1361,13 @@ public class main {
 		// parent
 		main.viewAllPayment(paymentList);
 		String name = Helper.readString("Enter Name > ");
-		
+
 		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		
-		if(yn == 'Y' || yn == 'y') {
-			
+
+		if (yn == 'Y' || yn == 'y') {
+
 			Boolean isDeleted = doDeletePayment(paymentList, name);
-			
+
 			if (isDeleted == false) {
 				System.out.println("Invalid name");
 			} else {
@@ -1415,17 +1397,18 @@ public class main {
 		return isDeleted;
 
 	}
+
 	public static void deleteVendor(ArrayList<Vendor> vendorList) {
 
 		main.viewAllVendor(vendorList);
 		int id = Helper.readInt("Enter id > ");
-		
+
 		char yn = Helper.readChar("Enter Deletion Confirmation (Y/N) > ");
-		
-		if(yn == 'Y' || yn == 'y') {
-			
+
+		if (yn == 'Y' || yn == 'y') {
+
 			Boolean isDeleted = doDeleteVendor(vendorList, id);
-			
+
 			if (isDeleted == false) {
 				System.out.println("Invalid id");
 			} else {
