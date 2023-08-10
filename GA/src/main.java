@@ -864,7 +864,7 @@ public class main {
 
 						if (con == 'N' || con == 'n') {
 
-							System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.", "Name",
+							System.out.println(String.format("%-9s %-10s %-25s %-15s %-10s", "No.", "Name",
 									"Card Number", "CVC / CVV", "Expiry Date"));
 
 							int number = 1;
