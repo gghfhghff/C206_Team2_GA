@@ -1151,7 +1151,7 @@ public class main {
 	public static void viewAllOrders(ArrayList<Order> orderList) {
 
 		main.setHeader("View All Orders");
-		String output = String.format("%-10s %-15s %-15s %-15s\n", "ID", "No. of items", "total cost", "Vendor Name");
+		String output = String.format("%-10s %-15s %-15s %-15s %s\n", "ID", "No. of items", "total cost", "Vendor Name","Order status");
 
 		output += retrieveAllOrders(orderList);
 
