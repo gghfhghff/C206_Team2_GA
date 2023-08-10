@@ -645,10 +645,10 @@ public class main {
 		return school1;
 	}
 
-	public static void addSchool(ArrayList<School> schoolList, School school1) {
+	public static boolean addSchool(ArrayList<School> schoolList, School school1) {
 
 		boolean schFound = false;
-
+		boolean isAdded = false;
 		for (int i = 0; i < schoolList.size(); i++) {
 
 			if (schoolList.get(i).getName().equalsIgnoreCase(school1.getName())
@@ -661,6 +661,7 @@ public class main {
 				break;
 
 			}
+			
 
 		}
 
@@ -681,6 +682,7 @@ public class main {
 		}
 
 		adminMenu();
+		return isAdded;
 	}
 
 	private static Item inputItem(ArrayList<Item> itemList, Menu menu1) {

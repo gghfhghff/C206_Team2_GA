@@ -91,11 +91,19 @@ public class test {
 
 		// Add new School to the school list
 		schoolList.add(school1);
+		
+		// test duplicate
+		School school3 = new School(001, "MATTHIS Primary School", "10 Matthis Avenue", 10);
+	
+
+		assertFalse("ChECK DUPLCIATE", schoolList.contains(school3));
+		assertFalse("dont add",main.addSchool(schoolList, school3) );
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, schoolList.size());
 		assertSame("Check that School is added", school1, schoolList.get(0));
-
+		
+	
 		// Add another item. test The size of the list is 2? -normal
 		// The item just added is as same as the second item of the list
 		main.addSchool(schoolList, school2);
@@ -341,13 +349,18 @@ public class test {
 		// UserList is null or zero
 		assertNotNull("Check if there is valid User arraylist to delete from", userList);
 
-		// delete user to the user list
-		userList.remove(parent1);
+	
+		userList.add(parent1);
+		boolean test = main.doDeleteUser(userList, 1);
+		
 		// Test that the list of the size will decrease by 1 after it has been added
-		assertEquals("Check that the list size is 0 after it has been deleted", 0, userList.size());
-
-		// Test that the new user has been deleted list
-		assertSame("Check that User is deleted",userList.size(), 0);
+		assertTrue("Test that User ID 1 has been successfully deleted", test);
+		assertSame("Test that the size of the list will be 0 after deleting the user",userList.size(), 0);
+		
+		//	Test delete an invalid user ID
+		
+		test = main.doDeleteUser(userList, 3);
+		assertFalse("Test that the deletion fails", test);
 		
 
 	}
@@ -357,14 +370,18 @@ public class test {
 		// menuList is null or zero
 		assertNotNull("Check if there is valid Menu arraylist to delete from", menuList);
 
-		// delete menu from the menu list
-		menuList.remove(menu1);
-
-		// Test that the list of the size will decrease by 1 after it has been added
+		menuList.add(menu1);
+		boolean test = main.doDeleteMenu(menuList, 1);
+		
+		
+		// Test that the list of the size will decrease by 1 after it has been deleted
+		assertTrue("Test that Menu ID 1 has been successfully deleted", test);
 		assertEquals("Check that the list size is 0 after it has been deleted", 0, menuList.size());
 
-		// Test that the new menu has been deleted from list
-		assertSame("Check that Menu is deleted", menuList.size(), 0);
+		//	Test delete an invalid menu ID
+		
+		test = main.doDeleteMenu(menuList, 3);
+		assertFalse("Test that the deletion fails", test);
 
 	}
 
@@ -374,15 +391,18 @@ public class test {
 		assertNotNull("Check if there is valid Order arraylist to delete from", orderList);
 
 		// delete user from the order list
-		orderList.remove(order1);
+		orderList.add(order1);
+		boolean test = main.doDeleteOrder(orderList, 1);
 
 
-		// Test that the list of the size will decrease by 1 after it has been added
+		// Test that the list of the size will decrease by 1 after it has been deleted
+		assertTrue("Test that Order ID 1 has been successfully deleted", test);
 		assertEquals("Check that the list size is 0 after it has been deleted", 0, orderList.size());
 
 
-		// Test that the new order has been deleted from list
-		assertSame("Check that Order is deleted", orderList.size(), 0);
+		//	Test delete an invalid order ID
+		test = main.doDeleteOrder(orderList, 3);
+		assertFalse("Test that the deletion fails", test);
 		
 
 	}
@@ -393,14 +413,16 @@ public class test {
 		assertNotNull("Check if there is valid School arraylist to delete from", schoolList);
 
 		// delete school from the school list
-		schoolList.remove(school1);
-
-		// Test that the list of the size will decrease by 1 after it has been added
+		schoolList.add(school1);
+		boolean test = main.doDeleteSchool(schoolList, 1);
+		
+		// Test that the list of the size will decrease by 1 after it has been deleted
+		assertTrue("Test that School ID 1 has been successfully deleted", test);
 		assertEquals("Check that the list size is 0 after it has been deleted", 0, schoolList.size());
 
 		// Test that the new school has been deleted from list
-		assertSame("Check that School is deleted", schoolList.size(), 0);
-
+		test = main.doDeleteSchool(schoolList, 3);
+		assertFalse("Test that the deletion fails", test);
 	}
 
 	@Test
@@ -408,30 +430,34 @@ public class test {
 		// vendorList is null or zero
 		assertNotNull("Check if there is valid Vendor arraylist to delete from", vendorList);
 
-		// delete vendor from the vendor list
-		vendorList.remove(vendor1);
-
-		// Test that the list of the size will decrease by 1 after it has been added
+		vendorList.add(vendor1);
+		boolean test = main.doDeleteVendor(vendorList, 1);
+		
+		// Test that the list of the size will decrease by 1 after it has been deleted
+		assertTrue("Test that Vendor ID 1 has been successfully deleted", test);
 		assertEquals("Check that the list size is 0 after it has been deleted", 0, vendorList.size());
 
 		// Test that the new vendor has been deleted from list
-		assertSame("Check that Vendor is deleted", vendorList.size(), 0);
-
+		test = main.doDeleteVendor(vendorList, 3);
+		assertFalse("Test that the deletion fails", test);
+	
 	}
 
 	@Test
 	public void testDeletePayment() {
 		// paymentList is null or zero
 		assertNotNull("Check if there is valid Payment arraylist to delete from", paymentList);
-
-		// delete payment from the payment list
-		paymentList.remove(payment1);
+		
+		paymentList.add(payment1);
+		boolean test = main.doDeletePayment(paymentList, "Bob");
 
 		// Test that the list of the size will decrease by 1 after it has been added
+		assertTrue("Test that User Payment has been successfully deleted", test);
 		assertEquals("Check that the list size is 0 after it has been deleted", 0, paymentList.size());
 
 		// Test that the new payment has been deleted from list
-		assertSame("Check that Payment is deleted", paymentList.size(), 0);
+		test = main.doDeletePayment(paymentList, "LUCIUS NEO TZE HEAN");
+		assertFalse("Test that the deletion fails", test);
 
 	}
 
