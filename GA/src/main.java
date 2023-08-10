@@ -98,16 +98,8 @@ public class main {
 
 					} else if (parentOption == VIEW_MENU) {
 						// view
-						main.setHeader("View Menu");
-
-						System.out.println(String.format("%-10s %-10s %-15s %-10s", "Menu ID", "Menu Name",
-								"Menu status", "Vendor"));
-
-						for (Menu m : menuList) {
-
-							System.out.println(m.toString());
-
-						}
+						retrieveAllMenus(menuList);
+						viewAllMenus(menuList);
 						parentMenu();
 
 					} else if (parentOption == PLACE_ORDER) {
@@ -123,15 +115,8 @@ public class main {
 
 					} else if (parentOption == VIEW_ORDERS) {
 						// view order
-						main.setHeader("View Order");
-
-						System.out.println(String.format("%-10s %-15s %-15s %-15s %s", "Order ID", "No.of Items",
-								"Total Cost", "Vendor Name", "Order Status"));
-
-						for (Order o : orderList) {
-
-							System.out.println(o.toString());
-						}
+						retrieveAllOrders(orderList);
+						viewAllOrders(orderList);
 						parentMenu();
 
 					} else if (parentOption == ADD_PAYMENT) {
