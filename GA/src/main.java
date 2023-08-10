@@ -566,8 +566,8 @@ public class main {
 	private static void viewAllMenu() {
 		main.setHeader("View User Selection");
 		System.out.println("1. Parent/Guardian");
-		System.out.println("2. School");
-		System.out.println("3. Vendor");
+		System.out.println("2. Vendor");
+		System.out.println("3. School");
 		System.out.println("4. Quit");
 	}
 
