@@ -866,7 +866,7 @@ public class main {
 
 						if (con == 'N' || con == 'n') {
 
-							System.out.println(String.format("%-10s %-10s %-25s %-10s %-10s", "No.", "Name",
+							System.out.println(String.format("%-9s %-10s %-25s %-15s %-10s", "No.", "Name",
 									"Card Number", "CVC / CVV", "Expiry Date"));
 
 							int number = 1;
@@ -1153,7 +1153,7 @@ public class main {
 	public static void viewAllOrders(ArrayList<Order> orderList) {
 
 		main.setHeader("View All Orders");
-		String output = String.format("%-10s %-15s %-15s %-15s\n", "ID", "No. of items", "total cost", "Vendor Name");
+		String output = String.format("%-10s %-15s %-15s %-15s %s\n", "ID", "No. of items", "total cost", "Vendor Name","Order status");
 
 		output += retrieveAllOrders(orderList);
 
