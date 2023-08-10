@@ -71,7 +71,13 @@ public class test {
 
 		// Add new user to the user list
 		userList.add(parent1);
-
+		
+		// test duplicate
+		User parent2 = new User("John Doe", 001, "1234 5678", "Parent","MATTHIS Primary School");
+	
+		assertFalse("ChECK DUPLCIATE", userList.contains(parent2));
+		assertFalse("dont add",main.addUser(userList, parent2) );
+		
 		// Test that the list of the size will increase by 1 after it has been added - boundary
 		assertEquals("Check that the list size is 1 after it has been added", 1, userList.size());
 		assertSame("Check that User is added", parent1, userList.get(0));
@@ -118,6 +124,12 @@ public class test {
 
 		// Add new user to the menu list
 		menuList.add(menu1);
+		
+		// test duplicate
+		Menu menu3 = new Menu(1, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
+	
+		assertFalse("ChECK DUPLCIATE", menuList.contains(menu3));
+		assertFalse("dont add",main.addMenu(menuList, menu3));
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, menuList.size());
@@ -137,7 +149,7 @@ public class test {
 
 		// Add new user to the order list
 		orderList.add(order1);
-
+		
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, orderList.size());
 		assertSame("Check that Order is added", order1, orderList.get(0));
@@ -157,7 +169,13 @@ public class test {
 
 		// Add new payment to the payment list
 		paymentList.add(payment1);
-
+		
+		// test duplicate
+		Payment payment3 =  new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
+	
+		assertFalse("ChECK DUPLCIATE", paymentList.contains(payment3));
+		assertFalse("dont add",main.addPayment(paymentList, payment3));
+		
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, paymentList.size());
 		assertSame("Check that Payment is added", payment1, paymentList.get(0));
@@ -177,6 +195,12 @@ public class test {
 
 		// Add new user to the user list
 		vendorList.add(vendor1);
+		
+		// test duplicate
+		Vendor vendor3 = new Vendor(1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
+	
+		assertFalse("ChECK DUPLCIATE", vendorList.contains(vendor3));
+		assertFalse("dont add",main.addVendor(vendorList, vendor3));
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, vendorList.size());
