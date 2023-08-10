@@ -677,7 +677,6 @@ public class main {
 
 				System.out.println("Information Entered Is Incompelte !");
 
-				
 			}
 
 		}
