@@ -71,7 +71,13 @@ public class test {
 
 		// Add new user to the user list
 		userList.add(parent1);
-
+		
+		// test duplicate
+		User parent2 = new User("John Doe", 001, "1234 5678", "Parent","MATTHIS Primary School");
+	
+		assertFalse("ChECK DUPLCIATE", userList.contains(parent2));
+		assertFalse("dont add",main.addUser(userList, parent2) );
+		
 		// Test that the list of the size will increase by 1 after it has been added - boundary
 		assertEquals("Check that the list size is 1 after it has been added", 1, userList.size());
 		assertSame("Check that User is added", parent1, userList.get(0));
@@ -118,6 +124,12 @@ public class test {
 
 		// Add new user to the menu list
 		menuList.add(menu1);
+		
+		// test duplicate
+		Menu menu3 = new Menu(1, "MACDONALDS", "Ongoing", "JOSH Pte Ltd");
+	
+		assertFalse("ChECK DUPLCIATE", menuList.contains(menu3));
+		assertFalse("dont add",main.addMenu(menuList, menu3));
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, menuList.size());
@@ -137,7 +149,7 @@ public class test {
 
 		// Add new user to the order list
 		orderList.add(order1);
-
+		
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, orderList.size());
 		assertSame("Check that Order is added", order1, orderList.get(0));
@@ -157,7 +169,13 @@ public class test {
 
 		// Add new payment to the payment list
 		paymentList.add(payment1);
-
+		
+		// test duplicate
+		Payment payment3 =  new Payment("Bob", "1234 5678 1234 5678", 321, "12/11/2030");
+	
+		assertFalse("ChECK DUPLCIATE", paymentList.contains(payment3));
+		assertFalse("dont add",main.addPayment(paymentList, payment3));
+		
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, paymentList.size());
 		assertSame("Check that Payment is added", payment1, paymentList.get(0));
@@ -177,6 +195,12 @@ public class test {
 
 		// Add new user to the user list
 		vendorList.add(vendor1);
+		
+		// test duplicate
+		Vendor vendor3 = new Vendor(1, "JOSH Pte Ltd", "1233 4566", "21 Jerry Street");
+	
+		assertFalse("ChECK DUPLCIATE", vendorList.contains(vendor3));
+		assertFalse("dont add",main.addVendor(vendorList, vendor3));
 
 		// Test that the list of the size will increase by 1 after it has been added
 		assertEquals("Check that the list size is 1 after it has been added", 1, vendorList.size());
@@ -352,6 +376,13 @@ public class test {
 		userList.add(parent1);
 		boolean test = main.doDeleteUser(userList, 1);
 		
+		
+		// test delete non existing 
+		User user3 = new User("John bob", 003, "8721 9130", "Guardian", "Home Address");
+	
+		assertFalse("ChECK presence", userList.contains(user3));
+		assertFalse("dont delete",main.doDeleteUser(userList, user3.getId()));
+
 		// Test that the list of the size will decrease by 1 after it has been added
 		assertTrue("Test that User ID 1 has been successfully deleted", test);
 		assertSame("Test that the size of the list will be 0 after deleting the user",userList.size(), 0);
@@ -372,6 +403,11 @@ public class test {
 		menuList.add(menu1);
 		boolean test = main.doDeleteMenu(menuList, 1);
 		
+		// test delete non existing 
+		Menu menu3 = new Menu(3, "ABCDEF", "Ongoing", "LLL Pte Ltd");
+	
+		assertFalse("ChECK presence", menuList.contains(menu3));
+		assertFalse("dont delete",main.doDeleteMenu(menuList, menu3.getMenu_id()));
 		
 		// Test that the list of the size will decrease by 1 after it has been deleted
 		assertTrue("Test that Menu ID 1 has been successfully deleted", test);
@@ -393,6 +429,11 @@ public class test {
 		orderList.add(order1);
 		boolean test = main.doDeleteOrder(orderList, 1);
 
+		// test delete non existing 
+		Order order3 = new Order(005, 11, 58.0, "JOSH Pte Ltd");
+	
+		assertFalse("ChECK presence", orderList.contains(order3));
+		assertFalse("dont delete",main.doDeleteOrder(orderList,order3.getOrder_id()));
 
 		// Test that the list of the size will decrease by 1 after it has been deleted
 		assertTrue("Test that Order ID 1 has been successfully deleted", test);
@@ -415,6 +456,13 @@ public class test {
 		schoolList.add(school1);
 		boolean test = main.doDeleteSchool(schoolList, 1);
 		
+		// test delete non existing 
+		School school3 = new School(002, "WAHSGD ASDGSAY Primary School", "10  sdha sad a Avenue", 19);
+	
+		assertFalse("ChECK presence", schoolList.contains(school3));
+		assertFalse("dont delete",main.doDeleteSchool(schoolList,school3.getSchool_id()));
+
+		
 		// Test that the list of the size will decrease by 1 after it has been deleted
 		assertTrue("Test that School ID 1 has been successfully deleted", test);
 		assertEquals("Check that the list size is 0 after it has been deleted", 0, schoolList.size());
@@ -431,6 +479,12 @@ public class test {
 
 		vendorList.add(vendor1);
 		boolean test = main.doDeleteVendor(vendorList, 1);
+		
+		// test delete non existing 
+		Vendor vendor3 = new Vendor(7, "HAHAHAHA Pte Ltd", "9812 4566", "21 Ben Street");
+	
+		assertFalse("ChECK presence", vendorList.contains(vendor3));
+		assertFalse("dont delete",main.doDeleteVendor(vendorList,vendor3.getId()));
 		
 		// Test that the list of the size will decrease by 1 after it has been deleted
 		assertTrue("Test that Vendor ID 1 has been successfully deleted", test);
@@ -449,6 +503,12 @@ public class test {
 		
 		paymentList.add(payment1);
 		boolean test = main.doDeletePayment(paymentList, "Bob");
+		
+		// test delete non existing 
+		Payment payment3 = new Payment("jimmy", "9128 1283 2389 9999", 321, "12/11/2030");
+	
+		assertFalse("ChECK presence", paymentList.contains(payment3));
+		assertFalse("dont delete",main.doDeletePayment(paymentList,payment3.getName()));
 
 		// Test that the list of the size will decrease by 1 after it has been added
 		assertTrue("Test that User Payment has been successfully deleted", test);

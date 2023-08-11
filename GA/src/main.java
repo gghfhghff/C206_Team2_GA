@@ -585,9 +585,10 @@ public class main {
 
 	// ========================================add
 	// users==================================
-	static void addUser(ArrayList<User> userList, User u1) {
+	public static boolean addUser(ArrayList<User> userList, User u1) {
 
 		boolean userFound = false;
+		boolean isAdded = false;
 
 		for (int i = 0; i < userList.size(); i++) {
 
@@ -612,7 +613,7 @@ public class main {
 				if (u1.getRole().equalsIgnoreCase("Parent") || u1.getRole().equalsIgnoreCase("Guardian")) {
 
 					userList.add(u1);
-
+					
 					System.out.println("Account Successfully Created !");
 
 				} else {
@@ -629,6 +630,7 @@ public class main {
 		}
 
 		parentMenu();
+		return isAdded;
 
 	}
 
@@ -670,6 +672,7 @@ public class main {
 			if (!school1.getName().isEmpty() && !school1.getAddress().isEmpty()) {
 
 				schoolList.add(school1);
+				isAdded = true;
 
 				System.out.println("School Successfully Added !");
 
@@ -698,9 +701,10 @@ public class main {
 
 	}
 
-	private static void addItem(ArrayList<Item> itemList, Item item1) {
+	private static boolean addItem(ArrayList<Item> itemList, Item item1) {
 
 		boolean itemFound = false;
+		boolean isAdded = false;
 
 		for (int i = 0; i < itemList.size(); i++) {
 
@@ -726,7 +730,7 @@ public class main {
 				itemList.add(new Item(item1.getMenu_id(), item1.getItem_id(), item1.getItem_name(),
 						item1.getItem_description(), item1.getItem_price()));
 				System.out.println("Items Successfully Added!");
-
+				isAdded = true;
 			} else {
 
 				System.out.println("Information Entered Is Incomplete !");
@@ -734,6 +738,7 @@ public class main {
 			}
 
 		}
+		return isAdded;
 
 	}
 
@@ -750,9 +755,11 @@ public class main {
 
 	}
 
-	public static void addMenu(ArrayList<Menu> menuList, Menu menu1) {
+	public static boolean addMenu(ArrayList<Menu> menuList, Menu menu1) {
 
 		boolean menuFound = false;
+		boolean isAdded = false;
+
 
 		for (int i = 0; i < menuList.size(); i++) {
 
@@ -773,6 +780,7 @@ public class main {
 			if (!menu1.getMenu_name().isEmpty() && !menu1.getMenu_status().isEmpty()) {
 
 				menuList.add(menu1);
+				isAdded = true;
 
 				System.out.println("Menu Successfully Added !");
 
@@ -783,13 +791,16 @@ public class main {
 			}
 
 		}
+		return isAdded;
 
 	}
 
-	public static void addOrder(ArrayList<Order> orderList, ArrayList<Menu> menuList, ArrayList<Item> itemList,
+	public static boolean addOrder(ArrayList<Order> orderList, ArrayList<Menu> menuList, ArrayList<Item> itemList,
 			ArrayList<Payment> paymentList) {
 
 		char con = 'Y';
+		boolean isAdded = false;
+
 		int totalqty = 0;
 		double grandTotal = 0;
 
@@ -884,6 +895,7 @@ public class main {
 								System.out.println("Order Successfully placed !");
 								orderList.add(new Order(orderList.size() + 1, totalqty, grandTotal, vendorName));
 								parentMenu();
+								isAdded = true;
 
 							} else {
 
@@ -904,6 +916,7 @@ public class main {
 				}
 			}
 		}
+		return isAdded;
 	}
 
 	private static Payment inputPayment(ArrayList<Payment> paymentList) {
@@ -921,9 +934,11 @@ public class main {
 
 	}
 
-	public static void addPayment(ArrayList<Payment> paymentList, Payment payment1) {
+	public static boolean addPayment(ArrayList<Payment> paymentList, Payment payment1) {
 
 		boolean payFound = false;
+		boolean isAdded = false;
+
 
 		for (int i = 0; i < paymentList.size(); i++) {
 
@@ -950,7 +965,7 @@ public class main {
 					if (payment1.getCardNo().length() == 19) {
 
 						paymentList.add(payment1);
-
+						isAdded = true;
 						System.out.println("New Payment Successfully Added !");
 
 					} else {
@@ -974,6 +989,7 @@ public class main {
 		}
 
 		parentMenu();
+		return isAdded;
 	}
 
 	private static Vendor inputVendor(ArrayList<Vendor> vendorList) {
@@ -991,9 +1007,10 @@ public class main {
 
 	}
 
-	public static void addVendor(ArrayList<Vendor> vendorList, Vendor vendor1) {
+	public static boolean addVendor(ArrayList<Vendor> vendorList, Vendor vendor1) {
 
 		boolean vendFound = false;
+		boolean isAdded = false;
 
 		for (int i = 0; i < vendorList.size(); i++) {
 
@@ -1003,7 +1020,6 @@ public class main {
 					&& vendorList.get(i).getContactNo().equalsIgnoreCase(vendor1.getContactNo())) {
 
 				vendFound = true;
-
 				System.out.println("School Already Exists !");
 
 				break;
@@ -1017,7 +1033,7 @@ public class main {
 			if (!vendor1.getName().isEmpty() && !vendor1.getAddress().isEmpty() && !vendor1.getContactNo().isEmpty()) {
 
 				vendorList.add(vendor1);
-
+				isAdded = true;
 				System.out.println("Vendor Successfully Added !");
 
 			} else {
@@ -1029,6 +1045,7 @@ public class main {
 		}
 
 		adminMenu();
+		return isAdded;
 	}
 
 	// =====================================view
