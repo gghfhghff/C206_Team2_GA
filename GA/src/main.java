@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class main {
 
+	private static final int RETURN_TO_ADMIN_MENU = 4;
 	private static final int ADMIN_DELETE_SCHOOL = 2;
 	private static final int ADMIN_SEARCH_ORDER = 9;
 	private static final int DELETE_VENDOR = 3;
@@ -361,29 +362,29 @@ public class main {
 						retrieveAllOrders(orderList);
 						viewAllOrders(orderList);
 						adminMenu();
-					} else if (adminOption == 5) {
+					} else if (adminOption == VIEW_USERS) {
 						// view all users
 						int userOption = 0;
 						viewAllMenu();
 						while (userOption != 4) {
 							userOption = Helper.readInt("Enter option > ");
-							if (userOption == 1) {
+							if (userOption == VIEW_PARENTS) {
 								// parent
 
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
 								viewAllMenu();
-							} else if (userOption == 2) {
+							} else if (userOption == VIEW_VENDORS) {
 								retrieveAllVendors(vendorList);
 								viewAllVendor(vendorList);
 								viewAllMenu();
-							} else if (userOption == 3) {
+							} else if (userOption == VIEW_SCHOOLS) {
 
 								retrieveAllSchools(schoolList);
 								viewAllSchools(schoolList);
 								viewAllMenu();
 
-							} else if (userOption == 4) {
+							} else if (userOption == BACK_TO_ADMIN_MENU) {
 								System.out.println("Goodbye");
 								adminMenu();
 							} else {
@@ -451,7 +452,7 @@ public class main {
 							// vendor
 							deleteVendor(vendorList);
 							adminMenu();
-						} else if (deleteOption == 4) {
+						} else if (deleteOption == RETURN_TO_ADMIN_MENU) {
 							System.out.println("Return");
 							adminMenu();
 						}
