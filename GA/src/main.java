@@ -365,7 +365,7 @@ public class main {
 						// view all users
 						int userOption = 0;
 						viewAllMenu();
-						while (userOption != 4) {
+						while (userOption != BACK_TO_ADMIN_MENU) {
 							userOption = Helper.readInt("Enter option > ");
 							if (userOption == VIEW_PARENTS) {
 								// parent
