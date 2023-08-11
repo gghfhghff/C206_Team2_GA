@@ -361,29 +361,29 @@ public class main {
 						retrieveAllOrders(orderList);
 						viewAllOrders(orderList);
 						adminMenu();
-					} else if (adminOption == VIEW_USERS) {
+					} else if (adminOption == 5) {
 						// view all users
 						int userOption = 0;
 						viewAllMenu();
-						while (userOption != BACK_TO_ADMIN_MENU) {
+						while (userOption != 4) {
 							userOption = Helper.readInt("Enter option > ");
-							if (userOption == VIEW_PARENTS) {
+							if (userOption == 1) {
 								// parent
 
 								retrieveAllUsers(userList);
 								viewAllUsers(userList);
 								viewAllMenu();
-							} else if (userOption == VIEW_VENDORS) {
+							} else if (userOption == 2) {
 								retrieveAllVendors(vendorList);
 								viewAllVendor(vendorList);
 								viewAllMenu();
-							} else if (userOption == VIEW_SCHOOLS) {
+							} else if (userOption == 3) {
 
 								retrieveAllSchools(schoolList);
 								viewAllSchools(schoolList);
 								viewAllMenu();
 
-							} else if (userOption == BACK_TO_ADMIN_MENU) {
+							} else if (userOption == 4) {
 								System.out.println("Goodbye");
 								adminMenu();
 							} else {
